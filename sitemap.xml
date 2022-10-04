@@ -2,6 +2,9 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://chandlerye.github.io/categories/</loc>
+    <lastmod>2022-10-03T23:09:50+00:00</lastmod>
+  </url><url>
     <loc>https://chandlerye.github.io/posts/20221003-first/</loc>
     <lastmod>2022-10-03T23:09:50+00:00</lastmod>
   </url><url>
@@ -11,15 +14,16 @@
     <loc>https://chandlerye.github.io/tags/</loc>
     <lastmod>2022-10-03T23:09:50+00:00</lastmod>
   </url><url>
-    <loc>https://chandlerye.github.io/tags/test/</loc>
-    <lastmod>2022-10-03T23:09:50+00:00</lastmod>
-  </url><url>
     <loc>https://chandlerye.github.io/</loc>
     <lastmod>2022-10-03T23:09:50+00:00</lastmod>
   </url><url>
-    <loc>https://chandlerye.github.io/archives/</loc>
+    <loc>https://chandlerye.github.io/tags/%E6%9D%82%E6%96%87/</loc>
+    <lastmod>2022-10-03T23:09:50+00:00</lastmod>
   </url><url>
-    <loc>https://chandlerye.github.io/categories/</loc>
+    <loc>https://chandlerye.github.io/categories/%E6%9D%82%E6%96%87/</loc>
+    <lastmod>2022-10-03T23:09:50+00:00</lastmod>
+  </url><url>
+    <loc>https://chandlerye.github.io/archives/</loc>
   </url><url>
     <loc>https://chandlerye.github.io/categories/</loc>
   </url><url>
