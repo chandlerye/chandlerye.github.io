@@ -20,5 +20,14 @@
       <description>这是我的新博客,在这里我会记录我的思考,我的总结,世界很复杂,多读书,少受知识分子的骗</description>
     </item>
     
+    <item>
+      <title>博客上传代码</title>
+      <link>https://chandlerye.github.io/posts/test/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://chandlerye.github.io/posts/test/</guid>
+      <description>#首先需要记得修改 config.yaml文件的 baseURL参数设置为你想要绑定的域名 ## baseURL: https://www.username.github.io ##然后使用hugo编译 hugo # hugo -F --cleanDestinationDir # 加了上述参数表示表示每次生成的public都是全新的，会覆盖原来的。 ls ./public # 404.html assets/ categories/ index.html index.xml # page/ posts/ sitemap.xml tags/ cd public/ #(1)第一次上传 git init git add . #添加当前路径的所有文件 git commit -m &amp;#39;create blog&amp;#39; git remote add origin https://github.com/chandlerye/chandlerye.github.io.git #根据gitbash提示操作 git push -u origin master ##如果push失败，比如time out...可尝试下面的命令 git config --global http.sslVerify &amp;#34;false&amp;#34; git config --global --unset http.proxy git config --global --unset https.proxy #(2)之后再修改、更新博客 git add .</description>
+    </item>
+    
   </channel>
 </rss>
