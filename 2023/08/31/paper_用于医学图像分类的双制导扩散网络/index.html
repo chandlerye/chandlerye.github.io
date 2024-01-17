@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>PaperReading-用于医学图像分类的双制导扩散网络 | Chandler&#39;s blog</title>
+  <meta name="description" content="DiffMIC Dual-Guidance Diffusion Network  for Medical Image Classification  1.摘要   近年来，扩散概率模型在生成图像建模中表现出了显著的性能，引起了计算机视觉界的广泛关注。然而，尽管大量基于扩散的研究集中在生成任务上，但很少有研究将扩散模型应用于一般医学图像分类。在本文中，我们提出了第一个基于扩散的模型(称为DiffM">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PaperReading-用于医学图像分类的双制导扩散网络">
+<meta property="og:url" content="http://example.com/2023/08/31/paper_%E7%94%A8%E4%BA%8E%E5%8C%BB%E5%AD%A6%E5%9B%BE%E5%83%8F%E5%88%86%E7%B1%BB%E7%9A%84%E5%8F%8C%E5%88%B6%E5%AF%BC%E6%89%A9%E6%95%A3%E7%BD%91%E7%BB%9C/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="DiffMIC Dual-Guidance Diffusion Network  for Medical Image Classification  1.摘要   近年来，扩散概率模型在生成图像建模中表现出了显著的性能，引起了计算机视觉界的广泛关注。然而，尽管大量基于扩散的研究集中在生成任务上，但很少有研究将扩散模型应用于一般医学图像分类。在本文中，我们提出了第一个基于扩散的模型(称为DiffM">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-08-31T14:15:40.186Z">
+<meta property="article:modified_time" content="2024-01-17T12:18:10.615Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="扩散模型">
+<meta name="twitter:card" content="summary">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://example.com/2023/08/31/paper_%E7%94%A8%E4%BA%8E%E5%8C%BB%E5%AD%A6%E5%9B%BE%E5%83%8F%E5%88%86%E7%B1%BB%E7%9A%84%E5%8F%8C%E5%88%B6%E5%AF%BC%E6%89%A9%E6%95%A3%E7%BD%91%E7%BB%9C/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+  
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/chandlerye" target="_blank">
+          <img class="img-circle img-rotate" src="/images/favicon.ico" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">Chandler</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">一头牛马</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> YanTai, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="搜索" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="想要查找什么..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">首页</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">归档</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">分类</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">标签</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/chandlerye" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">公告</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>记录学习历程!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget-body">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Paper/">Paper</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Paper-%E5%88%86%E7%B1%BB/">Paper-分类</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Paper-%E6%95%B0%E6%8D%AE%E5%A2%9E%E5%BC%BA/">Paper-数据增强</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Paper-%E5%88%86%E5%89%B2/">Paper_分割</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Paper-%E5%88%86%E5%89%B2/Paper-%E6%95%B0%E6%8D%AE%E5%A2%9E%E5%BC%BA/">Paper_数据增强</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Paper-%E5%88%86%E7%B1%BB/">Paper_分类</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Paper-%E5%88%86%E7%B1%BB/Paper-%E7%94%9F%E6%88%90/">Paper_生成</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Paper-%E7%94%9F%E6%88%90/">Paper_生成</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Paper-%E7%BB%BC%E8%BF%B0/">Paper_综述</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BC%96%E7%A8%8B/">编程</a><span class="category-list-count">15</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget-body tagcloud">
+      <a href="/tags/CVPR/" style="font-size: 13px;">CVPR</a> <a href="/tags/Code-%E8%A1%A8%E6%A0%BC%E5%A4%84%E7%90%86/" style="font-size: 13px;">Code-表格处理</a> <a href="/tags/Cpp/" style="font-size: 13.33px;">Cpp</a> <a href="/tags/GAN/" style="font-size: 13.67px;">GAN</a> <a href="/tags/MICCAI/" style="font-size: 13px;">MICCAI</a> <a href="/tags/PAMI/" style="font-size: 13px;">PAMI</a> <a href="/tags/knowledge/" style="font-size: 13.33px;">knowledge</a> <a href="/tags/%E5%88%86%E7%B1%BB/" style="font-size: 14px;">分类</a> <a href="/tags/%E5%8C%BB%E5%AD%A6%E5%BD%B1%E5%83%8F/" style="font-size: 13px;">医学影像</a> <a href="/tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/" style="font-size: 13.33px;">图像处理</a> <a href="/tags/%E5%9B%BE%E5%83%8F%E8%9E%8D%E5%90%88/" style="font-size: 13px;">图像融合</a> <a href="/tags/%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B/" style="font-size: 13.33px;">扩散模型</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 13px;">数据集</a> <a href="/tags/%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/" style="font-size: 13px;">文件操作</a> <a href="/tags/%E6%A8%A1%E5%9E%8B/" style="font-size: 13.33px;">模型</a> <a href="/tags/%E7%94%9F%E6%88%90/" style="font-size: 13px;">生成</a> <a href="/tags/%E7%BB%BC%E8%BF%B0%E6%96%87%E7%AB%A0/" style="font-size: 13px;">综述文章</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">一月 2024</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">十二月 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">十月 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">九月 2023</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">八月 2023</a><span class="archive-list-count">7</span></li></ul>
+    </div>
+  </div>
+
+
+    
+  </div>
+</aside>
+
+  
+  
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-paper_用于医学图像分类的双制导扩散网络" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      PaperReading-用于医学图像分类的双制导扩散网络
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2023/08/31/paper_%E7%94%A8%E4%BA%8E%E5%8C%BB%E5%AD%A6%E5%9B%BE%E5%83%8F%E5%88%86%E7%B1%BB%E7%9A%84%E5%8F%8C%E5%88%B6%E5%AF%BC%E6%89%A9%E6%95%A3%E7%BD%91%E7%BB%9C/" class="article-date">
+	  <time datetime="2023-08-31T14:15:40.186Z" itemprop="datePublished">2023-08-31</time>
+	</a>
+</span>
+        
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
+    <a class="article-category-link" href="/categories/Paper-%E5%88%86%E7%B1%BB/">Paper_分类</a>
+  </span>
+
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link-link" href="/tags/%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B/" rel="tag">扩散模型</a>
+  </span>
+
+
+        
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2023/08/31/paper_%E7%94%A8%E4%BA%8E%E5%8C%BB%E5%AD%A6%E5%9B%BE%E5%83%8F%E5%88%86%E7%B1%BB%E7%9A%84%E5%8F%8C%E5%88%B6%E5%AF%BC%E6%89%A9%E6%95%A3%E7%BD%91%E7%BB%9C/#comments" class="article-comment-link">评论</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <h1 id="centerdiffmic-dual-guidance-diffusion-network-for-medical-image-classificationcenter"><a class="markdownIt-Anchor" href="#centerdiffmic-dual-guidance-diffusion-network-for-medical-image-classificationcenter"></a> <center>DiffMIC Dual-Guidance Diffusion Network  for Medical Image Classification</center></h1>
+<h2 id="center1摘要"><a class="markdownIt-Anchor" href="#center1摘要"></a> <center>1.摘要</h2>
+<p>  近年来，扩散概率模型在生成图像建模中表现出了显著的性能，引起了计算机视觉界的广泛关注。然而，尽管大量基于扩散的研究集中在生成任务上，但很少有研究将扩散模型应用于一般医学图像分类。在本文中，我们提出了第一个基于扩散的模型(称为DiffMIC)，通过消除医学图像中的意外噪声和扰动并鲁棒地捕获语义表示来解决一般医学图像分类问题。为了实现这一目标，我们设计了一种双条件引导策略，该策略将每个扩散步骤设定为多个粒度，以提高逐步的区域注意力。此外，我们提出在扩散前向过程中通过强制最大均值差异正则化来学习每个粒度的互信息。我们评估了DiffMIC在三种不同图像模式下的医学分类任务中的有效性，包括超声图像上的胎盘成熟度分级、皮肤镜图像上的皮肤病变分级和眼底图像上的糖尿病视网膜病变分级。我们的实验结果表明，DiffMIC在很大程度上优于最先进的方法，表明了所提出模型的通用性和有效性。</p>
+<h2 id="center2引言"><a class="markdownIt-Anchor" href="#center2引言"></a> <center>2.引言</h2>
+<ol>
+<li>医学图像分析不可或缺，医学图像分类是医学图像分析的一个基本步骤。深度学习方法可以帮助医生解读医学图像，这些方法有可能减少人工分类所需的时间和精力，并提高结果的准确性和一致性。<strong>然而，由于存在各种模糊病变和细粒度组织，如超声(US)、皮肤镜和眼底图像，各种形式的医学图像仍然对现有方法提出挑战。此外，在硬件限制下生成医学图像可能会导致噪声和模糊效果，从而降低图像质量，因此需要更有效的特征表示建模以实现鲁棒分类。</strong></li>
+<li>最近，去噪扩散概率模型在图像生成和合成任务中取得了优异的效果。虽然有一些先驱作品试图将扩散模型用于图像分割和目标检测任务，但其在高级视觉方面的潜力尚未得到充分挖掘。</li>
+<li>我们提出了一种新的基于扩散去噪的模型DiffMIC，用于准确分类不同的医学图像模态。<br />
+（1）据我们所知，我们是第一个提出基于扩散的一般医学图像分类模型。由于医学图像的扩散过程是随机的，因此我们的方法可以适当地消除医学图像中的不良噪声。<br />
+（2）特别地，我们引入了双粒度条件指导(DCG)策略来指导去噪过程，在扩散过程中使用全局和局部先验来调节每一步。通过在较小的斑块上进行扩散过程，我们的方法可以区分具有细粒度能力的关键组织。<br />
+（3）此外，我们引入了特定条件的最大平均差异(MMD)正则化来学习每个粒度潜在空间中的互信息，使网络能够建模整个图像和补丁共享的鲁棒特征表示。<br />
+（4）我们评估了DiffMIC在胎盘成熟度分级、皮肤病变分级和糖尿病视网膜病变分级三个二维医学图像分类任务中的有效性。实验结果表明，我们的基于扩散的分类方法在所有三个任务上都一致且显著地超过了最先进的方法。</li>
+</ol>
+<h2 id="center3总结"><a class="markdownIt-Anchor" href="#center3总结"></a> <center>3.总结</h2>
+<p>  本文提出了一种基于扩散的医学图像分类网络(DiffMIC)。我们的DiffMIC的主要思想是在普通DDPM上引入双粒度条件指导，并强制执行特定于条件的MMD正则化以提高分类性能。在三个不同图像模式的医学图像分类数据集上的实验结果表明，我们的网络比最先进的方法具有更好的性能。作为第一个基于扩散的一般医学图像分类模型，我们的DiffMIC有可能成为该领域未来研究的基本基线</p>
+<h2 id="center4文章笔记"><a class="markdownIt-Anchor" href="#center4文章笔记"></a> <center>4.文章笔记</h2>
+<blockquote>
+<p>通过有限的跨模态信息生成的医学图像可能会导致噪声和模糊效果，从而降低诊断准确性，因此需要更有效的特征表示建模以实现鲁棒分类</p>
+</blockquote>
+
+      
+    </div>
+    <div class="article-footer">
+      <!-- <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="http://example.com/2023/08/31/paper_%E7%94%A8%E4%BA%8E%E5%8C%BB%E5%AD%A6%E5%9B%BE%E5%83%8F%E5%88%86%E7%B1%BB%E7%9A%84%E5%8F%8C%E5%88%B6%E5%AF%BC%E6%89%A9%E6%95%A3%E7%BD%91%E7%BB%9C/" title="PaperReading-用于医学图像分类的双制导扩散网络" target="_blank" rel="external">http://example.com/2023/08/31/paper_用于医学图像分类的双制导扩散网络/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote> -->
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/chandlerye" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/favicon.ico" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/chandlerye" target="_blank"><span class="text-dark">Chandler</span><small class="ml-1x">一头牛马</small></a></h3>
+        <div>江上两条红船，寒风斜雨摇摆</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/2023/08/31/paper_%E5%8C%BB%E5%AD%A6%E5%BD%B1%E5%83%8F%E4%B8%AD%E7%9A%84%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B%20%E7%BB%BC%E5%90%88%E7%BB%BC%E8%BF%B0/" title="PaperReading-医学影像中的扩散模型:综合综述"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/2023/08/31/paper_BPGAN-%E4%BD%BF%E7%94%A8%E5%85%89%E8%B0%B1%E5%BD%92%E4%B8%80%E5%8C%96%E5%92%8C%E5%AE%9A%E4%BD%8D%E7%9A%84%E5%A4%9A%E7%94%9F%E6%88%90%E5%A4%9A%E5%AF%B9%E6%8A%97%E7%BD%91%E7%BB%9C%E8%BF%9B%E8%A1%8Cct-mri%E5%8F%8C%E5%90%91%E9%A2%84%E6%B5%8B/" title="PaperReading-BPGAN-使用光谱归一化和定位的多生成多对抗网络进行CT-MRI双向预测"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  
+  <div class="bar-right">
+    
+  </div>
+  </div>
+</nav>
+  
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/chandlerye" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/js/plugin.min.js"></script>
+
+
+<script src="/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+
+
+
+
+   
+
+
+
+
+   
+
+
+
+
+
+
+</body>
+</html>

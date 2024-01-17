@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>Coding-彩色图片分类-基于2D-Unet | Chandler&#39;s blog</title>
+  <meta name="description" content="训练一个图片分类神经网络（2D-Unet），包括 1.自定义dataload制作 2,网络定义 3.训练过程 4.测试过程 5.模型评估（准确率） main.py  1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Coding-彩色图片分类-基于2D-Unet">
+<meta property="og:url" content="http://example.com/2023/09/02/coding_network_example/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="训练一个图片分类神经网络（2D-Unet），包括 1.自定义dataload制作 2,网络定义 3.训练过程 4.测试过程 5.模型评估（准确率） main.py  1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-09-02T13:09:09.106Z">
+<meta property="article:modified_time" content="2024-01-16T05:40:20.944Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="分类">
+<meta name="twitter:card" content="summary">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://example.com/2023/09/02/coding_network_example/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+  
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/chandlerye" target="_blank">
+          <img class="img-circle img-rotate" src="/images/favicon.ico" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">Chandler</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">一头牛马</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> YanTai, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="搜索" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="想要查找什么..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">首页</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">归档</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">分类</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">标签</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/chandlerye" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">公告</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>记录学习历程!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget-body">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Paper/">Paper</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Paper-%E5%88%86%E7%B1%BB/">Paper-分类</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Paper-%E6%95%B0%E6%8D%AE%E5%A2%9E%E5%BC%BA/">Paper-数据增强</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Paper-%E5%88%86%E5%89%B2/">Paper_分割</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Paper-%E5%88%86%E5%89%B2/Paper-%E6%95%B0%E6%8D%AE%E5%A2%9E%E5%BC%BA/">Paper_数据增强</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Paper-%E5%88%86%E7%B1%BB/">Paper_分类</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Paper-%E5%88%86%E7%B1%BB/Paper-%E7%94%9F%E6%88%90/">Paper_生成</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Paper-%E7%94%9F%E6%88%90/">Paper_生成</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Paper-%E7%BB%BC%E8%BF%B0/">Paper_综述</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BC%96%E7%A8%8B/">编程</a><span class="category-list-count">15</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget-body tagcloud">
+      <a href="/tags/CVPR/" style="font-size: 13px;">CVPR</a> <a href="/tags/Code-%E8%A1%A8%E6%A0%BC%E5%A4%84%E7%90%86/" style="font-size: 13px;">Code-表格处理</a> <a href="/tags/Cpp/" style="font-size: 13.33px;">Cpp</a> <a href="/tags/GAN/" style="font-size: 13.67px;">GAN</a> <a href="/tags/MICCAI/" style="font-size: 13px;">MICCAI</a> <a href="/tags/PAMI/" style="font-size: 13px;">PAMI</a> <a href="/tags/knowledge/" style="font-size: 13.33px;">knowledge</a> <a href="/tags/%E5%88%86%E7%B1%BB/" style="font-size: 14px;">分类</a> <a href="/tags/%E5%8C%BB%E5%AD%A6%E5%BD%B1%E5%83%8F/" style="font-size: 13px;">医学影像</a> <a href="/tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/" style="font-size: 13.33px;">图像处理</a> <a href="/tags/%E5%9B%BE%E5%83%8F%E8%9E%8D%E5%90%88/" style="font-size: 13px;">图像融合</a> <a href="/tags/%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B/" style="font-size: 13.33px;">扩散模型</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 13px;">数据集</a> <a href="/tags/%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/" style="font-size: 13px;">文件操作</a> <a href="/tags/%E6%A8%A1%E5%9E%8B/" style="font-size: 13.33px;">模型</a> <a href="/tags/%E7%94%9F%E6%88%90/" style="font-size: 13px;">生成</a> <a href="/tags/%E7%BB%BC%E8%BF%B0%E6%96%87%E7%AB%A0/" style="font-size: 13px;">综述文章</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">一月 2024</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">十二月 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">十月 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">九月 2023</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">八月 2023</a><span class="archive-list-count">7</span></li></ul>
+    </div>
+  </div>
+
+
+    
+  </div>
+</aside>
+
+  
+  
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-coding_network_example" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Coding-彩色图片分类-基于2D-Unet
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2023/09/02/coding_network_example/" class="article-date">
+	  <time datetime="2023-09-02T13:09:09.106Z" itemprop="datePublished">2023-09-02</time>
+	</a>
+</span>
+        
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
+    <a class="article-category-link" href="/categories/%E7%BC%96%E7%A8%8B/">编程</a>
+  </span>
+
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link-link" href="/tags/%E5%88%86%E7%B1%BB/" rel="tag">分类</a>
+  </span>
+
+
+        
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2023/09/02/coding_network_example/#comments" class="article-comment-link">评论</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <!-- # <center>A Review on Cross-modality Synthesis from MRI to PET -->
+<blockquote>
+<p><strong>训练一个图片分类神经网络（2D-Unet），包括</strong><br />
+1.自定义dataload制作<br />
+2,网络定义<br />
+3.训练过程<br />
+4.测试过程<br />
+5.模型评估（准确率）<br />
+<a target="_blank" rel="noopener" href="http://main.py">main.py</a></p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> glob  <span class="comment"># 导入用于文件路径匹配的模块</span></span><br><span class="line"><span class="keyword">from</span> torchvision <span class="keyword">import</span> transforms  <span class="comment"># 导入图像转换模块</span></span><br><span class="line"><span class="keyword">from</span> torch.utils <span class="keyword">import</span> data  <span class="comment"># 导入PyTorch数据工具模块</span></span><br><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image  <span class="comment"># 导入PIL图像处理库</span></span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt  <span class="comment"># 导入绘图库</span></span><br><span class="line"><span class="keyword">import</span> torch  <span class="comment"># 导入PyTorch库</span></span><br><span class="line"><span class="keyword">import</span> torch.nn <span class="keyword">as</span> nn  <span class="comment"># 导入PyTorch神经网络模块</span></span><br><span class="line"><span class="keyword">import</span> torch.nn.functional <span class="keyword">as</span> F  <span class="comment"># 导入PyTorch函数库</span></span><br><span class="line"><span class="keyword">from</span> unet <span class="keyword">import</span> Unet  <span class="comment"># 导入自定义的U-Net模型</span></span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np  <span class="comment"># 导入NumPy库</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 标准化数据</span></span><br><span class="line">transforms = transforms.Compose([</span><br><span class="line">    transforms.ToTensor(),  <span class="comment"># 将图像转换为张量</span></span><br><span class="line">    transforms.Resize((<span class="number">256</span>, <span class="number">256</span>)),  <span class="comment"># 调整图像大小为256x256</span></span><br><span class="line">    transforms.Normalize(mean=<span class="number">0.5</span>, std=<span class="number">0.5</span>)  <span class="comment"># 标准化图像数据</span></span><br><span class="line">])</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">my_dataset</span>(data.Dataset):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, imgs_path, annos_path</span>):</span><br><span class="line">        self.imgs_path = imgs_path  <span class="comment"># 图像文件路径</span></span><br><span class="line">        self.annos_path = annos_path  <span class="comment"># 标签文件路径</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__getitem__</span>(<span class="params">self, index</span>):</span><br><span class="line">        img_path = self.imgs_path[index]  <span class="comment"># 获取图像路径</span></span><br><span class="line">        pil_img = Image.<span class="built_in">open</span>(img_path)  <span class="comment"># 使用PIL打开图像</span></span><br><span class="line">        pil_img = transforms(pil_img)  <span class="comment"># 对图像进行预处理</span></span><br><span class="line"></span><br><span class="line">        anno_path = self.annos_path[index]  <span class="comment"># 获取标签路径</span></span><br><span class="line">        anno_img = Image.<span class="built_in">open</span>(anno_path)  <span class="comment"># 使用PIL打开标签图像</span></span><br><span class="line">        pil_anno = transforms(anno_img)  <span class="comment"># 对标签图像进行预处理</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> pil_img, pil_anno</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__len__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">len</span>(self.imgs_path)  <span class="comment"># 返回数据集的长度</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">train</span>(<span class="params">model, train_loader, criterion, optimizer, device</span>):</span><br><span class="line">    model.train()  <span class="comment"># 设置模型为训练模式</span></span><br><span class="line">    train_loss = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> data, label <span class="keyword">in</span> train_loader:</span><br><span class="line">        data = data.to(device)</span><br><span class="line">        optimizer.zero_grad()  <span class="comment"># 清除梯度</span></span><br><span class="line">        output = model(data)  <span class="comment"># 前向传播</span></span><br><span class="line">        loss = criterion(output, label.to(device).<span class="built_in">float</span>())  <span class="comment"># 计算损失</span></span><br><span class="line">        loss.backward()  <span class="comment"># 反向传播，计算梯度</span></span><br><span class="line">        optimizer.step()  <span class="comment"># 更新模型参数</span></span><br><span class="line">        train_loss += loss.item() * data.size(<span class="number">0</span>)</span><br><span class="line">          </span><br><span class="line">    train_loss /= <span class="built_in">len</span>(train_loader.dataset)  <span class="comment"># 计算平均训练损失</span></span><br><span class="line">    <span class="keyword">return</span> train_loss</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">validate</span>(<span class="params">model, val_loader, criterion, device</span>):</span><br><span class="line">    model.<span class="built_in">eval</span>()  <span class="comment"># 设置模型为评估模式</span></span><br><span class="line">    val_loss = <span class="number">0</span></span><br><span class="line">    <span class="keyword">with</span> torch.no_grad():</span><br><span class="line">        <span class="keyword">for</span> data, label <span class="keyword">in</span> val_loader:</span><br><span class="line">            data = data.to(device)</span><br><span class="line">            output = model(data)  <span class="comment"># 前向传播</span></span><br><span class="line">            loss = criterion(output, label.to(device).<span class="built_in">float</span>())  <span class="comment"># 计算损失</span></span><br><span class="line">            val_loss += loss.item() * data.size(<span class="number">0</span>)</span><br><span class="line">               </span><br><span class="line">    val_loss /= <span class="built_in">len</span>(val_loader.dataset)  <span class="comment"># 计算平均验证损失</span></span><br><span class="line">    <span class="keyword">return</span> val_loss </span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ ==<span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    <span class="comment"># 训练数据集导入</span></span><br><span class="line">    imgs_path = glob.glob(<span class="string">&#x27;facade/train_picture/*.png&#x27;</span>)  <span class="comment"># 匹配训练图像文件路径</span></span><br><span class="line">    label_path = glob.glob(<span class="string">&#x27;facade/train_label/*.jpg&#x27;</span>)  <span class="comment"># 匹配训练标签文件路径</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 测试数据集导入</span></span><br><span class="line">    test_imgs_path = glob.glob(<span class="string">&#x27;facade/test_picture/*.png&#x27;</span>)  <span class="comment"># 匹配测试图像文件路径</span></span><br><span class="line">    test_label_path = glob.glob(<span class="string">&#x27;facade/test_label/*.jpg&#x27;</span>)  <span class="comment"># 匹配测试标签文件路径</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 对数据和标签排序，确保一一对应</span></span><br><span class="line">    imgs_path = <span class="built_in">sorted</span>(imgs_path)</span><br><span class="line">    label_path = <span class="built_in">sorted</span>(label_path)</span><br><span class="line"></span><br><span class="line">    test_imgs_path = <span class="built_in">sorted</span>(test_imgs_path)</span><br><span class="line">    test_label_path = <span class="built_in">sorted</span>(test_label_path)</span><br><span class="line"></span><br><span class="line">    train_dataset = my_dataset(imgs_path, label_path) </span><br><span class="line">    test_dataset = my_dataset(test_imgs_path, test_label_path)  <span class="comment"># 创建测试数据集对象</span></span><br><span class="line">    train_loader = data.DataLoader(train_dataset, batch_size=<span class="number">4</span>, shuffle=<span class="literal">True</span>)  <span class="comment"># 创建训练数据加载器</span></span><br><span class="line">    test_loader = data.DataLoader(test_dataset, batch_size=<span class="number">4</span>, shuffle=<span class="literal">False</span>)  <span class="comment"># 创建测试数据加载器</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 创建U-Net模型</span></span><br><span class="line">    in_channels = <span class="number">3</span>  <span class="comment"># 输入通道数</span></span><br><span class="line">    out_channels = <span class="number">3</span>  <span class="comment"># 输出通道数</span></span><br><span class="line">    model = Unet(in_channels, out_channels)  <span class="comment"># 创建U-Net模型对象</span></span><br><span class="line"></span><br><span class="line">    criterion = nn.MSELoss()  <span class="comment"># 创建均方误差损失函数对象</span></span><br><span class="line">    optimizer = torch.optim.Adam(model.parameters(), lr=<span class="number">0.0001</span>)  <span class="comment"># 创建优化器对象</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 将模型和数据移动到GPU上</span></span><br><span class="line">    device = torch.device(<span class="string">&#x27;cuda&#x27;</span> <span class="keyword">if</span> torch.cuda.is_available() <span class="keyword">else</span> <span class="string">&#x27;cpu&#x27;</span>)  <span class="comment"># 检查是否有可用的GPU</span></span><br><span class="line">    model.to(device)  <span class="comment"># 将模型移动到GPU上</span></span><br><span class="line"></span><br><span class="line">    train_losses = []  <span class="comment"># 保存训练损失的列表</span></span><br><span class="line">    val_losses = []  <span class="comment"># 保存验证损失的列表</span></span><br><span class="line">    best_val_loss = np.inf  <span class="comment"># 初始化最佳验证损失为正无穷</span></span><br><span class="line">    best_model = <span class="literal">None</span>  <span class="comment"># 初始化最佳模型为空</span></span><br><span class="line">    epoch_times = <span class="number">300</span>  <span class="comment"># 设定迭代次数</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 训练模型</span></span><br><span class="line">    <span class="keyword">for</span> epoch <span class="keyword">in</span> <span class="built_in">range</span>(epoch_times):</span><br><span class="line">        train_loss = train(model, train_loader, criterion, optimizer, device)  <span class="comment"># 训练模型</span></span><br><span class="line">        val_loss = validate(model, test_loader, criterion, device)  <span class="comment"># 验证模型</span></span><br><span class="line">        train_losses.append(train_loss)  <span class="comment"># 保存训练损失</span></span><br><span class="line">        val_losses.append(val_loss)  <span class="comment"># 保存验证损失</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> val_loss &lt; best_val_loss:</span><br><span class="line">            best_val_loss = val_loss</span><br><span class="line">            best_model = model.state_dict()</span><br><span class="line">            torch.save(best_model, <span class="string">&#x27;ckpt/model.ckpt&#x27;</span>)  <span class="comment"># 保存最佳模型参数</span></span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;best_val_loss: &quot;</span> + <span class="built_in">str</span>(val_loss))</span><br><span class="line">            <span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;ckpt/model_loss.txt&quot;</span>, <span class="string">&quot;w&quot;</span>) <span class="keyword">as</span> f:</span><br><span class="line">                f.write(<span class="built_in">str</span>(val_loss))</span><br><span class="line"></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;Epoch [&#123;&#125;/&#123;&#125;], Train Loss: &#123;:.4f&#125;, Val Loss: &#123;:.4f&#125;&#x27;</span>.<span class="built_in">format</span>(epoch+<span class="number">1</span>, epoch_times, train_loss, val_loss))</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="http://val.py">val.py</a> (导入模型进行生成测试)</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> unet <span class="keyword">import</span> Unet  <span class="comment"># 导入自定义的U-Net模型</span></span><br><span class="line"><span class="keyword">import</span> torch  <span class="comment"># 导入PyTorch库</span></span><br><span class="line"><span class="keyword">from</span> torch.utils <span class="keyword">import</span> data  <span class="comment"># 导入PyTorch数据工具模块</span></span><br><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image  <span class="comment"># 导入PIL图像处理库</span></span><br><span class="line"><span class="keyword">from</span> torchvision <span class="keyword">import</span> transforms  <span class="comment"># 导入图像转换模块</span></span><br><span class="line"><span class="keyword">import</span> glob  <span class="comment"># 导入用于文件路径匹配的模块</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 标准化数据</span></span><br><span class="line">transforms = transforms.Compose([</span><br><span class="line">    transforms.ToTensor(),  <span class="comment"># 将图像转换为张量</span></span><br><span class="line">    transforms.Resize((<span class="number">256</span>, <span class="number">256</span>)),  <span class="comment"># 调整图像大小为256x256</span></span><br><span class="line">    transforms.Normalize(mean=<span class="number">0.5</span>, std=<span class="number">0.5</span>)  <span class="comment"># 标准化图像数据</span></span><br><span class="line">])</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">my_dataset</span>(data.Dataset):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, imgs_path, annos_path</span>):</span><br><span class="line">        self.imgs_path = imgs_path  <span class="comment"># 图像文件路径</span></span><br><span class="line">        self.annos_path = annos_path  <span class="comment"># 标签文件路径</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__getitem__</span>(<span class="params">self, index</span>):</span><br><span class="line">        img_path = self.imgs_path[index]  <span class="comment"># 获取图像路径</span></span><br><span class="line">        pil_img = Image.<span class="built_in">open</span>(img_path)  <span class="comment"># 使用PIL打开图像</span></span><br><span class="line">        pil_img = transforms(pil_img)  <span class="comment"># 对图像进行预处理</span></span><br><span class="line"></span><br><span class="line">        anno_path = self.annos_path[index]  <span class="comment"># 获取标签路径</span></span><br><span class="line">        anno_img = Image.<span class="built_in">open</span>(anno_path)  <span class="comment"># 使用PIL打开标签图像</span></span><br><span class="line">        pil_anno = transforms(anno_img)  <span class="comment"># 对标签图像进行预处理</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> pil_img, pil_anno</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__len__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">len</span>(self.imgs_path)  <span class="comment"># 返回数据集的长度</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 测试数据集导入</span></span><br><span class="line">test_imgs_path = glob.glob(<span class="string">&#x27;facade/test_picture/*.png&#x27;</span>)  <span class="comment"># 匹配测试图像文件路径</span></span><br><span class="line">test_label_path = glob.glob(<span class="string">&#x27;facade/test_label/*.jpg&#x27;</span>)  <span class="comment"># 匹配测试标签文件路径</span></span><br><span class="line">test_dataset = my_dataset(test_imgs_path, test_label_path)  <span class="comment"># 创建测试数据集对象</span></span><br><span class="line">test_loader = data.DataLoader(test_dataset, batch_size=<span class="number">1</span>, shuffle=<span class="literal">False</span>)  <span class="comment"># 创建测试数据加载器</span></span><br><span class="line"></span><br><span class="line">model = Unet(<span class="number">3</span>, <span class="number">3</span>)  <span class="comment"># 创建U-Net模型对象</span></span><br><span class="line">checkpoint = torch.load(<span class="string">&#x27;ckpt/model.ckpt&#x27;</span>)  <span class="comment"># 加载模型参数</span></span><br><span class="line">model.load_state_dict(checkpoint)  <span class="comment"># 加载模型参数</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> data, label <span class="keyword">in</span> test_loader:</span><br><span class="line">    data = data * <span class="number">0.5</span> + <span class="number">0.5</span>  <span class="comment"># 反标准化图像数据</span></span><br><span class="line">    output = model(data)  <span class="comment"># 前向传播</span></span><br><span class="line">    output = torch.squeeze(output, <span class="number">0</span>)  <span class="comment"># 去除输出张量的维度为1的维度</span></span><br><span class="line">    array = output.cpu().detach().numpy().transpose(<span class="number">1</span>, <span class="number">2</span>, <span class="number">0</span>)  <span class="comment"># 将输出张量转换为NumPy数组，并调整通道顺序为HWC</span></span><br><span class="line">    image = Image.fromarray((array * <span class="number">255</span>).astype(<span class="string">&#x27;uint8&#x27;</span>))  <span class="comment"># 创建PIL图像对象</span></span><br><span class="line">    image.save(<span class="string">&#x27;image1.jpg&#x27;</span>)  <span class="comment"># 保存图像为JPEG文件</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="http://unet.py">unet.py</a></p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> torch.nn <span class="keyword">as</span> nn</span><br><span class="line"><span class="keyword">import</span> torch.nn.functional <span class="keyword">as</span> F</span><br><span class="line"></span><br><span class="line"><span class="comment"># UNet的一大层，包含了两层小的卷积</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">DoubleConv</span>(nn.Module):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, in_ch, out_ch</span>):</span><br><span class="line">        <span class="built_in">super</span>(DoubleConv, self).__init__()</span><br><span class="line">        self.conv = nn.Sequential(</span><br><span class="line">            nn.Conv2d(in_ch, out_ch, <span class="number">3</span>, padding=<span class="number">1</span>),</span><br><span class="line">            nn.BatchNorm2d(out_ch),</span><br><span class="line">            nn.ReLU(inplace=<span class="literal">True</span>),</span><br><span class="line">            nn.Conv2d(out_ch, out_ch, <span class="number">3</span>, padding=<span class="number">1</span>),</span><br><span class="line">            nn.BatchNorm2d(out_ch),</span><br><span class="line">            nn.ReLU(inplace=<span class="literal">True</span>)</span><br><span class="line">        )</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, x</span>):</span><br><span class="line">        x = self.conv(x)</span><br><span class="line">        <span class="keyword">return</span> x</span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义输入进来的第一层</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">InConv</span>(nn.Module):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, in_ch, out_ch</span>):</span><br><span class="line">        <span class="built_in">super</span>(InConv, self).__init__()</span><br><span class="line">        self.conv = DoubleConv(in_ch, out_ch)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, x</span>):</span><br><span class="line">        x = self.conv(x)</span><br><span class="line">        <span class="keyword">return</span> x</span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义encoder中的向下传播，包括一个maxpool和一大层    </span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Down</span>(nn.Module):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, in_ch, out_ch</span>):</span><br><span class="line">        <span class="built_in">super</span>(Down, self).__init__()</span><br><span class="line">        self.mpconv = nn.Sequential(</span><br><span class="line">            nn.MaxPool2d(<span class="number">2</span>),</span><br><span class="line">            DoubleConv(in_ch, out_ch)</span><br><span class="line">        )</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, x</span>):</span><br><span class="line">        x = self.mpconv(x)</span><br><span class="line">        <span class="keyword">return</span> x</span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义decoder中的向上传播</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Up</span>(nn.Module):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, in_ch, out_ch, bilinear=<span class="literal">True</span></span>):</span><br><span class="line">        <span class="built_in">super</span>(Up, self).__init__()</span><br><span class="line">        <span class="comment"># 定义了self.up的方法</span></span><br><span class="line">        <span class="keyword">if</span> bilinear:</span><br><span class="line">            self.up = nn.Upsample(scale_factor=<span class="number">2</span>, mode=<span class="string">&#x27;bilinear&#x27;</span>, align_corners=<span class="literal">True</span>)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            self.up = nn.ConvTranspose2d(in_ch // <span class="number">2</span>, in_ch // <span class="number">2</span>, <span class="number">2</span>, stride=<span class="number">2</span>) <span class="comment"># // 除以的结果向下取整</span></span><br><span class="line"></span><br><span class="line">        self.conv = DoubleConv(in_ch, out_ch)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, x1, x2</span>):  <span class="comment"># x2是左侧的输出，x1是上一大层来的输出</span></span><br><span class="line">        x1 = self.up(x1)</span><br><span class="line"></span><br><span class="line">        diffY = x2.size()[<span class="number">2</span>] - x1.size()[<span class="number">2</span>]</span><br><span class="line">        diffX = x2.size()[<span class="number">3</span>] - x1.size()[<span class="number">3</span>]</span><br><span class="line"></span><br><span class="line">        x1 = F.pad(x1, (diffX // <span class="number">2</span>, diffX - diffX // <span class="number">2</span>, diffY // <span class="number">2</span>, diffY - diffY // <span class="number">2</span>))</span><br><span class="line">        x = torch.cat([x2, x1], dim=<span class="number">1</span>) <span class="comment"># 将两个tensor拼接在一起 dim=1：在通道数（C）上进行拼接</span></span><br><span class="line">        x = self.conv(x)</span><br><span class="line">        <span class="keyword">return</span> x</span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义最终的输出</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">OutConv</span>(nn.Module):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, in_ch, out_ch</span>):</span><br><span class="line">        <span class="built_in">super</span>(OutConv, self).__init__()</span><br><span class="line">        self.conv = nn.Conv2d(in_ch, out_ch, <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, x</span>):</span><br><span class="line">        x = self.conv(x)</span><br><span class="line">        <span class="keyword">return</span> x</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Unet</span>(nn.Module):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, in_channels, classes</span>): <span class="comment"># in_channels 图片的通道数，1为灰度图，3为彩色图</span></span><br><span class="line">        <span class="built_in">super</span>(Unet, self).__init__()</span><br><span class="line">        self.n_channels = in_channels</span><br><span class="line">        self.n_classes = classes</span><br><span class="line"></span><br><span class="line">        self.inc = InConv(in_channels, <span class="number">64</span>)</span><br><span class="line">        self.down1 = Down(<span class="number">64</span>, <span class="number">128</span>)</span><br><span class="line">        self.down2 = Down(<span class="number">128</span>, <span class="number">256</span>)</span><br><span class="line">        self.down3 = Down(<span class="number">256</span>, <span class="number">512</span>)</span><br><span class="line">        self.down4 = Down(<span class="number">512</span>, <span class="number">512</span>)</span><br><span class="line">        self.up1 = Up(<span class="number">1024</span>, <span class="number">256</span>)</span><br><span class="line">        self.up2 = Up(<span class="number">512</span>, <span class="number">128</span>)</span><br><span class="line">        self.up3 = Up(<span class="number">256</span>, <span class="number">64</span>)</span><br><span class="line">        self.up4 = Up(<span class="number">128</span>, <span class="number">64</span>)</span><br><span class="line">        self.outc = OutConv(<span class="number">64</span>, classes)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, x</span>):</span><br><span class="line">        x1 = self.inc(x)</span><br><span class="line">        x2 = self.down1(x1)</span><br><span class="line">        x3 = self.down2(x2)</span><br><span class="line">        x4 = self.down3(x3)</span><br><span class="line">        x5 = self.down4(x4)</span><br><span class="line">        x = self.up1(x5, x4)</span><br><span class="line">        x = self.up2(x, x3)</span><br><span class="line">        x = self.up3(x, x2)</span><br><span class="line">        x = self.up4(x, x1)</span><br><span class="line">        x = self.outc(x)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> x</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <div class="article-footer">
+      <!-- <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="http://example.com/2023/09/02/coding_network_example/" title="Coding-彩色图片分类-基于2D-Unet" target="_blank" rel="external">http://example.com/2023/09/02/coding_network_example/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote> -->
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/chandlerye" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/favicon.ico" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/chandlerye" target="_blank"><span class="text-dark">Chandler</span><small class="ml-1x">一头牛马</small></a></h3>
+        <div>江上两条红船，寒风斜雨摇摆</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/2023/09/03/coding_network_usual_use/" title="Coding-轻量级神经网络（Unet,Resnet）"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/2023/09/01/paper_%E7%94%9F%E6%88%90%E5%AF%B9%E6%8A%97%E7%BD%91%E7%BB%9C%E5%9C%A8%E5%8C%BB%E5%AD%A6%E6%88%90%E5%83%8F%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8%E7%BB%BC%E8%BF%B0/" title="PaperReading-生成对抗网络在医学成像中的应用综述"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  
+  <div class="bar-right">
+    
+  </div>
+  </div>
+</nav>
+  
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/chandlerye" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/js/plugin.min.js"></script>
+
+
+<script src="/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+
+
+
+
+   
+
+
+
+
+   
+
+
+
+
+
+
+</body>
+</html>
