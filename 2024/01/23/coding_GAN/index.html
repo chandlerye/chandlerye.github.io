@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>Coding-GAN | Chandler&#39;s blog</title>
+  <meta name="description" content="摘要 cgan.py    摘要 生成器的输入为噪声 zzz ，要求生成器能生成真图片，要求判别器能判别生成的真图片和真正的真图片   1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Coding-GAN">
+<meta property="og:url" content="http://example.com/2024/01/23/coding_GAN/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="摘要 cgan.py    摘要 生成器的输入为噪声 zzz ，要求生成器能生成真图片，要求判别器能判别生成的真图片和真正的真图片   1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-01-23T03:44:17.535Z">
+<meta property="article:modified_time" content="2024-01-23T03:49:48.721Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Code-模型">
+<meta name="twitter:card" content="summary">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://example.com/2024/01/23/coding_GAN/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    <link href="//cdn.jsdelivr.net/npm/katex@0.9.0/dist/katex.min.css" rel="stylesheet">
+  
+  
+  
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/chandlerye" target="_blank">
+          <img class="img-circle img-rotate" src="/images/favicon.ico" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">Chandler</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">一头牛马</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> YanTai, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="搜索" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="想要查找什么..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">首页</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">归档</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">分类</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">标签</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/chandlerye" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">公告</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>记录学习历程!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget-body">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Paper/">Paper</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%A7%91%E5%AD%A6/">科学</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BC%96%E7%A8%8B/">编程</a><span class="category-list-count">17</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget-body tagcloud">
+      <a href="/tags/CVPR/" style="font-size: 13px;">CVPR</a> <a href="/tags/Code-%E5%88%86%E7%B1%BB/" style="font-size: 14px;">Code-分类</a> <a href="/tags/Code-%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/" style="font-size: 13.33px;">Code-图像处理</a> <a href="/tags/Code-%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 13px;">Code-数据集</a> <a href="/tags/Code-%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/" style="font-size: 13px;">Code-文件操作</a> <a href="/tags/Code-%E6%A8%A1%E5%9E%8B/" style="font-size: 14px;">Code-模型</a> <a href="/tags/Code-%E7%94%9F%E6%88%90/" style="font-size: 13px;">Code-生成</a> <a href="/tags/Code-%E8%A1%A8%E6%A0%BC%E5%A4%84%E7%90%86/" style="font-size: 13px;">Code-表格处理</a> <a href="/tags/Cpp/" style="font-size: 13px;">Cpp</a> <a href="/tags/GAN/" style="font-size: 13.67px;">GAN</a> <a href="/tags/Hexo/" style="font-size: 13px;">Hexo</a> <a href="/tags/MICCAI/" style="font-size: 13px;">MICCAI</a> <a href="/tags/PAMI/" style="font-size: 13px;">PAMI</a> <a href="/tags/knowledge/" style="font-size: 13px;">knowledge</a> <a href="/tags/%E5%8C%BB%E5%AD%A6/" style="font-size: 13px;">医学</a> <a href="/tags/%E5%8C%BB%E5%AD%A6%E5%BD%B1%E5%83%8F/" style="font-size: 13px;">医学影像</a> <a href="/tags/%E5%9B%BE%E5%83%8F%E8%9E%8D%E5%90%88/" style="font-size: 13px;">图像融合</a> <a href="/tags/%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B/" style="font-size: 13.33px;">扩散模型</a> <a href="/tags/%E7%89%B9%E5%BE%81%E8%9E%8D%E5%90%88/" style="font-size: 13px;">特征融合</a> <a href="/tags/%E7%BB%BC%E8%BF%B0%E6%96%87%E7%AB%A0/" style="font-size: 13px;">综述文章</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">一月 2024</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">十二月 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">十月 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">九月 2023</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">八月 2023</a><span class="archive-list-count">7</span></li></ul>
+    </div>
+  </div>
+
+
+    
+  </div>
+</aside>
+
+  
+  
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-coding_GAN" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Coding-GAN
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2024/01/23/coding_GAN/" class="article-date">
+	  <time datetime="2024-01-23T03:44:17.535Z" itemprop="datePublished">2024-01-23</time>
+	</a>
+</span>
+        
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
+    <a class="article-category-link" href="/categories/%E7%BC%96%E7%A8%8B/">编程</a>
+  </span>
+
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link-link" href="/tags/Code-%E6%A8%A1%E5%9E%8B/" rel="tag">Code-模型</a>
+  </span>
+
+
+        
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2024/01/23/coding_GAN/#comments" class="article-comment-link">评论</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <!-- toc -->
+<ul>
+<li><a href="#%E6%91%98%E8%A6%81">摘要</a></li>
+<li><a href="#cganpy">cgan.py</a></li>
+</ul>
+<!-- tocstop -->
+<h3><span id="摘要"> 摘要</span></h3>
+<p>生成器的输入为噪声 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>z</mi></mrow><annotation encoding="application/x-tex">z</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.43056em;"></span><span class="strut bottom" style="height:0.43056em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.04398em;">z</span></span></span></span> ，要求生成器能生成真图片，要求判别器能判别生成的真图片和真正的真图片</p>
+<h3><span id="cganpy"> </span></h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> argparse</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> math</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> torchvision.transforms <span class="keyword">as</span> transforms</span><br><span class="line"><span class="keyword">from</span> torchvision.utils <span class="keyword">import</span> save_image</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> torch.utils.data <span class="keyword">import</span> DataLoader</span><br><span class="line"><span class="keyword">from</span> torchvision <span class="keyword">import</span> datasets</span><br><span class="line"><span class="keyword">from</span> torch.autograd <span class="keyword">import</span> Variable</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> torch.nn <span class="keyword">as</span> nn</span><br><span class="line"><span class="keyword">import</span> torch.nn.functional <span class="keyword">as</span> F</span><br><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"></span><br><span class="line">os.makedirs(<span class="string">&quot;images&quot;</span>, exist_ok=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line">parser = argparse.ArgumentParser()</span><br><span class="line">parser.add_argument(<span class="string">&quot;--n_epochs&quot;</span>, <span class="built_in">type</span>=<span class="built_in">int</span>, default=<span class="number">200</span>, <span class="built_in">help</span>=<span class="string">&quot;number of epochs of training&quot;</span>)</span><br><span class="line">parser.add_argument(<span class="string">&quot;--batch_size&quot;</span>, <span class="built_in">type</span>=<span class="built_in">int</span>, default=<span class="number">64</span>, <span class="built_in">help</span>=<span class="string">&quot;size of the batches&quot;</span>)</span><br><span class="line">parser.add_argument(<span class="string">&quot;--lr&quot;</span>, <span class="built_in">type</span>=<span class="built_in">float</span>, default=<span class="number">0.0002</span>, <span class="built_in">help</span>=<span class="string">&quot;adam: learning rate&quot;</span>)</span><br><span class="line">parser.add_argument(<span class="string">&quot;--b1&quot;</span>, <span class="built_in">type</span>=<span class="built_in">float</span>, default=<span class="number">0.5</span>, <span class="built_in">help</span>=<span class="string">&quot;adam: decay of first order momentum of gradient&quot;</span>)</span><br><span class="line">parser.add_argument(<span class="string">&quot;--b2&quot;</span>, <span class="built_in">type</span>=<span class="built_in">float</span>, default=<span class="number">0.999</span>, <span class="built_in">help</span>=<span class="string">&quot;adam: decay of first order momentum of gradient&quot;</span>)</span><br><span class="line">parser.add_argument(<span class="string">&quot;--n_cpu&quot;</span>, <span class="built_in">type</span>=<span class="built_in">int</span>, default=<span class="number">8</span>, <span class="built_in">help</span>=<span class="string">&quot;number of cpu threads to use during batch generation&quot;</span>)</span><br><span class="line">parser.add_argument(<span class="string">&quot;--latent_dim&quot;</span>, <span class="built_in">type</span>=<span class="built_in">int</span>, default=<span class="number">100</span>, <span class="built_in">help</span>=<span class="string">&quot;dimensionality of the latent space&quot;</span>)</span><br><span class="line">parser.add_argument(<span class="string">&quot;--img_size&quot;</span>, <span class="built_in">type</span>=<span class="built_in">int</span>, default=<span class="number">28</span>, <span class="built_in">help</span>=<span class="string">&quot;size of each image dimension&quot;</span>)</span><br><span class="line">parser.add_argument(<span class="string">&quot;--channels&quot;</span>, <span class="built_in">type</span>=<span class="built_in">int</span>, default=<span class="number">1</span>, <span class="built_in">help</span>=<span class="string">&quot;number of image channels&quot;</span>)</span><br><span class="line">parser.add_argument(<span class="string">&quot;--sample_interval&quot;</span>, <span class="built_in">type</span>=<span class="built_in">int</span>, default=<span class="number">400</span>, <span class="built_in">help</span>=<span class="string">&quot;interval betwen image samples&quot;</span>)</span><br><span class="line">opt = parser.parse_args()</span><br><span class="line"><span class="built_in">print</span>(opt)</span><br><span class="line"></span><br><span class="line">img_shape = (opt.channels, opt.img_size, opt.img_size)</span><br><span class="line"></span><br><span class="line">cuda = <span class="literal">True</span> <span class="keyword">if</span> torch.cuda.is_available() <span class="keyword">else</span> <span class="literal">False</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Generator</span>(nn.Module):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="built_in">super</span>(Generator, self).__init__()</span><br><span class="line"></span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">block</span>(<span class="params">in_feat, out_feat, normalize=<span class="literal">True</span></span>):</span><br><span class="line">            layers = [nn.Linear(in_feat, out_feat)]</span><br><span class="line">            <span class="keyword">if</span> normalize:</span><br><span class="line">                layers.append(nn.BatchNorm1d(out_feat, <span class="number">0.8</span>))</span><br><span class="line">            layers.append(nn.LeakyReLU(<span class="number">0.2</span>, inplace=<span class="literal">True</span>))</span><br><span class="line">            <span class="keyword">return</span> layers</span><br><span class="line"></span><br><span class="line">        self.model = nn.Sequential(</span><br><span class="line">            *block(opt.latent_dim, <span class="number">128</span>, normalize=<span class="literal">False</span>),</span><br><span class="line">            *block(<span class="number">128</span>, <span class="number">256</span>),</span><br><span class="line">            *block(<span class="number">256</span>, <span class="number">512</span>),</span><br><span class="line">            *block(<span class="number">512</span>, <span class="number">1024</span>),</span><br><span class="line">            nn.Linear(<span class="number">1024</span>, <span class="built_in">int</span>(np.prod(img_shape))),</span><br><span class="line">            nn.Tanh()</span><br><span class="line">        )</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, z</span>):</span><br><span class="line">        img = self.model(z)</span><br><span class="line">        img = img.view(img.size(<span class="number">0</span>), *img_shape)</span><br><span class="line">        <span class="keyword">return</span> img</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Discriminator</span>(nn.Module):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="built_in">super</span>(Discriminator, self).__init__()</span><br><span class="line"></span><br><span class="line">        self.model = nn.Sequential(</span><br><span class="line">            nn.Linear(<span class="built_in">int</span>(np.prod(img_shape)), <span class="number">512</span>),</span><br><span class="line">            nn.LeakyReLU(<span class="number">0.2</span>, inplace=<span class="literal">True</span>),</span><br><span class="line">            nn.Linear(<span class="number">512</span>, <span class="number">256</span>),</span><br><span class="line">            nn.LeakyReLU(<span class="number">0.2</span>, inplace=<span class="literal">True</span>),</span><br><span class="line">            nn.Linear(<span class="number">256</span>, <span class="number">1</span>),</span><br><span class="line">            nn.Sigmoid(),</span><br><span class="line">        )</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, img</span>):</span><br><span class="line">        img_flat = img.view(img.size(<span class="number">0</span>), -<span class="number">1</span>)</span><br><span class="line">        validity = self.model(img_flat)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> validity</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># Loss function</span></span><br><span class="line">adversarial_loss = torch.nn.BCELoss()</span><br><span class="line"></span><br><span class="line"><span class="comment"># Initialize generator and discriminator</span></span><br><span class="line">generator = Generator()</span><br><span class="line">discriminator = Discriminator()</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> cuda:</span><br><span class="line">    generator.cuda()</span><br><span class="line">    discriminator.cuda()</span><br><span class="line">    adversarial_loss.cuda()</span><br><span class="line"></span><br><span class="line"><span class="comment"># Configure data loader</span></span><br><span class="line">os.makedirs(<span class="string">&quot;../../data/mnist&quot;</span>, exist_ok=<span class="literal">True</span>)</span><br><span class="line">dataloader = torch.utils.data.DataLoader(</span><br><span class="line">    datasets.MNIST(</span><br><span class="line">        <span class="string">&quot;../../data/mnist&quot;</span>,</span><br><span class="line">        train=<span class="literal">True</span>,</span><br><span class="line">        download=<span class="literal">True</span>,</span><br><span class="line">        transform=transforms.Compose(</span><br><span class="line">            [transforms.Resize(opt.img_size), transforms.ToTensor(), transforms.Normalize([<span class="number">0.5</span>], [<span class="number">0.5</span>])]</span><br><span class="line">        ),</span><br><span class="line">    ),</span><br><span class="line">    batch_size=opt.batch_size,</span><br><span class="line">    shuffle=<span class="literal">True</span>,</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Optimizers</span></span><br><span class="line">optimizer_G = torch.optim.Adam(generator.parameters(), lr=opt.lr, betas=(opt.b1, opt.b2))</span><br><span class="line">optimizer_D = torch.optim.Adam(discriminator.parameters(), lr=opt.lr, betas=(opt.b1, opt.b2))</span><br><span class="line"></span><br><span class="line">Tensor = torch.cuda.FloatTensor <span class="keyword">if</span> cuda <span class="keyword">else</span> torch.FloatTensor</span><br><span class="line"></span><br><span class="line"><span class="comment"># ----------</span></span><br><span class="line"><span class="comment">#  Training</span></span><br><span class="line"><span class="comment"># ----------</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> epoch <span class="keyword">in</span> <span class="built_in">range</span>(opt.n_epochs):</span><br><span class="line">    <span class="keyword">for</span> i, (imgs, _) <span class="keyword">in</span> <span class="built_in">enumerate</span>(dataloader):</span><br><span class="line"></span><br><span class="line">        <span class="comment"># Adversarial ground truths</span></span><br><span class="line">        valid = Variable(Tensor(imgs.size(<span class="number">0</span>), <span class="number">1</span>).fill_(<span class="number">1.0</span>), requires_grad=<span class="literal">False</span>)</span><br><span class="line">        fake = Variable(Tensor(imgs.size(<span class="number">0</span>), <span class="number">1</span>).fill_(<span class="number">0.0</span>), requires_grad=<span class="literal">False</span>)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># Configure input</span></span><br><span class="line">        real_imgs = Variable(imgs.<span class="built_in">type</span>(Tensor))</span><br><span class="line"></span><br><span class="line">        <span class="comment"># -----------------</span></span><br><span class="line">        <span class="comment">#  Train Generator</span></span><br><span class="line">        <span class="comment"># -----------------</span></span><br><span class="line"></span><br><span class="line">        optimizer_G.zero_grad()</span><br><span class="line"></span><br><span class="line">        <span class="comment"># Sample noise as generator input</span></span><br><span class="line">        z = Variable(Tensor(np.random.normal(<span class="number">0</span>, <span class="number">1</span>, (imgs.shape[<span class="number">0</span>], opt.latent_dim))))</span><br><span class="line"></span><br><span class="line">        <span class="comment"># Generate a batch of images</span></span><br><span class="line">        gen_imgs = generator(z)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># Loss measures generator&#x27;s ability to fool the discriminator</span></span><br><span class="line">        g_loss = adversarial_loss(discriminator(gen_imgs), valid)</span><br><span class="line"></span><br><span class="line">        g_loss.backward()</span><br><span class="line">        optimizer_G.step()</span><br><span class="line"></span><br><span class="line">        <span class="comment"># ---------------------</span></span><br><span class="line">        <span class="comment">#  Train Discriminator</span></span><br><span class="line">        <span class="comment"># ---------------------</span></span><br><span class="line"></span><br><span class="line">        optimizer_D.zero_grad()</span><br><span class="line"></span><br><span class="line">        <span class="comment"># Measure discriminator&#x27;s ability to classify real from generated samples</span></span><br><span class="line">        real_loss = adversarial_loss(discriminator(real_imgs), valid)</span><br><span class="line">        fake_loss = adversarial_loss(discriminator(gen_imgs.detach()), fake)</span><br><span class="line">        d_loss = (real_loss + fake_loss) / <span class="number">2</span></span><br><span class="line"></span><br><span class="line">        d_loss.backward()</span><br><span class="line">        optimizer_D.step()</span><br><span class="line"></span><br><span class="line">        <span class="built_in">print</span>(</span><br><span class="line">            <span class="string">&quot;[Epoch %d/%d] [Batch %d/%d] [D loss: %f] [G loss: %f]&quot;</span></span><br><span class="line">            % (epoch, opt.n_epochs, i, <span class="built_in">len</span>(dataloader), d_loss.item(), g_loss.item())</span><br><span class="line">        )</span><br><span class="line"></span><br><span class="line">        batches_done = epoch * <span class="built_in">len</span>(dataloader) + i</span><br><span class="line">        <span class="keyword">if</span> batches_done % opt.sample_interval == <span class="number">0</span>:</span><br><span class="line">            save_image(gen_imgs.data[:<span class="number">25</span>], <span class="string">&quot;images/%d.png&quot;</span> % batches_done, nrow=<span class="number">5</span>, normalize=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <div class="article-footer">
+      <!-- <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="http://example.com/2024/01/23/coding_GAN/" title="Coding-GAN" target="_blank" rel="external">http://example.com/2024/01/23/coding_GAN/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote> -->
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/chandlerye" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/favicon.ico" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/chandlerye" target="_blank"><span class="text-dark">Chandler</span><small class="ml-1x">一头牛马</small></a></h3>
+        <div>江上两条红船，寒风斜雨摇摆</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/2024/01/23/coding_hexo/" title="Coding-Hexo运营维护"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/2024/01/23/coding_cGAN/" title="Coding-cGAN"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  
+  <div class="bar-right">
+    
+  </div>
+  </div>
+</nav>
+  
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/chandlerye" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+
+
+
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/js/plugin.min.js"></script>
+
+
+<script src="/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+
+
+
+
+   
+
+
+
+
+   
+
+
+
+
+
+
+</body>
+</html>
