@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>PaperReading-医学影像中的扩散模型:综合综述 | Chandler&#39;s blog</title>
+  <meta name="description" content="DIFFUSION MODELS IN MEDICAL IMAGING: A COMPREHENSIVE SURVEY  1.摘要   去噪扩散模型是一类生成模型，最近在各种深度学习问题中引起了极大的兴趣。扩散概率模型定义了一个正向扩散阶段，在这个阶段中，输入数据通过加入高斯噪声在几个步骤中逐渐受到扰动，然后学习反向扩散过程以从有噪声的数据样本中恢复所需的无噪声数据。扩散模型因其强大的风格覆盖和">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PaperReading-医学影像中的扩散模型:综合综述">
+<meta property="og:url" content="http://example.com/2023/08/31/paper_%E5%8C%BB%E5%AD%A6%E5%BD%B1%E5%83%8F%E4%B8%AD%E7%9A%84%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B%20%E7%BB%BC%E5%90%88%E7%BB%BC%E8%BF%B0/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="DIFFUSION MODELS IN MEDICAL IMAGING: A COMPREHENSIVE SURVEY  1.摘要   去噪扩散模型是一类生成模型，最近在各种深度学习问题中引起了极大的兴趣。扩散概率模型定义了一个正向扩散阶段，在这个阶段中，输入数据通过加入高斯噪声在几个步骤中逐渐受到扰动，然后学习反向扩散过程以从有噪声的数据样本中恢复所需的无噪声数据。扩散模型因其强大的风格覆盖和">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-08-31T03:45:29.886Z">
+<meta property="article:modified_time" content="2024-01-20T03:01:23.118Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="扩散模型">
+<meta name="twitter:card" content="summary">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://example.com/2023/08/31/paper_%E5%8C%BB%E5%AD%A6%E5%BD%B1%E5%83%8F%E4%B8%AD%E7%9A%84%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B%20%E7%BB%BC%E5%90%88%E7%BB%BC%E8%BF%B0/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+  
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/chandlerye" target="_blank">
+          <img class="img-circle img-rotate" src="/images/favicon.ico" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">Chandler</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">一头牛马</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> YanTai, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="搜索" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="想要查找什么..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">首页</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">归档</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">分类</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">标签</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/chandlerye" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">公告</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>记录学习历程!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget-body">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Paper/">Paper</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%A7%91%E5%AD%A6/">科学</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BC%96%E7%A8%8B/">编程</a><span class="category-list-count">19</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget-body tagcloud">
+      <a href="/tags/CVPR/" style="font-size: 13px;">CVPR</a> <a href="/tags/Code-%E5%88%86%E7%B1%BB/" style="font-size: 14px;">Code-分类</a> <a href="/tags/Code-%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/" style="font-size: 13.33px;">Code-图像处理</a> <a href="/tags/Code-%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 13px;">Code-数据集</a> <a href="/tags/Code-%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/" style="font-size: 13px;">Code-文件操作</a> <a href="/tags/Code-%E6%A8%A1%E5%9E%8B/" style="font-size: 14px;">Code-模型</a> <a href="/tags/Code-%E7%94%9F%E6%88%90/" style="font-size: 13px;">Code-生成</a> <a href="/tags/Code-%E8%A1%A8%E6%A0%BC%E5%A4%84%E7%90%86/" style="font-size: 13px;">Code-表格处理</a> <a href="/tags/Cpp/" style="font-size: 13.33px;">Cpp</a> <a href="/tags/GAN/" style="font-size: 13.67px;">GAN</a> <a href="/tags/Hexo/" style="font-size: 13px;">Hexo</a> <a href="/tags/MICCAI/" style="font-size: 13px;">MICCAI</a> <a href="/tags/PAMI/" style="font-size: 13px;">PAMI</a> <a href="/tags/Qt/" style="font-size: 13px;">Qt</a> <a href="/tags/knowledge/" style="font-size: 13px;">knowledge</a> <a href="/tags/%E5%8C%BB%E5%AD%A6/" style="font-size: 13px;">医学</a> <a href="/tags/%E5%8C%BB%E5%AD%A6%E5%BD%B1%E5%83%8F/" style="font-size: 13px;">医学影像</a> <a href="/tags/%E5%9B%BE%E5%83%8F%E8%9E%8D%E5%90%88/" style="font-size: 13px;">图像融合</a> <a href="/tags/%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B/" style="font-size: 13.33px;">扩散模型</a> <a href="/tags/%E6%95%B0%E5%AD%A6/" style="font-size: 13px;">数学</a> <a href="/tags/%E7%BB%BC%E8%BF%B0%E6%96%87%E7%AB%A0/" style="font-size: 13px;">综述文章</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/05/">五月 2024</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">一月 2024</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">十二月 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">十月 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">九月 2023</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">八月 2023</a><span class="archive-list-count">7</span></li></ul>
+    </div>
+  </div>
+
+
+    
+  </div>
+</aside>
+
+  
+  
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-paper_医学影像中的扩散模型 综合综述" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      PaperReading-医学影像中的扩散模型:综合综述
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2023/08/31/paper_%E5%8C%BB%E5%AD%A6%E5%BD%B1%E5%83%8F%E4%B8%AD%E7%9A%84%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B%20%E7%BB%BC%E5%90%88%E7%BB%BC%E8%BF%B0/" class="article-date">
+	  <time datetime="2023-08-31T03:45:29.886Z" itemprop="datePublished">2023-08-31</time>
+	</a>
+</span>
+        
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
+    <a class="article-category-link" href="/categories/Paper/">Paper</a>
+  </span>
+
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link-link" href="/tags/%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B/" rel="tag">扩散模型</a>
+  </span>
+
+
+        
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2023/08/31/paper_%E5%8C%BB%E5%AD%A6%E5%BD%B1%E5%83%8F%E4%B8%AD%E7%9A%84%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B%20%E7%BB%BC%E5%90%88%E7%BB%BC%E8%BF%B0/#comments" class="article-comment-link">评论</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <h1 id="centerdiffusion-models-in-medical-imaging-a-comprehensive-surveycenter"><a class="markdownIt-Anchor" href="#centerdiffusion-models-in-medical-imaging-a-comprehensive-surveycenter"></a> <center>DIFFUSION MODELS IN MEDICAL IMAGING: A COMPREHENSIVE SURVEY</center></h1>
+<h2 id="center1摘要"><a class="markdownIt-Anchor" href="#center1摘要"></a> <center>1.摘要</h2>
+<p>  去噪扩散模型是一类生成模型，最近在各种深度学习问题中引起了极大的兴趣。扩散概率模型定义了一个正向扩散阶段，在这个阶段中，输入数据通过加入高斯噪声在几个步骤中逐渐受到扰动，然后学习反向扩散过程以从有噪声的数据样本中恢复所需的无噪声数据。扩散模型因其强大的风格覆盖和生成样本的质量而广受欢迎，尽管它们已知的计算负担。利用计算机视觉的进步，医学成像领域也被观察到对扩散模型的兴趣日益增长。为了帮助研究人员浏览这一丰富的内容，本调查旨在提供医学成像学科中扩散模型的全面概述。具体来说，我们首先介绍扩散模型和三种通用扩散建模框架(即扩散概率模型、噪声条件评分网络和随机微分方程)背后的坚实理论基础和基本概念。然后，我们对医学领域的扩散模型进行了系统的分类，并提出了基于其应用，成像方式，感兴趣的器官和算法的多视角分类。为此，我们涵盖了扩散模型在医学领域的广泛应用，包括图像到图像的转换、重建、配准、分类、分割、去噪、2/3D生成、异常检测和其他与医学相关的挑战。此外，我们强调了一些选定方法的实际用例，然后讨论了扩散模型在医学领域的局限性，并提出了满足该领域需求的几个方向。最后，我们在GitHub上收集了概述的研究及其可用的开源实现。我们的目标是定期更新其中的相关最新论文。</p>
+<h2 id="center2引言"><a class="markdownIt-Anchor" href="#center2引言"></a> <center>2.引言</h2>
+<ol>
+<li>（1）在过去十年中，使用神经网络的生成建模一直是深度学习的主导力量。自其出现以来，生成模型在图像、音频、文本和点云等各个领域产生了巨大的影响。（2）在过去的几年里，由于一般深度学习架构的发展，人们对生成模型的兴趣重新燃起，揭示了视觉保真度和采样速度的提高。具体来说，已经出现了生成对抗网络(GANs)、变分自编码器(VAEs)和归一化流。除此之外，基于扩散过程的生成模型为现有的VAEs、EBMs、gan和规范化流提供了一种替代方案，这些模型不需要对后验分布进行对齐、估计难以处理的配分函数、引入额外的判别器网络或分别放置网络约束。（3）迄今为止，已经发现扩散模型在许多领域都很有用，从生成建模任务(如图像生成、图像超分辨率、图像绘制)到判别任务(如图像分割、分类和异常检测)。（4）最近，医学影像领域基于扩散的技术数量呈指数级增长。我们的主要贡献包括:<br />
+1）是第一篇全面涵盖扩散模型在医学成像领域应用的调查论文。具体来说，我们将全面概述所有可用的相关论文(直到2022年10月)，并展示2023年4月之前的一些最新技术。<br />
+2）我们设计了一个医学界扩散模型的多视角分类，为扩散模型及其应用的研究提供了一个系统的分类。我们将现有的扩散模型分为两类:基于变分的模型和基于分数的模型。此外，我们将扩散模型的应用分为九类:图像到图像的翻译、重建、配准、分类、分割、去噪、图像生成、异常检测和其他应用。<br />
+3）我们没有将注意力限制在应用上，并提供了一个新的分类法，其中每篇论文分别根据所提出的算法以及相关器官和成像方式进行了广泛的分类。<br />
+3）最后，我们讨论了挑战和开放的问题，并确定了新的趋势，提出了关于扩散模型在医疗领域的算法和应用的未来发展的开放问题</li>
+<li>本次调查的动机和独特性。生成方法在医学成像领域取得了重大进展，其中一些论文只关注特定的应用，而另一些则专注于特定的图像形态。尽管在这一领域得到充分发展之前就已经发表了综述文章，但自那时以来，医学领域已经取得了许多进展。另一方面，这些调查都没有关注扩散模型在医学成像中的应用，这是推动这一研究方向向前发展的核心方面。因此，这些调查留下了明显的空白。此外，我们相信医学界可以通过回顾我们的调查提供的扩散模型的过去和未来的研究方向，从视觉扩散模型的成功产品中获得启示。</li>
+<li>搜索策略。我们搜索了DBLP、Google Scholar和Arxiv Sanity Preserver，使用定制的搜索查询，因为它们允许定制搜索查询，并提供所有学术出版物的列表:同行评议的期刊论文或在会议或研讨会论文集中发表的论文，非同行评议的论文和预印本。值得注意的是，我们根据对其新颖性、贡献、意义的仔细评估，以及是否为医学成像领域的第一篇介绍论文，选择了论文进行详细检查。</li>
+<li>论文的组织。</li>
+</ol>
+<h2 id="center3论文结构"><a class="markdownIt-Anchor" href="#center3论文结构"></a> <center>3.论文结构</h2>
+<ol start="2">
+<li>理论<br />
+2.1 扩散模型在哪里适合生成式学习?<br />
+2.2 变分视角<br />
+2.2.1 去噪扩散概率模型(ddpm)<br />
+2.3 分数视角<br />
+2.3.1 噪声条件评分网络(ncsn)<br />
+2.3.2 随机微分方程(SDEs)</li>
+<li>临床重要性</li>
+<li>应用中的扩散模型<br />
+4.1 图像到图像的转换<br />
+4.2 重建<br />
+4.3 配准<br />
+4.4 分类<br />
+4.5 分割<br />
+4.6 去噪<br />
+4.7 图像生成<br />
+4.8 异常检测<br />
+4.9 其他应用和多任务<br />
+4.10 对比概述</li>
+<li>未来方向和开放挑战</li>
+</ol>
+<h2 id="center4总结"><a class="markdownIt-Anchor" href="#center4总结"></a> <center>4.总结</h2>
+<p>  本文综述了扩散模型的相关文献，重点介绍了扩散模型在医学成像领域的应用。具体来说，我们研究了扩散模型在异常检测、医学图像分割、去噪、分类、重建、配准、生成等任务中的应用。特别是，对于这些应用程序中的每一个，我们都从不同的角度提供了核心技术的分类和高级抽象。此外，我们基于技术对现有模型进行了表征，其中我们确定了基于ddpm, ncsn和SDEs的扩散建模的三种主要公式。最后，我们概述了未来研究的可能途径。<br />
+  虽然我们的调查强调了医学成像中基于扩散的技术的快速增长，但我们也承认，该领域仍处于早期阶段，可能会发生变化。随着扩散模型越来越受欢迎，在这一领域的研究也越来越多，我们的调查为希望在工作中使用这些模型的研究人员和从业者提供了一个重要的起点和参考。我们希望这项调查将激发进一步的兴趣和探索扩散模型在医学领域的潜力。值得注意的是，本调查中引用的一些论文是预印本。然而，我们尽一切努力只包括来自信誉良好的来源的高质量研究，我们相信，包括预印本提供了对这个快速发展的领域当前最先进技术的全面概述。总的来说，我们相信我们的调查为扩散模型在医学成像中的应用提供了有价值的见解，并突出了未来研究的有前途的领域。</p>
+
+      
+    </div>
+    <div class="article-footer">
+      <!-- <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="http://example.com/2023/08/31/paper_%E5%8C%BB%E5%AD%A6%E5%BD%B1%E5%83%8F%E4%B8%AD%E7%9A%84%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B%20%E7%BB%BC%E5%90%88%E7%BB%BC%E8%BF%B0/" title="PaperReading-医学影像中的扩散模型:综合综述" target="_blank" rel="external">http://example.com/2023/08/31/paper_医学影像中的扩散模型 综合综述/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote> -->
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/chandlerye" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/favicon.ico" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/chandlerye" target="_blank"><span class="text-dark">Chandler</span><small class="ml-1x">一头牛马</small></a></h3>
+        <div>江上两条红船，寒风斜雨摇摆</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/2023/08/31/paper_BPGAN-%E4%BD%BF%E7%94%A8%E5%85%89%E8%B0%B1%E5%BD%92%E4%B8%80%E5%8C%96%E5%92%8C%E5%AE%9A%E4%BD%8D%E7%9A%84%E5%A4%9A%E7%94%9F%E6%88%90%E5%A4%9A%E5%AF%B9%E6%8A%97%E7%BD%91%E7%BB%9C%E8%BF%9B%E8%A1%8Cct-mri%E5%8F%8C%E5%90%91%E9%A2%84%E6%B5%8B/" title="PaperReading-BPGAN-使用光谱归一化和定位的多生成多对抗网络进行CT-MRI双向预测"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/2023/08/30/paper_MRI%E4%B8%8EPET%E4%BA%A4%E5%8F%89%E6%A8%A1%E6%80%81%E5%90%88%E6%88%90%E7%A0%94%E7%A9%B6%E8%BF%9B%E5%B1%95/" title="PaperReading-综述-MRI与PET交叉模态合成研究进展"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  
+  <div class="bar-right">
+    
+  </div>
+  </div>
+</nav>
+  
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/chandlerye" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+
+
+
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/js/plugin.min.js"></script>
+
+
+<script src="/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+
+
+
+
+   
+
+
+
+
+   
+
+
+
+
+
+
+</body>
+</html>

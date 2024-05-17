@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>PaperReading-综述-MRI与PET交叉模态合成研究进展 | Chandler&#39;s blog</title>
+  <meta name="description" content="A Review on Cross-modality Synthesis from MRI to PET  1.摘要   随着时间的推移，医学影像合成越来越受欢迎。在各具特色的成像技术中，MRI和PET在医疗领域有着重要的意义。但由于PET的某些局限性，如费用、辐射暴露和缺乏可用性，人们倾向于采用跨模态合成的方法。深度学习为该领域模型的发展铺平了道路，完成了跨模态合成任务。使用这些模型合成生物医">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PaperReading-综述-MRI与PET交叉模态合成研究进展">
+<meta property="og:url" content="http://example.com/2023/08/30/paper_MRI%E4%B8%8EPET%E4%BA%A4%E5%8F%89%E6%A8%A1%E6%80%81%E5%90%88%E6%88%90%E7%A0%94%E7%A9%B6%E8%BF%9B%E5%B1%95/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="A Review on Cross-modality Synthesis from MRI to PET  1.摘要   随着时间的推移，医学影像合成越来越受欢迎。在各具特色的成像技术中，MRI和PET在医疗领域有着重要的意义。但由于PET的某些局限性，如费用、辐射暴露和缺乏可用性，人们倾向于采用跨模态合成的方法。深度学习为该领域模型的发展铺平了道路，完成了跨模态合成任务。使用这些模型合成生物医">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-08-30T04:42:17.929Z">
+<meta property="article:modified_time" content="2024-01-17T12:21:59.121Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="GAN">
+<meta name="twitter:card" content="summary">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://example.com/2023/08/30/paper_MRI%E4%B8%8EPET%E4%BA%A4%E5%8F%89%E6%A8%A1%E6%80%81%E5%90%88%E6%88%90%E7%A0%94%E7%A9%B6%E8%BF%9B%E5%B1%95/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+  
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/chandlerye" target="_blank">
+          <img class="img-circle img-rotate" src="/images/favicon.ico" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">Chandler</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">一头牛马</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> YanTai, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="搜索" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="想要查找什么..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">首页</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">归档</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">分类</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">标签</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/chandlerye" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">公告</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>记录学习历程!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget-body">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Paper/">Paper</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%A7%91%E5%AD%A6/">科学</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BC%96%E7%A8%8B/">编程</a><span class="category-list-count">19</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget-body tagcloud">
+      <a href="/tags/CVPR/" style="font-size: 13px;">CVPR</a> <a href="/tags/Code-%E5%88%86%E7%B1%BB/" style="font-size: 14px;">Code-分类</a> <a href="/tags/Code-%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/" style="font-size: 13.33px;">Code-图像处理</a> <a href="/tags/Code-%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 13px;">Code-数据集</a> <a href="/tags/Code-%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/" style="font-size: 13px;">Code-文件操作</a> <a href="/tags/Code-%E6%A8%A1%E5%9E%8B/" style="font-size: 14px;">Code-模型</a> <a href="/tags/Code-%E7%94%9F%E6%88%90/" style="font-size: 13px;">Code-生成</a> <a href="/tags/Code-%E8%A1%A8%E6%A0%BC%E5%A4%84%E7%90%86/" style="font-size: 13px;">Code-表格处理</a> <a href="/tags/Cpp/" style="font-size: 13.33px;">Cpp</a> <a href="/tags/GAN/" style="font-size: 13.67px;">GAN</a> <a href="/tags/Hexo/" style="font-size: 13px;">Hexo</a> <a href="/tags/MICCAI/" style="font-size: 13px;">MICCAI</a> <a href="/tags/PAMI/" style="font-size: 13px;">PAMI</a> <a href="/tags/Qt/" style="font-size: 13px;">Qt</a> <a href="/tags/knowledge/" style="font-size: 13px;">knowledge</a> <a href="/tags/%E5%8C%BB%E5%AD%A6/" style="font-size: 13px;">医学</a> <a href="/tags/%E5%8C%BB%E5%AD%A6%E5%BD%B1%E5%83%8F/" style="font-size: 13px;">医学影像</a> <a href="/tags/%E5%9B%BE%E5%83%8F%E8%9E%8D%E5%90%88/" style="font-size: 13px;">图像融合</a> <a href="/tags/%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B/" style="font-size: 13.33px;">扩散模型</a> <a href="/tags/%E6%95%B0%E5%AD%A6/" style="font-size: 13px;">数学</a> <a href="/tags/%E7%BB%BC%E8%BF%B0%E6%96%87%E7%AB%A0/" style="font-size: 13px;">综述文章</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/05/">五月 2024</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">一月 2024</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">十二月 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">十月 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">九月 2023</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">八月 2023</a><span class="archive-list-count">7</span></li></ul>
+    </div>
+  </div>
+
+
+    
+  </div>
+</aside>
+
+  
+  
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-paper_MRI与PET交叉模态合成研究进展" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      PaperReading-综述-MRI与PET交叉模态合成研究进展
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2023/08/30/paper_MRI%E4%B8%8EPET%E4%BA%A4%E5%8F%89%E6%A8%A1%E6%80%81%E5%90%88%E6%88%90%E7%A0%94%E7%A9%B6%E8%BF%9B%E5%B1%95/" class="article-date">
+	  <time datetime="2023-08-30T04:42:17.929Z" itemprop="datePublished">2023-08-30</time>
+	</a>
+</span>
+        
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
+    <a class="article-category-link" href="/categories/Paper/">Paper</a>
+  </span>
+
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link-link" href="/tags/GAN/" rel="tag">GAN</a>
+  </span>
+
+
+        
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2023/08/30/paper_MRI%E4%B8%8EPET%E4%BA%A4%E5%8F%89%E6%A8%A1%E6%80%81%E5%90%88%E6%88%90%E7%A0%94%E7%A9%B6%E8%BF%9B%E5%B1%95/#comments" class="article-comment-link">评论</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <h1 id="centera-review-on-cross-modality-synthesis-from-mri-to-pet"><a class="markdownIt-Anchor" href="#centera-review-on-cross-modality-synthesis-from-mri-to-pet"></a> <center>A Review on Cross-modality Synthesis from MRI to PET</h1>
+<h2 id="center1摘要"><a class="markdownIt-Anchor" href="#center1摘要"></a> <center>1.摘要</h2>
+<p>  随着时间的推移，医学影像合成越来越受欢迎。在各具特色的成像技术中，MRI和PET在医疗领域有着重要的意义。但由于PET的某些局限性，如费用、辐射暴露和缺乏可用性，人们倾向于采用跨模态合成的方法。深度学习为该领域模型的发展铺平了道路，完成了跨模态合成任务。使用这些模型合成生物医学图像可以节省患者的时间、金钱和精力，并改善疾病诊断。本文旨在总结以MRI-PET交叉模态合成为最终目标的深度学习模型</p>
+<h2 id="center2引言"><a class="markdownIt-Anchor" href="#center2引言"></a> <center>2.引言</h2>
+<ol>
+<li>医学成像技术在医疗保健领域发挥了显著的作用,每种类型的成像技术都提供了一些人体解剖或功能信息，这意味着像MR和PET这样的多模态生物医学图像将提供补充信息，从而实现细致和快速的诊断。</li>
+<li>磁共振成像(MRI)和正电子发射断层扫描(PET)这两种扫描在一起使用时可以提供补充信息，帮助医生做出强有力的临床判断，但是每个患者同时拥有这两种扫描的可能性很低，这有多种原因<br />
+1)PET模式的可用性有限。发展中国家的大多数医疗中心不提供PET扫描。<br />
+2)与MRI相比，PET是一种昂贵的方式。<br />
+3) PET中放射性示踪剂的使用，增加了终生癌症风险。<br />
+尽管存在这些障碍，但PET由于其独特的分子成像特性是必不可少的。而核磁共振成像作为一种更安全的成像方式，在这些限制方面具有优势。因此，为了有效解决这一问题，采用了跨模态合成策略。</li>
+<li>跨模态合成是在源模态下评估同一受试者的目标模态图像的过程，即在我们的案例中是MR-to-PET。该方法不仅克服了PET的划界因素，而且简化了患者的治疗，减少了患者的整体扫描时间，减少了诊所和医院的工作量，提高了疾病预测的准确性，并且可以为医学成像数据集做出贡献。简而言之，它节省了人们的时间、金钱和精力。从而改善社会的健康和生活。</li>
+<li>属于同一受试者的MR和PET扫描具有不同的外观，这使得学习跨域映射成为一项具有挑战性的任务。深度学习已被认为是实现计算机视觉任务的重要技术。随着GAN的体系结构及其变体得到了广泛的认可,在完成跨模态合成时，同样创建了基于GAN的模型</li>
+<li>在本文中，我们总结了现有的用于MRI-PET交叉模态合成的基于深度学习的模型。</li>
+</ol>
+<h2 id="center3论文结构"><a class="markdownIt-Anchor" href="#center3论文结构"></a> <center>3.论文结构</h2>
+<h3 id="1文献调查"><a class="markdownIt-Anchor" href="#1文献调查"></a> 1)文献调查</h3>
+<h4 id="a基于深度学习的影像数据补全改善脑部疾病诊断"><a class="markdownIt-Anchor" href="#a基于深度学习的影像数据补全改善脑部疾病诊断"></a> A.基于深度学习的影像数据补全改善脑部疾病诊断</h4>
+<blockquote>
+<p>本文使用3D CNN来估计缺失数据。该模型以MRI为输入，预测相应的PET。</p>
+</blockquote>
+<h4 id="b-mri到fdg-pet使用3d-u-net进行多模态阿尔茨海默病分类的跨模态合成"><a class="markdownIt-Anchor" href="#b-mri到fdg-pet使用3d-u-net进行多模态阿尔茨海默病分类的跨模态合成"></a> B. MRI到FDG-PET:使用3D U-Net进行多模态阿尔茨海默病分类的跨模态合成</h4>
+<blockquote>
+<p>本文采用三维U-Net模型来捕捉这些模态之间的非局部相关和非线性关系。</p>
+</blockquote>
+<h4 id="c-合成pet从pet使用周期一致的生成对抗网络用于阿尔茨海默病诊断"><a class="markdownIt-Anchor" href="#c-合成pet从pet使用周期一致的生成对抗网络用于阿尔茨海默病诊断"></a> C. 合成PET从PET使用周期一致的生成对抗网络用于阿尔茨海默病诊断</h4>
+<blockquote>
+<p>本文开发了一个两阶段的框架，该框架在初级阶段使用周期一致的GAN (3DcGAN)进行mri -PET合成，在后续阶段构建用于AD诊断的分类方法(LM3 IL)。</p>
+</blockquote>
+<h4 id="d用pix2pix从mri推断pet"><a class="markdownIt-Anchor" href="#d用pix2pix从mri推断pet"></a> D.用pix2pix从MRI推断PET</h4>
+<blockquote>
+<p>为了有一个共同的框架，引入了pix2pix GAN，本文使用相同的架构来演示使用成对数据集的MRI到PET翻译任务。</p>
+</blockquote>
+<h4 id="e使用不同归一化的对抗u-net从mri到pet的交叉模态合成"><a class="markdownIt-Anchor" href="#e使用不同归一化的对抗u-net从mri到pet的交叉模态合成"></a> E.使用不同归一化的对抗U-Net从MRI到PET的交叉模态合成</h4>
+<blockquote>
+<p>为了减少内部协变偏移问题和对数据集中范围更广的特征的偏倚，深度网络采用了归一化技术。本文指出了BN的某些缺点，用各种归一化方法对对抗U-Net模型进行了实验，以找出其中最适合该跨模态综合任务的方法。为了解决批量归一化中生物医学图像的稀少性与小批量大小要求之间的矛盾，采用批范数(Batch Norm, BN)、层范数(Layer Norm, LN)、实例范数(Instance Norm, in)和组范数(Group Norm, GN)四种归一化方法，对不同小批量大小的对抗U-Net的性能进行了评价。定量结果表明，IN对所有样本的每个通道相对于该通道的均值和标准差进行标准化，比其他归一化技术具有更好的性能。</p>
+</blockquote>
+<h4 id="f基于条件流的模态迁移生成模型"><a class="markdownIt-Anchor" href="#f基于条件流的模态迁移生成模型"></a> F.基于条件流的模态迁移生成模型</h4>
+<h4 id="g双向映射生成对抗网络用于脑mr到pet合成"><a class="markdownIt-Anchor" href="#g双向映射生成对抗网络用于脑mr到pet合成"></a> G.双向映射生成对抗网络用于脑MR到PET合成</h4>
+<blockquote>
+<p>这项工作提出了一种类似于CGAN的方法，在这种方法中，它被端到端地指导，最终目标是AD分类。当使用分类目标进行训练时，可能会影响生成语用图像的性能。这一限制是克服自适应微调GAN损耗和分类损耗。同时，通过损失微调使一般GAN训练变得稳定。</p>
+</blockquote>
+<h4 id="ifrea-unet模态传输的频率感知u-net"><a class="markdownIt-Anchor" href="#ifrea-unet模态传输的频率感知u-net"></a> I.FREA-Unet:模态传输的频率感知U-net</h4>
+<blockquote>
+<p>本文注意到PET扫描中存在不同的频率尺度以及深度学习模型中注意学习的本质，提出了端到端的频率感知U-net模型。为了反映合成PET与真实PET的不同频率尺度，该模型在解码部分从两个不同的层获得低频和高频PET图像，并在每一层上附加一个可训练的注意模块。根据本文的定义，低频/高频层的注意力是指从频率层提取的激活图与U-net解码路径中前一层到最后一层的产出之间的兼容性分数。然后在频率尺度层中使用这些分数来突出相关特征。将获得的低频/高频层的输出融合并馈送到最后一个解码器层，以生成最终的真实PET图像。利用从注意力模块获得的不同权重分别优化低/高频尺度，使模型能够生成更精确的合成PET，具有更高的分辨率和保留的器官结构和分辨率。</p>
+</blockquote>
+<h3 id="2比较"><a class="markdownIt-Anchor" href="#2比较"></a> 2)比较</h3>
+<h2 id="center4总结"><a class="markdownIt-Anchor" href="#center4总结"></a> <center>4.总结</h2>
+<p>  PET数据的缺乏一直是疾病准确诊断的障碍。跨模态综合方法是解决这一问题的有效方法。在本文中，我们总结了为实现MRI-PET交叉模态合成任务而开发的深度学习模型，并对这些模型进行了比较。可以看出，由于GAN在图像合成任务中的出色性能，大多数都提出了基于GAN的架构。此外，我们还简要概述了数据集和用于评估合成PET图像的常用定量矩阵。</p>
+<h2 id="center5文章笔记"><a class="markdownIt-Anchor" href="#center5文章笔记"></a> <center>5.文章笔记</h2>
+<blockquote>
+<p><strong>MRI和PET的基本原理的叙述：</strong><br />
+磁共振成像(MRI)是一种利用磁场和无线电波对人体内部器官进行成像的结构方式。这种非侵入性诊断工具测量所需身体部位的解剖结构。而正电子发射断层扫描(PET)是一种功能模式，使用放射性示踪剂来量化人体组织和器官中的代谢活动。</p>
+</blockquote>
+<blockquote>
+<p><strong>UNet优点：</strong><br />
+码器和解码器网络之间的跳跃连接有助于保留输出图像中的空间/定位信息，并使用二值交叉熵作为损失函数，有助于生成平滑输出。<br />
+U-Net架构以其通过跳过连接将低级特征从编码器传输到解码器的能力而闻名，在这一过程中对于保留MR和PET切片之间常见的低级特征非常重要</p>
+</blockquote>
+<blockquote>
+<p><strong>评估合成医学图像的标准:</strong><br />
+• Mean Absolute Error (MAE)<br />
+• Mean Squared Error (MSE)<br />
+• Peak Signal-to-Noise Ratio (PSNR)<br />
+• Structure Similarity Index (SSIM)<br />
+• Multi-Scale Structural Similarity (MS-SSIM)<br />
+• Frechet Inception Distance (FID)</p>
+</blockquote>
+<blockquote>
+<p><strong>注意力的优点:</strong><br />
+注意力学习背后的主要思想是更多地关注与任务相关的特征，而不是简单地平等地关注图像的所有部分。</p>
+</blockquote>
+
+      
+    </div>
+    <div class="article-footer">
+      <!-- <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="http://example.com/2023/08/30/paper_MRI%E4%B8%8EPET%E4%BA%A4%E5%8F%89%E6%A8%A1%E6%80%81%E5%90%88%E6%88%90%E7%A0%94%E7%A9%B6%E8%BF%9B%E5%B1%95/" title="PaperReading-综述-MRI与PET交叉模态合成研究进展" target="_blank" rel="external">http://example.com/2023/08/30/paper_MRI与PET交叉模态合成研究进展/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote> -->
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/chandlerye" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/favicon.ico" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/chandlerye" target="_blank"><span class="text-dark">Chandler</span><small class="ml-1x">一头牛马</small></a></h3>
+        <div>江上两条红船，寒风斜雨摇摆</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/2023/08/31/paper_%E5%8C%BB%E5%AD%A6%E5%BD%B1%E5%83%8F%E4%B8%AD%E7%9A%84%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B%20%E7%BB%BC%E5%90%88%E7%BB%BC%E8%BF%B0/" title="PaperReading-医学影像中的扩散模型:综合综述"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/2023/08/30/paper_%E5%A4%9A%E6%A8%A1%E6%80%81%E5%8C%BB%E5%AD%A6%E5%9B%BE%E5%83%8F%E8%9E%8D%E5%90%88%E6%8A%80%E6%9C%AF%E7%BB%BC%E8%BF%B0/" title="PaperReading-多模态医学图像融合技术综述"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  
+  <div class="bar-right">
+    
+  </div>
+  </div>
+</nav>
+  
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/chandlerye" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+
+
+
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/js/plugin.min.js"></script>
+
+
+<script src="/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+
+
+
+
+   
+
+
+
+
+   
+
+
+
+
+
+
+</body>
+</html>

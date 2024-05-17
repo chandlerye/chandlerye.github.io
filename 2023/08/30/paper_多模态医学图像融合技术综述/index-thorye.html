@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>PaperReading-多模态医学图像融合技术综述 | Chandler&#39;s blog</title>
+  <meta name="description" content="A Review of Multimodal Medical Image Fusion Techniques   1.摘要 医学图像融合是将来自多种成像方式的多幅图像进行融合，得到信息量大的融合图像，以提高医学图像的临床适用性的过程。本文对多模态医学图像融合方法进行了综述，重点介绍了该领域的最新进展，包括:(1)当前的融合方法，包括基于深度学习的融合方法;(2)医学图像融合的成像方式;(3)主要">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PaperReading-多模态医学图像融合技术综述">
+<meta property="og:url" content="http://example.com/2023/08/30/paper_%E5%A4%9A%E6%A8%A1%E6%80%81%E5%8C%BB%E5%AD%A6%E5%9B%BE%E5%83%8F%E8%9E%8D%E5%90%88%E6%8A%80%E6%9C%AF%E7%BB%BC%E8%BF%B0/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="A Review of Multimodal Medical Image Fusion Techniques   1.摘要 医学图像融合是将来自多种成像方式的多幅图像进行融合，得到信息量大的融合图像，以提高医学图像的临床适用性的过程。本文对多模态医学图像融合方法进行了综述，重点介绍了该领域的最新进展，包括:(1)当前的融合方法，包括基于深度学习的融合方法;(2)医学图像融合的成像方式;(3)主要">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-08-30T03:55:56.125Z">
+<meta property="article:modified_time" content="2024-01-20T03:01:57.659Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="医学影像">
+<meta property="article:tag" content="图像融合">
+<meta property="article:tag" content="综述文章">
+<meta name="twitter:card" content="summary">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://example.com/2023/08/30/paper_%E5%A4%9A%E6%A8%A1%E6%80%81%E5%8C%BB%E5%AD%A6%E5%9B%BE%E5%83%8F%E8%9E%8D%E5%90%88%E6%8A%80%E6%9C%AF%E7%BB%BC%E8%BF%B0/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+  
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/chandlerye" target="_blank">
+          <img class="img-circle img-rotate" src="/images/favicon.ico" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">Chandler</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">一头牛马</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> YanTai, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="搜索" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="想要查找什么..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">首页</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">归档</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">分类</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">标签</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/chandlerye" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">公告</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>记录学习历程!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget-body">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Paper/">Paper</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%A7%91%E5%AD%A6/">科学</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BC%96%E7%A8%8B/">编程</a><span class="category-list-count">19</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget-body tagcloud">
+      <a href="/tags/CVPR/" style="font-size: 13px;">CVPR</a> <a href="/tags/Code-%E5%88%86%E7%B1%BB/" style="font-size: 14px;">Code-分类</a> <a href="/tags/Code-%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/" style="font-size: 13.33px;">Code-图像处理</a> <a href="/tags/Code-%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 13px;">Code-数据集</a> <a href="/tags/Code-%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/" style="font-size: 13px;">Code-文件操作</a> <a href="/tags/Code-%E6%A8%A1%E5%9E%8B/" style="font-size: 14px;">Code-模型</a> <a href="/tags/Code-%E7%94%9F%E6%88%90/" style="font-size: 13px;">Code-生成</a> <a href="/tags/Code-%E8%A1%A8%E6%A0%BC%E5%A4%84%E7%90%86/" style="font-size: 13px;">Code-表格处理</a> <a href="/tags/Cpp/" style="font-size: 13.33px;">Cpp</a> <a href="/tags/GAN/" style="font-size: 13.67px;">GAN</a> <a href="/tags/Hexo/" style="font-size: 13px;">Hexo</a> <a href="/tags/MICCAI/" style="font-size: 13px;">MICCAI</a> <a href="/tags/PAMI/" style="font-size: 13px;">PAMI</a> <a href="/tags/Qt/" style="font-size: 13px;">Qt</a> <a href="/tags/knowledge/" style="font-size: 13px;">knowledge</a> <a href="/tags/%E5%8C%BB%E5%AD%A6/" style="font-size: 13px;">医学</a> <a href="/tags/%E5%8C%BB%E5%AD%A6%E5%BD%B1%E5%83%8F/" style="font-size: 13px;">医学影像</a> <a href="/tags/%E5%9B%BE%E5%83%8F%E8%9E%8D%E5%90%88/" style="font-size: 13px;">图像融合</a> <a href="/tags/%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B/" style="font-size: 13.33px;">扩散模型</a> <a href="/tags/%E6%95%B0%E5%AD%A6/" style="font-size: 13px;">数学</a> <a href="/tags/%E7%BB%BC%E8%BF%B0%E6%96%87%E7%AB%A0/" style="font-size: 13px;">综述文章</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/05/">五月 2024</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">一月 2024</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">十二月 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">十月 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">九月 2023</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">八月 2023</a><span class="archive-list-count">7</span></li></ul>
+    </div>
+  </div>
+
+
+    
+  </div>
+</aside>
+
+  
+  
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-paper_多模态医学图像融合技术综述" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      PaperReading-多模态医学图像融合技术综述
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2023/08/30/paper_%E5%A4%9A%E6%A8%A1%E6%80%81%E5%8C%BB%E5%AD%A6%E5%9B%BE%E5%83%8F%E8%9E%8D%E5%90%88%E6%8A%80%E6%9C%AF%E7%BB%BC%E8%BF%B0/" class="article-date">
+	  <time datetime="2023-08-30T03:55:56.125Z" itemprop="datePublished">2023-08-30</time>
+	</a>
+</span>
+        
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
+    <a class="article-category-link" href="/categories/Paper/">Paper</a>
+  </span>
+
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link-link" href="/tags/%E5%8C%BB%E5%AD%A6%E5%BD%B1%E5%83%8F/" rel="tag">医学影像</a>, <a class="article-tag-link-link" href="/tags/%E5%9B%BE%E5%83%8F%E8%9E%8D%E5%90%88/" rel="tag">图像融合</a>, <a class="article-tag-link-link" href="/tags/%E7%BB%BC%E8%BF%B0%E6%96%87%E7%AB%A0/" rel="tag">综述文章</a>
+  </span>
+
+
+        
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2023/08/30/paper_%E5%A4%9A%E6%A8%A1%E6%80%81%E5%8C%BB%E5%AD%A6%E5%9B%BE%E5%83%8F%E8%9E%8D%E5%90%88%E6%8A%80%E6%9C%AF%E7%BB%BC%E8%BF%B0/#comments" class="article-comment-link">评论</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <h1 id="centera-review-of-multimodal-medical-image-fusion-techniques-center"><a class="markdownIt-Anchor" href="#centera-review-of-multimodal-medical-image-fusion-techniques-center"></a> <center>A Review of Multimodal Medical Image Fusion Techniques </center></h1>
+<h2 id="center1摘要"><a class="markdownIt-Anchor" href="#center1摘要"></a> <center>1.摘要</h2>
+<p>医学图像融合是将来自多种成像方式的多幅图像进行融合，得到信息量大的融合图像，以提高医学图像的临床适用性的过程。本文对多模态医学图像融合方法进行了综述，重点介绍了该领域的最新进展，包括:(1)当前的融合方法，包括基于深度学习的融合方法;(2)医学图像融合的成像方式;(3)主要数据集上医学图像融合的性能分析。最后，本文的结论是，目前多模态医学图像融合的研究成果较为显著，发展趋势呈上升趋势，但研究领域存在诸多挑战。</p>
+<h2 id="center2引言"><a class="markdownIt-Anchor" href="#center2引言"></a> <center>2.引言</h2>
+<ol>
+<li>多模态医学图像融合被广泛研究。</li>
+<li>医学图像融合通过融合同一部位的不同成像信息以获得更好的对比度，融合质量和感知体验。融合结果应满足以下条件：<br />
+(a)融合后的图像应完全保留源图像的信息;<br />
+(b)融合后的图像不应产生任何合成信息，如伪影;<br />
+©应避免不良状态，如误登记和噪音</li>
+<li>传统的医学图像融合方法分为空间域和变换域。随着深度学习热潮的到来，出现了基于深度学习的医学图像融合方法，但只有CNN和U-Net网络得到了应用</li>
+<li>本文结合近年来医学图像融合的相关论文，对该领域的研究进展及未来发展进行综述，分为以下几个部分：<br />
+(1)对当前融合方法的介绍<br />
+(2)多模态融合的模式<br />
+(3)对同一数据库中具有相同评价指标的不同医学图像融合方法的数据进行比较<br />
+(4)讨论医学图像融合方法面临的挑战和未来的研究趋势</li>
+</ol>
+<h2 id="center3总结"><a class="markdownIt-Anchor" href="#center3总结"></a> <center>3.总结</h2>
+<p>医学图像融合方法存在的问题：</p>
+<ol>
+<li>医学图像融合的评价指标多，评价指标的非唯一性限制了评价指标的应用前景</li>
+<li>医学图像融合的创新性低，融合结果中存在的颜色失真、特征信息提取等问题只是得到了改善，而没有完全解决。其中深度学习提高了融合的效果，但研究也存在如下问题：<br />
+（1）如何获取海量的数据集<br />
+（2）如何简化训练模型或提出新的训练模型<br />
+（3）部分融合方法依赖于精确的图像配准，独立性小</li>
+<li>不同传感器获取的医学图像信息存在差异。目前的研究热点是两模融合，而三模融合的研究很少。</li>
+</ol>
+<h2 id="center4文章笔记"><a class="markdownIt-Anchor" href="#center4文章笔记"></a> <center>4.文章笔记</h2>
+<blockquote>
+<p>U-Net是基于全卷积神经网络改进的，使用数据增强可以训练少量的样本。这一优点正好弥补了医学图像数据样本量小的缺点</p>
+</blockquote>
+<blockquote>
+<p>CNN是医学领域的新挑战;主要原因是(a)需要大量带注释的训练集数据，(b)训练时间长，©收敛问题复杂，过拟合需要反复调整。</p>
+</blockquote>
+
+      
+    </div>
+    <div class="article-footer">
+      <!-- <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="http://example.com/2023/08/30/paper_%E5%A4%9A%E6%A8%A1%E6%80%81%E5%8C%BB%E5%AD%A6%E5%9B%BE%E5%83%8F%E8%9E%8D%E5%90%88%E6%8A%80%E6%9C%AF%E7%BB%BC%E8%BF%B0/" title="PaperReading-多模态医学图像融合技术综述" target="_blank" rel="external">http://example.com/2023/08/30/paper_多模态医学图像融合技术综述/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote> -->
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/chandlerye" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/favicon.ico" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/chandlerye" target="_blank"><span class="text-dark">Chandler</span><small class="ml-1x">一头牛马</small></a></h3>
+        <div>江上两条红船，寒风斜雨摇摆</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/2023/08/30/paper_MRI%E4%B8%8EPET%E4%BA%A4%E5%8F%89%E6%A8%A1%E6%80%81%E5%90%88%E6%88%90%E7%A0%94%E7%A9%B6%E8%BF%9B%E5%B1%95/" title="PaperReading-综述-MRI与PET交叉模态合成研究进展"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/2023/08/30/paper_%E5%9F%BA%E4%BA%8E%E4%B8%8D%E5%AE%8C%E6%95%B4%E5%A4%9A%E6%A8%A1%E6%80%81%E6%95%B0%E6%8D%AE%E4%BB%A5%E8%AF%8A%E6%96%AD%E5%AF%BC%E5%90%91%E7%A5%9E%E7%BB%8F%E5%9B%BE%E5%83%8F%E5%90%88%E6%88%90%E7%9A%84%E7%96%BE%E7%97%85%E5%9B%BE%E5%83%8F%E7%89%B9%E5%BC%82%E6%80%A7%E5%AD%A6%E4%B9%A0/" title="PaperReading-基于不完整多模态数据以诊断导向神经图像合成的疾病图像特异性学习"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  
+  <div class="bar-right">
+    
+  </div>
+  </div>
+</nav>
+  
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/chandlerye" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+
+
+
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/js/plugin.min.js"></script>
+
+
+<script src="/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+
+
+
+
+   
+
+
+
+
+   
+
+
+
+
+
+
+</body>
+</html>
