@@ -25,10 +25,11 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="Generative adversarial network in medical imaging: A review  1.摘要   生成对抗网络由于其无需明确建模概率密度函数即可生成数据的能力而在计算机视觉界受到了广泛的关注。鉴别器带来的对抗损失提供了一种巧妙的方法，将未标记的样本整合到训练中，并实现更高的阶一致性。事实证明，这在许多情况下都很有用，例如域适应、数据增强和图像到图像的转换。这">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-09-01T08:00:37.614Z">
-<meta property="article:modified_time" content="2024-01-20T03:01:36.386Z">
+<meta property="article:published_time" content="2023-09-01T14:06:29.256Z">
+<meta property="article:modified_time" content="2024-05-21T12:19:22.532Z">
 <meta property="article:author" content="John Doe">
-<meta property="article:tag" content="GAN">
+<meta property="article:tag" content="综述文章">
+<meta property="article:tag" content="Paper-医学影像">
 <meta name="twitter:card" content="summary">
   <!-- Canonical links -->
   <link rel="canonical" href="http://example.com/2023/09/01/paper_%E7%94%9F%E6%88%90%E5%AF%B9%E6%8A%97%E7%BD%91%E7%BB%9C%E5%9C%A8%E5%8C%BB%E5%AD%A6%E6%88%90%E5%83%8F%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8%E7%BB%BC%E8%BF%B0/index.html">
@@ -181,7 +182,7 @@
   <div class="widget">
     <h3 class="widget-title">标签云</h3>
     <div class="widget-body tagcloud">
-      <a href="/tags/CVPR/" style="font-size: 13px;">CVPR</a> <a href="/tags/Code-%E5%88%86%E7%B1%BB/" style="font-size: 14px;">Code-分类</a> <a href="/tags/Code-%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/" style="font-size: 13.33px;">Code-图像处理</a> <a href="/tags/Code-%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 13px;">Code-数据集</a> <a href="/tags/Code-%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/" style="font-size: 13px;">Code-文件操作</a> <a href="/tags/Code-%E6%A8%A1%E5%9E%8B/" style="font-size: 14px;">Code-模型</a> <a href="/tags/Code-%E7%94%9F%E6%88%90/" style="font-size: 13.67px;">Code-生成</a> <a href="/tags/Code-%E8%A1%A8%E6%A0%BC%E5%A4%84%E7%90%86/" style="font-size: 13px;">Code-表格处理</a> <a href="/tags/Cpp/" style="font-size: 13px;">Cpp</a> <a href="/tags/GAN/" style="font-size: 13.67px;">GAN</a> <a href="/tags/Hexo/" style="font-size: 13px;">Hexo</a> <a href="/tags/MICCAI/" style="font-size: 13px;">MICCAI</a> <a href="/tags/PAMI/" style="font-size: 13px;">PAMI</a> <a href="/tags/Qt/" style="font-size: 13px;">Qt</a> <a href="/tags/knowledge/" style="font-size: 13px;">knowledge</a> <a href="/tags/%E5%8C%BB%E5%AD%A6/" style="font-size: 13.33px;">医学</a> <a href="/tags/%E5%8C%BB%E5%AD%A6%E5%BD%B1%E5%83%8F/" style="font-size: 13px;">医学影像</a> <a href="/tags/%E5%9B%BE%E5%83%8F%E8%9E%8D%E5%90%88/" style="font-size: 13px;">图像融合</a> <a href="/tags/%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B/" style="font-size: 13.33px;">扩散模型</a> <a href="/tags/%E6%B3%95%E5%BE%8B/" style="font-size: 13px;">法律</a> <a href="/tags/%E7%BB%BC%E8%BF%B0%E6%96%87%E7%AB%A0/" style="font-size: 13px;">综述文章</a>
+      <a href="/tags/Code-%E5%88%86%E7%B1%BB/" style="font-size: 13.75px;">Code-分类</a> <a href="/tags/Code-%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/" style="font-size: 13.25px;">Code-图像处理</a> <a href="/tags/Code-%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 13px;">Code-数据集</a> <a href="/tags/Code-%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/" style="font-size: 13px;">Code-文件操作</a> <a href="/tags/Code-%E6%A8%A1%E5%9E%8B/" style="font-size: 13.75px;">Code-模型</a> <a href="/tags/Code-%E7%94%9F%E6%88%90/" style="font-size: 13.5px;">Code-生成</a> <a href="/tags/Code-%E8%A1%A8%E6%A0%BC%E5%A4%84%E7%90%86/" style="font-size: 13px;">Code-表格处理</a> <a href="/tags/Cpp/" style="font-size: 13px;">Cpp</a> <a href="/tags/Hexo/" style="font-size: 13px;">Hexo</a> <a href="/tags/Paper-%E5%8C%BB%E5%AD%A6%E5%BD%B1%E5%83%8F/" style="font-size: 14px;">Paper-医学影像</a> <a href="/tags/Qt/" style="font-size: 13px;">Qt</a> <a href="/tags/knowledge/" style="font-size: 13px;">knowledge</a> <a href="/tags/%E5%8C%BB%E5%AD%A6/" style="font-size: 13.25px;">医学</a> <a href="/tags/%E6%B3%95%E5%BE%8B/" style="font-size: 13px;">法律</a> <a href="/tags/%E7%BB%BC%E8%BF%B0%E6%96%87%E7%AB%A0/" style="font-size: 13.5px;">综述文章</a>
     </div>
   </div>
 
@@ -219,7 +220,7 @@
         <span class="article-date">
     <i class="icon icon-calendar-check"></i>
 	<a href="/2023/09/01/paper_%E7%94%9F%E6%88%90%E5%AF%B9%E6%8A%97%E7%BD%91%E7%BB%9C%E5%9C%A8%E5%8C%BB%E5%AD%A6%E6%88%90%E5%83%8F%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8%E7%BB%BC%E8%BF%B0/" class="article-date">
-	  <time datetime="2023-09-01T08:00:37.614Z" itemprop="datePublished">2023-09-01</time>
+	  <time datetime="2023-09-01T14:06:29.256Z" itemprop="datePublished">2023-09-01</time>
 	</a>
 </span>
         
@@ -231,7 +232,7 @@
         
   <span class="article-tag">
     <i class="icon icon-tags"></i>
-	<a class="article-tag-link-link" href="/tags/GAN/" rel="tag">GAN</a>
+	<a class="article-tag-link-link" href="/tags/Paper-%E5%8C%BB%E5%AD%A6%E5%BD%B1%E5%83%8F/" rel="tag">Paper-医学影像</a>, <a class="article-tag-link-link" href="/tags/%E7%BB%BC%E8%BF%B0%E6%96%87%E7%AB%A0/" rel="tag">综述文章</a>
   </span>
 
 
@@ -243,10 +244,10 @@
     </div>
     <div class="article-entry marked-body" itemprop="articleBody">
       
-        <h1 id="centergenerative-adversarial-network-in-medical-imaging-a-review"><a class="markdownIt-Anchor" href="#centergenerative-adversarial-network-in-medical-imaging-a-review"></a> <center>Generative adversarial network in medical imaging: A review</h1>
-<h2 id="center1摘要"><a class="markdownIt-Anchor" href="#center1摘要"></a> <center>1.摘要</h2>
+        <h1><span id="generative-adversarial-network-in-medical-imaging-a-review"> <center>Generative adversarial network in medical imaging: A review</center></span></h1>
+<h2><span id="1摘要"> <center>1.摘要</center></span></h2>
 <p>  生成对抗网络由于其无需明确建模概率密度函数即可生成数据的能力而在计算机视觉界受到了广泛的关注。鉴别器带来的对抗损失提供了一种巧妙的方法，将未标记的样本整合到训练中，并实现更高的阶一致性。事实证明，这在许多情况下都很有用，例如域适应、数据增强和图像到图像的转换。这些特性吸引了医学影像界的研究人员，并在许多传统和新型应用中得到了迅速的应用，如图像重建、分割、检测、分类和交叉模态合成。根据我们的观察，这一趋势将继续下去，因此我们对使用对抗训练方案的医学成像的最新进展进行了回顾，希望能使对这项技术感兴趣的研究人员受益。</p>
-<h2 id="center2引言"><a class="markdownIt-Anchor" href="#center2引言"></a> <center>2.引言</h2>
+<h2><span id="2引言"> <center>2.引言</center></span></h2>
 <ol>
 <li>从2012年开始，随着深度学习在计算机视觉领域的复兴(Krizhevsky et al, 2012)，深度学习方法在医学成像领域的应用急剧增加。</li>
 <li>gan是一种特殊类型的神经网络模型，它同时训练两个网络，一个专注于图像生成，另一个专注于识别。</li>
@@ -254,31 +255,31 @@
 <li>为了全面概述gan在医学成像方面的所有相关工作，我们检索了PubMed、arXiv…</li>
 <li>本文的其余部分结构如下…</li>
 </ol>
-<h2 id="center3论文结构"><a class="markdownIt-Anchor" href="#center3论文结构"></a> <center>3.论文结构</h2>
-<p>2.背景<br />
-2.1 Vanilla GAN<br />
-2.2 优化gan的挑战<br />
-2.3 gan的变体<br />
-2.3.1 D的变化目标<br />
-2.3.2 G的变化目标<br />
-3.在医学成像中的应用<br />
-3.1. 重建<br />
-3.2 医学图像合成<br />
-3.2.1 无条件的合成<br />
-3.2.2 交叉模态合成<br />
-3.2.3 其他条件合成<br />
-3.3 分割<br />
-3.4 分类<br />
-3.5 检测<br />
-3.6 配准<br />
-3.7 其他工作<br />
-4.讨论<br />
-4.1 未来的挑战<br />
+<h2><span id="3论文结构"> <center>3.论文结构</center></span></h2>
+<p>2.背景<br>
+2.1 Vanilla GAN<br>
+2.2 优化gan的挑战<br>
+2.3 gan的变体<br>
+2.3.1 D的变化目标<br>
+2.3.2 G的变化目标<br>
+3.在医学成像中的应用<br>
+3.1. 重建<br>
+3.2 医学图像合成<br>
+3.2.1 无条件的合成<br>
+3.2.2 交叉模态合成<br>
+3.2.3 其他条件合成<br>
+3.3 分割<br>
+3.4 分类<br>
+3.5 检测<br>
+3.6 配准<br>
+3.7 其他工作<br>
+4.讨论<br>
+4.1 未来的挑战<br>
 4.2 有趣的未来应用</p>
-<h2 id="center4文章笔记"><a class="markdownIt-Anchor" href="#center4文章笔记"></a> <center>4.文章笔记</h2>
+<h2><span id="4文章笔记"> <center>4.文章笔记</center></span></h2>
 <blockquote>
-<p><strong>GAN存在的问题</strong><br />
-并不能保证G和D的训练在JS发散的情况下达到平衡。因此，一个网络可能不可避免地比另一个网络更强大，在大多数情况下是D。当D变得过于强大而不是G时，生成的样本变得太容易与真实样本分离，从而达到D的梯度接近于零的阶段，无法为G的进一步训练提供指导。由于难以生成有意义的高频细节，这种情况在生成高分辨率图像时更常见。<br />
+<p><strong>GAN存在的问题</strong><br>
+并不能保证G和D的训练在JS发散的情况下达到平衡。因此，一个网络可能不可避免地比另一个网络更强大，在大多数情况下是D。当D变得过于强大而不是G时，生成的样本变得太容易与真实样本分离，从而达到D的梯度接近于零的阶段，无法为G的进一步训练提供指导。由于难以生成有意义的高频细节，这种情况在生成高分辨率图像时更常见。<br>
 另一个在训练gan时经常遇到的问题是模态崩溃，顾名思义，模态崩溃是指G学习到的分布集中在数据分布的几个有限模态上。因此，它产生的不是不同的图像，而是一组有限的样本。</p>
 </blockquote>
 
