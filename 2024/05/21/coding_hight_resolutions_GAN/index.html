@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>Coding-SRGAN-超分辨生成对抗网络-基于RGB图片数据 | Chandler&#39;s blog</title>
+  <meta name="description" content="摘要 srgan.py inference.py    摘要 srgan.py用于训练网络 inference.py用于使用训练好的模型文件推理 图片数据放在&#x2F;home&#x2F;myself&#x2F;work&#x2F;work-generate&#x2F;data下,所有图片在一个文件夹里   1234567891011121314151617181920212223242526272829303132333435363738">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Coding-SRGAN-超分辨生成对抗网络-基于RGB图片数据">
+<meta property="og:url" content="http://example.com/2024/05/21/coding_hight_resolutions_GAN/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="摘要 srgan.py inference.py    摘要 srgan.py用于训练网络 inference.py用于使用训练好的模型文件推理 图片数据放在&#x2F;home&#x2F;myself&#x2F;work&#x2F;work-generate&#x2F;data下,所有图片在一个文件夹里   1234567891011121314151617181920212223242526272829303132333435363738">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-05-21T12:01:12.975Z">
+<meta property="article:modified_time" content="2024-05-21T12:10:00.541Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Code-生成">
+<meta name="twitter:card" content="summary">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://example.com/2024/05/21/coding_hight_resolutions_GAN/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+  
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/chandlerye" target="_blank">
+          <img class="img-circle img-rotate" src="/images/favicon.ico" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">Chandler</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">一头牛马</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> YanTai, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="搜索" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="想要查找什么..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">首页</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">归档</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">分类</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">标签</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/chandlerye" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">公告</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>记录学习历程!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget-body">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Paper/">Paper</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BC%96%E7%A8%8B/">编程</a><span class="category-list-count">20</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget-body tagcloud">
+      <a href="/tags/CVPR/" style="font-size: 13px;">CVPR</a> <a href="/tags/Code-%E5%88%86%E7%B1%BB/" style="font-size: 14px;">Code-分类</a> <a href="/tags/Code-%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/" style="font-size: 13.33px;">Code-图像处理</a> <a href="/tags/Code-%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 13px;">Code-数据集</a> <a href="/tags/Code-%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/" style="font-size: 13px;">Code-文件操作</a> <a href="/tags/Code-%E6%A8%A1%E5%9E%8B/" style="font-size: 14px;">Code-模型</a> <a href="/tags/Code-%E7%94%9F%E6%88%90/" style="font-size: 13.67px;">Code-生成</a> <a href="/tags/Code-%E8%A1%A8%E6%A0%BC%E5%A4%84%E7%90%86/" style="font-size: 13px;">Code-表格处理</a> <a href="/tags/Cpp/" style="font-size: 13px;">Cpp</a> <a href="/tags/GAN/" style="font-size: 13.67px;">GAN</a> <a href="/tags/Hexo/" style="font-size: 13px;">Hexo</a> <a href="/tags/MICCAI/" style="font-size: 13px;">MICCAI</a> <a href="/tags/PAMI/" style="font-size: 13px;">PAMI</a> <a href="/tags/Qt/" style="font-size: 13px;">Qt</a> <a href="/tags/knowledge/" style="font-size: 13px;">knowledge</a> <a href="/tags/%E5%8C%BB%E5%AD%A6/" style="font-size: 13.33px;">医学</a> <a href="/tags/%E5%8C%BB%E5%AD%A6%E5%BD%B1%E5%83%8F/" style="font-size: 13px;">医学影像</a> <a href="/tags/%E5%9B%BE%E5%83%8F%E8%9E%8D%E5%90%88/" style="font-size: 13px;">图像融合</a> <a href="/tags/%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B/" style="font-size: 13.33px;">扩散模型</a> <a href="/tags/%E6%B3%95%E5%BE%8B/" style="font-size: 13px;">法律</a> <a href="/tags/%E7%BB%BC%E8%BF%B0%E6%96%87%E7%AB%A0/" style="font-size: 13px;">综述文章</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/05/">五月 2024</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">二月 2024</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">一月 2024</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">十二月 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">十月 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">九月 2023</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">八月 2023</a><span class="archive-list-count">7</span></li></ul>
+    </div>
+  </div>
+
+
+    
+  </div>
+</aside>
+
+  
+  
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-coding_hight_resolutions_GAN" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Coding-SRGAN-超分辨生成对抗网络-基于RGB图片数据
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2024/05/21/coding_hight_resolutions_GAN/" class="article-date">
+	  <time datetime="2024-05-21T12:01:12.975Z" itemprop="datePublished">2024-05-21</time>
+	</a>
+</span>
+        
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
+    <a class="article-category-link" href="/categories/%E7%BC%96%E7%A8%8B/">编程</a>
+  </span>
+
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link-link" href="/tags/Code-%E7%94%9F%E6%88%90/" rel="tag">Code-生成</a>
+  </span>
+
+
+        
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2024/05/21/coding_hight_resolutions_GAN/#comments" class="article-comment-link">评论</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <!-- toc -->
+<ul>
+<li><a href="#%E6%91%98%E8%A6%81">摘要</a></li>
+<li><a href="#srganpy">srgan.py</a></li>
+<li><a href="#inferencepy">inference.py</a></li>
+</ul>
+<!-- tocstop -->
+<h3><span id="摘要"> 摘要</span></h3>
+<p>srgan.py用于训练网络<br>
+inference.py用于使用训练好的模型文件推理<br>
+图片数据放在/home/myself/work/work-generate/data下,所有图片在一个文件夹里</p>
+<h3><span id="srganpy"> </span></h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">import</span> argparse</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> math</span><br><span class="line"><span class="keyword">import</span> itertools</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> torchvision.transforms <span class="keyword">as</span> transforms</span><br><span class="line"><span class="keyword">from</span> torchvision.utils <span class="keyword">import</span> save_image, make_grid</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> torch.utils.data <span class="keyword">import</span> DataLoader</span><br><span class="line"><span class="keyword">from</span> torch.autograd <span class="keyword">import</span> Variable</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> models <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> datasets <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> torch.nn <span class="keyword">as</span> nn</span><br><span class="line"><span class="keyword">import</span> torch.nn.functional <span class="keyword">as</span> F</span><br><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"></span><br><span class="line">os.makedirs(<span class="string">&quot;/home/myself/work/work-generate/srgan/images&quot;</span>, exist_ok=<span class="literal">True</span>)</span><br><span class="line">os.makedirs(<span class="string">&quot;/home/myself/work/work-generate/srgan/saved_models&quot;</span>, exist_ok=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line">parser = argparse.ArgumentParser()</span><br><span class="line">parser.add_argument(<span class="string">&quot;--epoch&quot;</span>, <span class="built_in">type</span>=<span class="built_in">int</span>, default=<span class="number">0</span>, <span class="built_in">help</span>=<span class="string">&quot;epoch to start training from&quot;</span>)</span><br><span class="line">parser.add_argument(<span class="string">&quot;--n_epochs&quot;</span>, <span class="built_in">type</span>=<span class="built_in">int</span>, default=<span class="number">200</span>, <span class="built_in">help</span>=<span class="string">&quot;number of epochs of training&quot;</span>)</span><br><span class="line">parser.add_argument(<span class="string">&quot;--dataset_name&quot;</span>, <span class="built_in">type</span>=<span class="built_in">str</span>, default=<span class="string">&quot;data&quot;</span>, <span class="built_in">help</span>=<span class="string">&quot;name of the dataset&quot;</span>)</span><br><span class="line">parser.add_argument(<span class="string">&quot;--batch_size&quot;</span>, <span class="built_in">type</span>=<span class="built_in">int</span>, default=<span class="number">4</span>, <span class="built_in">help</span>=<span class="string">&quot;size of the batches&quot;</span>)</span><br><span class="line">parser.add_argument(<span class="string">&quot;--lr&quot;</span>, <span class="built_in">type</span>=<span class="built_in">float</span>, default=<span class="number">0.0002</span>, <span class="built_in">help</span>=<span class="string">&quot;adam: learning rate&quot;</span>)</span><br><span class="line">parser.add_argument(<span class="string">&quot;--b1&quot;</span>, <span class="built_in">type</span>=<span class="built_in">float</span>, default=<span class="number">0.5</span>, <span class="built_in">help</span>=<span class="string">&quot;adam: decay of first order momentum of gradient&quot;</span>)</span><br><span class="line">parser.add_argument(<span class="string">&quot;--b2&quot;</span>, <span class="built_in">type</span>=<span class="built_in">float</span>, default=<span class="number">0.999</span>, <span class="built_in">help</span>=<span class="string">&quot;adam: decay of first order momentum of gradient&quot;</span>)</span><br><span class="line">parser.add_argument(<span class="string">&quot;--decay_epoch&quot;</span>, <span class="built_in">type</span>=<span class="built_in">int</span>, default=<span class="number">100</span>, <span class="built_in">help</span>=<span class="string">&quot;epoch from which to start lr decay&quot;</span>)</span><br><span class="line">parser.add_argument(<span class="string">&quot;--n_cpu&quot;</span>, <span class="built_in">type</span>=<span class="built_in">int</span>, default=<span class="number">8</span>, <span class="built_in">help</span>=<span class="string">&quot;number of cpu threads to use during batch generation&quot;</span>)</span><br><span class="line">parser.add_argument(<span class="string">&quot;--hr_height&quot;</span>, <span class="built_in">type</span>=<span class="built_in">int</span>, default=<span class="number">512</span>, <span class="built_in">help</span>=<span class="string">&quot;high res. image height&quot;</span>)</span><br><span class="line">parser.add_argument(<span class="string">&quot;--hr_width&quot;</span>, <span class="built_in">type</span>=<span class="built_in">int</span>, default=<span class="number">512</span>, <span class="built_in">help</span>=<span class="string">&quot;high res. image width&quot;</span>)</span><br><span class="line">parser.add_argument(<span class="string">&quot;--channels&quot;</span>, <span class="built_in">type</span>=<span class="built_in">int</span>, default=<span class="number">3</span>, <span class="built_in">help</span>=<span class="string">&quot;number of image channels&quot;</span>)</span><br><span class="line">parser.add_argument(<span class="string">&quot;--sample_interval&quot;</span>, <span class="built_in">type</span>=<span class="built_in">int</span>, default=<span class="number">100</span>, <span class="built_in">help</span>=<span class="string">&quot;interval between saving image samples&quot;</span>)</span><br><span class="line">parser.add_argument(<span class="string">&quot;--checkpoint_interval&quot;</span>, <span class="built_in">type</span>=<span class="built_in">int</span>, default=<span class="number">20</span>, <span class="built_in">help</span>=<span class="string">&quot;interval between model checkpoints&quot;</span>)</span><br><span class="line">opt = parser.parse_args()</span><br><span class="line"><span class="built_in">print</span>(opt)</span><br><span class="line"></span><br><span class="line">cuda = torch.cuda.is_available()</span><br><span class="line"></span><br><span class="line">hr_shape = (opt.hr_height, opt.hr_width)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Initialize generator and discriminator</span></span><br><span class="line">generator = GeneratorResNet()</span><br><span class="line">discriminator = Discriminator(input_shape=(opt.channels, *hr_shape))</span><br><span class="line">feature_extractor = FeatureExtractor()</span><br><span class="line"></span><br><span class="line"><span class="comment"># Set feature extractor to inference mode</span></span><br><span class="line">feature_extractor.<span class="built_in">eval</span>()</span><br><span class="line"></span><br><span class="line"><span class="comment"># Losses</span></span><br><span class="line">criterion_GAN = torch.nn.MSELoss()</span><br><span class="line">criterion_content = torch.nn.L1Loss()</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> cuda:</span><br><span class="line">    generator = generator.cuda()</span><br><span class="line">    discriminator = discriminator.cuda()</span><br><span class="line">    feature_extractor = feature_extractor.cuda()</span><br><span class="line">    criterion_GAN = criterion_GAN.cuda()</span><br><span class="line">    criterion_content = criterion_content.cuda()</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> opt.epoch != <span class="number">0</span>:</span><br><span class="line">    <span class="comment"># Load pretrained models</span></span><br><span class="line">    generator.load_state_dict(torch.load(<span class="string">&quot;/home/myself/work/work-generate/srgan/saved_models/generator_%d.pth&quot;</span>))</span><br><span class="line">    discriminator.load_state_dict(torch.load(<span class="string">&quot;/home/myself/work/work-generate/srgan/saved_models/discriminator_%d.pth&quot;</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># Optimizers</span></span><br><span class="line">optimizer_G = torch.optim.Adam(generator.parameters(), lr=opt.lr, betas=(opt.b1, opt.b2))</span><br><span class="line">optimizer_D = torch.optim.Adam(discriminator.parameters(), lr=opt.lr, betas=(opt.b1, opt.b2))</span><br><span class="line"></span><br><span class="line">Tensor = torch.cuda.FloatTensor <span class="keyword">if</span> cuda <span class="keyword">else</span> torch.Tensor</span><br><span class="line"></span><br><span class="line">dataloader = DataLoader(</span><br><span class="line">    ImageDataset(<span class="string">&quot;/home/myself/work/work-generate/%s&quot;</span> % opt.dataset_name, hr_shape=hr_shape),</span><br><span class="line">  </span><br><span class="line">    batch_size=opt.batch_size,</span><br><span class="line">    shuffle=<span class="literal">True</span>,</span><br><span class="line">    num_workers=opt.n_cpu,</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment"># ----------</span></span><br><span class="line"><span class="comment">#  Training</span></span><br><span class="line"><span class="comment"># ----------</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    <span class="keyword">for</span> epoch <span class="keyword">in</span> <span class="built_in">range</span>(opt.epoch, opt.n_epochs):</span><br><span class="line">        <span class="keyword">for</span> i, imgs <span class="keyword">in</span> <span class="built_in">enumerate</span>(dataloader):</span><br><span class="line"></span><br><span class="line">            <span class="comment"># Configure model input</span></span><br><span class="line">            imgs_lr = Variable(imgs[<span class="string">&quot;lr&quot;</span>].<span class="built_in">type</span>(Tensor))</span><br><span class="line">            imgs_hr = Variable(imgs[<span class="string">&quot;hr&quot;</span>].<span class="built_in">type</span>(Tensor))</span><br><span class="line"></span><br><span class="line">            <span class="comment"># Adversarial ground truths</span></span><br><span class="line">            valid = Variable(Tensor(np.ones((imgs_lr.size(<span class="number">0</span>), *discriminator.output_shape))), requires_grad=<span class="literal">False</span>)</span><br><span class="line">            fake = Variable(Tensor(np.zeros((imgs_lr.size(<span class="number">0</span>), *discriminator.output_shape))), requires_grad=<span class="literal">False</span>)</span><br><span class="line"></span><br><span class="line">            <span class="comment"># ------------------</span></span><br><span class="line">            <span class="comment">#  Train Generators</span></span><br><span class="line">            <span class="comment"># ------------------</span></span><br><span class="line"></span><br><span class="line">            optimizer_G.zero_grad()</span><br><span class="line"></span><br><span class="line">            <span class="comment"># Generate a high resolution image from low resolution input</span></span><br><span class="line">            gen_hr = generator(imgs_lr)</span><br><span class="line"></span><br><span class="line">            <span class="comment"># Adversarial loss</span></span><br><span class="line">            loss_GAN = criterion_GAN(discriminator(gen_hr), valid)</span><br><span class="line"></span><br><span class="line">            <span class="comment"># Content loss</span></span><br><span class="line">            gen_features = feature_extractor(gen_hr)</span><br><span class="line">            real_features = feature_extractor(imgs_hr)</span><br><span class="line">            loss_content = criterion_content(gen_features, real_features.detach())</span><br><span class="line"></span><br><span class="line">            <span class="comment"># Total loss</span></span><br><span class="line">            loss_G = loss_content + <span class="number">1e-3</span> * loss_GAN</span><br><span class="line"></span><br><span class="line">            loss_G.backward()</span><br><span class="line">            optimizer_G.step()</span><br><span class="line"></span><br><span class="line">            <span class="comment"># ---------------------</span></span><br><span class="line">            <span class="comment">#  Train Discriminator</span></span><br><span class="line">            <span class="comment"># ---------------------</span></span><br><span class="line"></span><br><span class="line">            optimizer_D.zero_grad()</span><br><span class="line"></span><br><span class="line">            <span class="comment"># Loss of real and fake images</span></span><br><span class="line">            loss_real = criterion_GAN(discriminator(imgs_hr), valid)</span><br><span class="line">            loss_fake = criterion_GAN(discriminator(gen_hr.detach()), fake)</span><br><span class="line"></span><br><span class="line">            <span class="comment"># Total loss</span></span><br><span class="line">            loss_D = (loss_real + loss_fake) / <span class="number">2</span></span><br><span class="line"></span><br><span class="line">            loss_D.backward()</span><br><span class="line">            optimizer_D.step()</span><br><span class="line"></span><br><span class="line">            <span class="comment"># --------------</span></span><br><span class="line">            <span class="comment">#  Log Progress</span></span><br><span class="line">            <span class="comment"># --------------</span></span><br><span class="line"></span><br><span class="line">            sys.stdout.write(</span><br><span class="line">                <span class="string">&quot;[Epoch %d/%d] [Batch %d/%d] [D loss: %f] [G loss: %f]&quot;</span></span><br><span class="line">                % (epoch, opt.n_epochs, i, <span class="built_in">len</span>(dataloader), loss_D.item(), loss_G.item())</span><br><span class="line">            )</span><br><span class="line"></span><br><span class="line">            batches_done = epoch * <span class="built_in">len</span>(dataloader) + i</span><br><span class="line">            <span class="keyword">if</span> batches_done % opt.sample_interval == <span class="number">0</span>:</span><br><span class="line">                <span class="comment"># Save image grid with upsampled inputs and SRGAN outputs</span></span><br><span class="line">                imgs_lr = nn.functional.interpolate(imgs_lr, scale_factor=<span class="number">4</span>)</span><br><span class="line">                gen_hr = make_grid(gen_hr, nrow=<span class="number">1</span>, normalize=<span class="literal">True</span>)</span><br><span class="line">                imgs_lr = make_grid(imgs_lr, nrow=<span class="number">1</span>, normalize=<span class="literal">True</span>)</span><br><span class="line">                img_grid = torch.cat((imgs_lr, gen_hr), -<span class="number">1</span>)</span><br><span class="line">                save_image(img_grid, <span class="string">&quot;/home/myself/work/work-generate/srgan/images/%d.png&quot;</span> % batches_done, normalize=<span class="literal">False</span>)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> opt.checkpoint_interval != -<span class="number">1</span> <span class="keyword">and</span> epoch % opt.checkpoint_interval == <span class="number">0</span>:</span><br><span class="line">            <span class="comment"># Save model checkpoints</span></span><br><span class="line">            torch.save(generator.state_dict(), <span class="string">&quot;/home/myself/work/work-generate/srgan/saved_models/generator_%d.pth&quot;</span> % epoch)</span><br><span class="line">            torch.save(discriminator.state_dict(), <span class="string">&quot;/home/myself/work/work-generate/srgan/saved_models/discriminator_%d.pth&quot;</span> % epoch)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    main()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3><span id="inferencepy"> </span></h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 导入所需库和模块</span></span><br><span class="line"><span class="keyword">import</span> torch.nn <span class="keyword">as</span> nn           <span class="comment"># PyTorch神经网络模块</span></span><br><span class="line"><span class="keyword">import</span> torch.nn.functional <span class="keyword">as</span> F  <span class="comment"># 附加功能，如激活函数等</span></span><br><span class="line"><span class="keyword">import</span> torch                 <span class="comment"># 主PyTorch库</span></span><br><span class="line"><span class="keyword">from</span> torchvision.models <span class="keyword">import</span> vgg19  <span class="comment"># VGG19模型，虽然未直接使用，但可能是参考或预留</span></span><br><span class="line"><span class="keyword">import</span> math                  <span class="comment"># 数学运算库</span></span><br><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image         <span class="comment"># 处理图像的库</span></span><br><span class="line"><span class="keyword">import</span> torchvision.transforms <span class="keyword">as</span> transforms  <span class="comment"># 图像转换工具</span></span><br><span class="line"><span class="keyword">from</span> torchvision.utils <span class="keyword">import</span> save_image   <span class="comment"># 保存图像工具</span></span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np           <span class="comment"># 数值处理库</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义残差块，用于构建生成器网络中的残差网络结构</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">ResidualBlock</span>(nn.Module):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, in_features</span>):</span><br><span class="line">        <span class="built_in">super</span>(ResidualBlock, self).__init__()</span><br><span class="line">        <span class="comment"># 定义一系列卷积、批归一化、激活函数操作</span></span><br><span class="line">        self.conv_block = nn.Sequential(</span><br><span class="line">            nn.Conv2d(in_features, in_features, kernel_size=<span class="number">3</span>, stride=<span class="number">1</span>, padding=<span class="number">1</span>),</span><br><span class="line">            nn.BatchNorm2d(in_features, momentum=<span class="number">0.8</span>),  <span class="comment"># 动量参数设置为0.8</span></span><br><span class="line">            nn.PReLU(),  <span class="comment"># 参数为默认值的PReLU激活函数</span></span><br><span class="line">            nn.Conv2d(in_features, in_features, kernel_size=<span class="number">3</span>, stride=<span class="number">1</span>, padding=<span class="number">1</span>),</span><br><span class="line">            nn.BatchNorm2d(in_features, momentum=<span class="number">0.8</span>),</span><br><span class="line">        )</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, x</span>):</span><br><span class="line">        <span class="comment"># 实现残差连接，输入x加上经过卷积块处理后的x</span></span><br><span class="line">        <span class="keyword">return</span> x + self.conv_block(x)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义生成器网络，基于残差网络结构</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">GeneratorResNet</span>(nn.Module):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, in_channels=<span class="number">3</span>, out_channels=<span class="number">3</span>, n_residual_blocks=<span class="number">16</span></span>):</span><br><span class="line">        <span class="built_in">super</span>(GeneratorResNet, self).__init__()</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 第一层卷积和PReLU激活</span></span><br><span class="line">        self.conv1 = nn.Sequential(nn.Conv2d(in_channels, <span class="number">64</span>, kernel_size=<span class="number">9</span>, stride=<span class="number">1</span>, padding=<span class="number">4</span>), nn.PReLU())</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 重复定义n_residual_blocks次数的残差块</span></span><br><span class="line">        res_blocks = [ResidualBlock(<span class="number">64</span>) <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(n_residual_blocks)]</span><br><span class="line">        self.res_blocks = nn.Sequential(*res_blocks)  <span class="comment"># 将所有残差块放入一个Sequential容器中</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 残差块之后的第二个卷积层和批归一化</span></span><br><span class="line">        self.conv2 = nn.Sequential(nn.Conv2d(<span class="number">64</span>, <span class="number">64</span>, kernel_size=<span class="number">3</span>, stride=<span class="number">1</span>, padding=<span class="number">1</span>), nn.BatchNorm2d(<span class="number">64</span>, momentum=<span class="number">0.8</span>))</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 上采样层，这里使用PixelShuffle进行上采样</span></span><br><span class="line">        upsampling = [</span><br><span class="line">            nn.Conv2d(<span class="number">64</span>, <span class="number">256</span>, kernel_size=<span class="number">3</span>, stride=<span class="number">1</span>, padding=<span class="number">1</span>),</span><br><span class="line">            nn.BatchNorm2d(<span class="number">256</span>),</span><br><span class="line">            nn.PixelShuffle(upscale_factor=<span class="number">2</span>),  <span class="comment"># 使用PixelShuffle上采样，因子为2</span></span><br><span class="line">            nn.PReLU(),  <span class="comment"># 激活函数</span></span><br><span class="line">        ] * <span class="number">2</span>  <span class="comment"># 重复两次上述操作，进行两轮上采样</span></span><br><span class="line">        self.upsampling = nn.Sequential(*upsampling)</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 输出层，最终的卷积层和Tanh激活</span></span><br><span class="line">        self.conv3 = nn.Sequential(nn.Conv2d(<span class="number">64</span>, out_channels, kernel_size=<span class="number">9</span>, stride=<span class="number">1</span>, padding=<span class="number">4</span>), nn.Tanh())</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, x</span>):</span><br><span class="line">        <span class="comment"># 前向传播过程，包括残差结构、上采样等</span></span><br><span class="line">        out1 = self.conv1(x)</span><br><span class="line">        out = self.res_blocks(out1)</span><br><span class="line">        out2 = self.conv2(out)</span><br><span class="line">        out = torch.add(out1, out2)  <span class="comment"># 这里直接相加可能有误，应是残差结构的正确应用</span></span><br><span class="line">        out = self.upsampling(out)</span><br><span class="line">        out = self.conv3(out)</span><br><span class="line">        <span class="keyword">return</span> out</span><br><span class="line"></span><br><span class="line"><span class="comment"># 反标准化函数，将模型输出转换为可显示的格式</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">unnormalize</span>(<span class="params">tensor, mean=[<span class="number">0.5</span>, <span class="number">0.5</span>, <span class="number">0.5</span>], std=[<span class="number">0.5</span>, <span class="number">0.5</span>, <span class="number">0.5</span>]</span>):</span><br><span class="line">    tensor = tensor.clone()  <span class="comment"># 防止原地修改，先复制张量</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(tensor.size(<span class="number">1</span>)):  <span class="comment"># 遍历每个通道</span></span><br><span class="line">        tensor[:, i, :, :] = tensor[:, i, :, :] * std[i] + mean[i]  <span class="comment"># 反标准化操作</span></span><br><span class="line">    <span class="keyword">return</span> tensor</span><br><span class="line"></span><br><span class="line"><span class="comment"># 主程序入口</span></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    <span class="comment"># 设置均值和标准差，用于图像标准化</span></span><br><span class="line">    mean = np.array([<span class="number">0.485</span>, <span class="number">0.456</span>, <span class="number">0.406</span>])</span><br><span class="line">    std = np.array([<span class="number">0.229</span>, <span class="number">0.224</span>, <span class="number">0.225</span>])</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 图像转换管道，包含转Tensor和标准化</span></span><br><span class="line">    transform = transforms.Compose([</span><br><span class="line">        transforms.ToTensor(),</span><br><span class="line">        transforms.Normalize(mean, std),</span><br><span class="line">    ])</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 初始化并加载预训练的生成器模型</span></span><br><span class="line">    g = GeneratorResNet()</span><br><span class="line">    g.load_state_dict(torch.load(<span class="string">&#x27;generator_100.pth&#x27;</span>))</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 加载并处理图像</span></span><br><span class="line">    <span class="built_in">input</span>= Image.<span class="built_in">open</span>(<span class="string">&quot;C:\\Users\\hahag\\OneDrive\\WORK\\work-generate\\6.jpg&quot;</span>).convert(<span class="string">&quot;RGB&quot;</span>)</span><br><span class="line">    <span class="built_in">input</span> = transform(<span class="built_in">input</span>)  <span class="comment"># 转换图像</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 添加batch维度</span></span><br><span class="line">    <span class="built_in">input</span> = <span class="built_in">input</span>.unsqueeze(<span class="number">0</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 通过生成器生成输出</span></span><br><span class="line">    output= g(<span class="built_in">input</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 反标准化</span></span><br><span class="line">    output = unnormalize(output)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 保存生成的图像</span></span><br><span class="line">    save_image(output, <span class="string">&#x27;output.png&#x27;</span>, normalize=<span class="literal">False</span>) </span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <div class="article-footer">
+      <!-- <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="http://example.com/2024/05/21/coding_hight_resolutions_GAN/" title="Coding-SRGAN-超分辨生成对抗网络-基于RGB图片数据" target="_blank" rel="external">http://example.com/2024/05/21/coding_hight_resolutions_GAN/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote> -->
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/chandlerye" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/favicon.ico" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/chandlerye" target="_blank"><span class="text-dark">Chandler</span><small class="ml-1x">一头牛马</small></a></h3>
+        <div>江上两条红船，寒风斜雨摇摆</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    
+    <li class="next">
+      <a href="/2024/05/21/coding_image_GAN/" title="Coding-GAN-生成对抗网络-基于RGB图片数据"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  
+  <div class="bar-right">
+    
+  </div>
+  </div>
+</nav>
+  
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/chandlerye" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+
+
+
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/js/plugin.min.js"></script>
+
+
+<script src="/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+
+
+
+
+   
+
+
+
+
+   
+
+
+
+
+
+
+</body>
+</html>
