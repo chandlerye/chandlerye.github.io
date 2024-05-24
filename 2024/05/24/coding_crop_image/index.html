@@ -17,21 +17,21 @@
   <meta http-equiv="window-target" content="_top" />
   
   
-  <title>Coding-重新设置图像尺寸-非裁剪 | Chandler&#39;s blog</title>
-  <meta name="description" content="摘要    摘要 将图片设置成预定尺寸，如果图片尺寸与预期不符则会裁剪，如果图片小于预定尺寸则会用黑底填充 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152from PIL import Imageimport os# 指定源文件夹和目标文件夹sourc">
+  <title>Coding-重新设置图像尺寸-裁剪 | Chandler&#39;s blog</title>
+  <meta name="description" content="摘要    摘要 将图片裁剪成预定尺寸，如果图片小于预定尺寸则会用黑底填充 123456789101112131415161718192021222324252627282930313233343536373839404142from PIL import Imageimport ossource_folder &#x3D; &amp;#x27;data&amp;#x27;output_folder &#x3D; &amp;#x27;o">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Coding-重新设置图像尺寸-非裁剪">
-<meta property="og:url" content="http://example.com/2024/05/22/coding_resize_image/index.html">
+<meta property="og:title" content="Coding-重新设置图像尺寸-裁剪">
+<meta property="og:url" content="http://example.com/2024/05/24/coding_crop_image/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="摘要    摘要 将图片设置成预定尺寸，如果图片尺寸与预期不符则会裁剪，如果图片小于预定尺寸则会用黑底填充 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152from PIL import Imageimport os# 指定源文件夹和目标文件夹sourc">
+<meta property="og:description" content="摘要    摘要 将图片裁剪成预定尺寸，如果图片小于预定尺寸则会用黑底填充 123456789101112131415161718192021222324252627282930313233343536373839404142from PIL import Imageimport ossource_folder &#x3D; &amp;#x27;data&amp;#x27;output_folder &#x3D; &amp;#x27;o">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-05-22T12:10:04.536Z">
-<meta property="article:modified_time" content="2024-05-24T06:39:57.457Z">
+<meta property="article:published_time" content="2024-05-24T06:39:59.576Z">
+<meta property="article:modified_time" content="2024-05-24T06:41:13.871Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="Code-图像处理">
 <meta name="twitter:card" content="summary">
   <!-- Canonical links -->
-  <link rel="canonical" href="http://example.com/2024/05/22/coding_resize_image/index.html">
+  <link rel="canonical" href="http://example.com/2024/05/24/coding_crop_image/index.html">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -203,14 +203,14 @@
   
 <main class="main" role="main">
   <div class="content">
-  <article id="post-coding_resize_image" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+  <article id="post-coding_crop_image" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
     
     <div class="article-header">
       
         
   
     <h1 class="article-title" itemprop="name">
-      Coding-重新设置图像尺寸-非裁剪
+      Coding-重新设置图像尺寸-裁剪
     </h1>
   
 
@@ -218,8 +218,8 @@
       <div class="article-meta">
         <span class="article-date">
     <i class="icon icon-calendar-check"></i>
-	<a href="/2024/05/22/coding_resize_image/" class="article-date">
-	  <time datetime="2024-05-22T12:10:04.536Z" itemprop="datePublished">2024-05-22</time>
+	<a href="/2024/05/24/coding_crop_image/" class="article-date">
+	  <time datetime="2024-05-24T06:39:59.576Z" itemprop="datePublished">2024-05-24</time>
 	</a>
 </span>
         
@@ -237,7 +237,7 @@
 
         
 
-        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2024/05/22/coding_resize_image/#comments" class="article-comment-link">评论</a></span>
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2024/05/24/coding_crop_image/#comments" class="article-comment-link">评论</a></span>
         
       </div>
     </div>
@@ -249,8 +249,8 @@
 </ul>
 <!-- tocstop -->
 <h3><span id="摘要"> 摘要</span></h3>
-<p>将图片设置成预定尺寸，如果图片尺寸与预期不符则会裁剪，如果图片小于预定尺寸则会用黑底填充</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line"><span class="comment"># 指定源文件夹和目标文件夹</span></span><br><span class="line">source_folder = <span class="string">&#x27;data&#x27;</span></span><br><span class="line">output_folder = <span class="string">&#x27;output28&#x27;</span></span><br><span class="line"><span class="comment"># target_resolution = (1440, 1920)</span></span><br><span class="line">target_resolution = (<span class="number">28</span>, <span class="number">28</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 确保目标文件夹存在</span></span><br><span class="line"><span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(output_folder):</span><br><span class="line">    os.makedirs(output_folder)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 遍历源文件夹中的图片</span></span><br><span class="line"><span class="keyword">for</span> filename <span class="keyword">in</span> os.listdir(source_folder):</span><br><span class="line">    <span class="keyword">if</span> filename.endswith(<span class="string">&#x27;.jpg&#x27;</span>) <span class="keyword">or</span> filename.endswith(<span class="string">&#x27;.jpeg&#x27;</span>):</span><br><span class="line">        img_path = os.path.join(source_folder, filename)</span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            <span class="keyword">with</span> Image.<span class="built_in">open</span>(img_path) <span class="keyword">as</span> img:</span><br><span class="line">                <span class="comment"># 获取当前图片的尺寸</span></span><br><span class="line">                current_size = img.size</span><br><span class="line">                </span><br><span class="line">                <span class="comment"># 如果图片尺寸大于或等于目标尺寸，进行中心裁剪</span></span><br><span class="line">                <span class="keyword">if</span> current_size[<span class="number">0</span>] &gt;= target_resolution[<span class="number">0</span>] <span class="keyword">and</span> current_size[<span class="number">1</span>] &gt;= target_resolution[<span class="number">1</span>]:</span><br><span class="line">                    width_ratio = target_resolution[<span class="number">0</span>] / current_size[<span class="number">0</span>]</span><br><span class="line">                    height_ratio = target_resolution[<span class="number">1</span>] / current_size[<span class="number">1</span>]</span><br><span class="line">                    crop_ratio = <span class="built_in">min</span>(width_ratio, height_ratio)</span><br><span class="line">                    new_size = (<span class="built_in">int</span>(current_size[<span class="number">0</span>] * crop_ratio), <span class="built_in">int</span>(current_size[<span class="number">1</span>] * crop_ratio))</span><br><span class="line">                    img = img.resize(new_size, resample=Image.LANCZOS)</span><br><span class="line">                    left = (new_size[<span class="number">0</span>] - target_resolution[<span class="number">0</span>]) // <span class="number">2</span></span><br><span class="line">                    top = (new_size[<span class="number">1</span>] - target_resolution[<span class="number">1</span>]) // <span class="number">2</span></span><br><span class="line">                    right = (new_size[<span class="number">0</span>] + target_resolution[<span class="number">0</span>]) // <span class="number">2</span></span><br><span class="line">                    bottom = (new_size[<span class="number">1</span>] + target_resolution[<span class="number">1</span>]) // <span class="number">2</span></span><br><span class="line">                    img = img.crop((left, top, right, bottom))</span><br><span class="line">                <span class="comment"># 如果图片尺寸小于目标尺寸，进行黑色填充</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    <span class="comment"># 创建一个目标尺寸的黑色背景图像(想要白色就是255,255,255)</span></span><br><span class="line">                    new_img = Image.new(<span class="string">&#x27;RGB&#x27;</span>, target_resolution, (<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>))  <span class="comment"># 明确指定填充颜色为黑色</span></span><br><span class="line">                    <span class="comment"># 计算粘贴位置以居中</span></span><br><span class="line">                    paste_position = ((target_resolution[<span class="number">0</span>] - current_size[<span class="number">0</span>]) // <span class="number">2</span>,</span><br><span class="line">                                     (target_resolution[<span class="number">1</span>] - current_size[<span class="number">1</span>]) // <span class="number">2</span>)</span><br><span class="line">                    new_img.paste(img, paste_position)</span><br><span class="line">                    img = new_img</span><br><span class="line">                </span><br><span class="line">                <span class="comment"># 保存处理后的图片到目标文件夹</span></span><br><span class="line">                output_path = os.path.join(output_folder, filename)</span><br><span class="line">                img.save(output_path, quality=<span class="number">95</span>)</span><br><span class="line">                </span><br><span class="line">        <span class="keyword">except</span> IOError <span class="keyword">as</span> e:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">f&quot;Error processing <span class="subst">&#123;img_path&#125;</span>: <span class="subst">&#123;e&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Images have been processed and saved to&quot;</span>, output_folder)</span><br></pre></td></tr></table></figure>
+<p>将图片裁剪成预定尺寸，如果图片小于预定尺寸则会用黑底填充</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line">source_folder = <span class="string">&#x27;data&#x27;</span></span><br><span class="line">output_folder = <span class="string">&#x27;output1024&#x27;</span></span><br><span class="line">target_resolution = (<span class="number">1024</span>, <span class="number">1024</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(output_folder):</span><br><span class="line">    os.makedirs(output_folder)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> filename <span class="keyword">in</span> os.listdir(source_folder):</span><br><span class="line">    <span class="keyword">if</span> filename.endswith(<span class="string">&#x27;.jpg&#x27;</span>) <span class="keyword">or</span> filename.endswith(<span class="string">&#x27;.jpeg&#x27;</span>):</span><br><span class="line">        img_path = os.path.join(source_folder, filename)</span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            <span class="keyword">with</span> Image.<span class="built_in">open</span>(img_path) <span class="keyword">as</span> img:</span><br><span class="line">                <span class="comment"># 获取当前图片的尺寸</span></span><br><span class="line">                current_size = img.size</span><br><span class="line">                </span><br><span class="line">                <span class="comment"># 计算裁剪区域以保持纵横比并确保裁剪出的目标尺寸</span></span><br><span class="line">                width_ratio = current_size[<span class="number">0</span>] / target_resolution[<span class="number">0</span>]</span><br><span class="line">                height_ratio = current_size[<span class="number">1</span>] / target_resolution[<span class="number">1</span>]</span><br><span class="line">                crop_ratio = <span class="built_in">max</span>(width_ratio, height_ratio)</span><br><span class="line">                cropped_size = (<span class="built_in">int</span>(current_size[<span class="number">0</span>] / crop_ratio), <span class="built_in">int</span>(current_size[<span class="number">1</span>] / crop_ratio))</span><br><span class="line">                </span><br><span class="line">                <span class="comment"># 调整图片大小以便裁剪（这步可选，取决于是否需要先按调整大小后的图片中心进行裁剪）</span></span><br><span class="line">                <span class="comment"># img = img.resize(cropped_size, resample=Image.LANCZOS)</span></span><br><span class="line">                </span><br><span class="line">                <span class="comment"># 计算裁剪的起始坐标以中心对齐</span></span><br><span class="line">                left = (current_size[<span class="number">0</span>] - cropped_size[<span class="number">0</span>]) // <span class="number">2</span></span><br><span class="line">                top = (current_size[<span class="number">1</span>] - cropped_size[<span class="number">1</span>]) // <span class="number">2</span></span><br><span class="line">                </span><br><span class="line">                <span class="comment"># 直接进行中心裁剪到目标尺寸</span></span><br><span class="line">                img = img.crop((left, top, left + target_resolution[<span class="number">0</span>], top + target_resolution[<span class="number">1</span>]))</span><br><span class="line">                </span><br><span class="line">                <span class="comment"># 保存处理后的图片到目标文件夹</span></span><br><span class="line">                output_path = os.path.join(output_folder, filename)</span><br><span class="line">                img.save(output_path, quality=<span class="number">95</span>)</span><br><span class="line">                </span><br><span class="line">        <span class="keyword">except</span> IOError <span class="keyword">as</span> e:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">f&quot;Error processing <span class="subst">&#123;img_path&#125;</span>: <span class="subst">&#123;e&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Images have been processed and saved to&quot;</span>, output_folder)</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -260,7 +260,7 @@
     
     <li class="post-copyright-link hidden-xs">
       <strong>本文链接：</strong>
-      <a href="http://example.com/2024/05/22/coding_resize_image/" title="Coding-重新设置图像尺寸-非裁剪" target="_blank" rel="external">http://example.com/2024/05/22/coding_resize_image/</a>
+      <a href="http://example.com/2024/05/24/coding_crop_image/" title="Coding-重新设置图像尺寸-裁剪" target="_blank" rel="external">http://example.com/2024/05/24/coding_crop_image/</a>
     </li>
     
     <li class="post-copyright-license">
@@ -304,13 +304,9 @@
   
   <ul class="pager pull-left">
     
-    <li class="prev">
-      <a href="/2024/05/24/coding_crop_image/" title="Coding-重新设置图像尺寸-裁剪"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
-    </li>
-    
     
     <li class="next">
-      <a href="/2024/05/21/coding_hight_resolutions_GAN/" title="Coding-SRGAN-超分辨生成对抗网络-基于RGB图片数据"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+      <a href="/2024/05/22/coding_resize_image/" title="Coding-重新设置图像尺寸-非裁剪"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
     </li>
     
     
