@@ -17,16 +17,21 @@
   <meta http-equiv="window-target" content="_top" />
   
   
-  <title>归档: 2024/5 | Chandler&#39;s blog</title>
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://example.com/archives/2024/05/index.html">
+  <title>Coding-可视化-tensorboard的使用 | Chandler&#39;s blog</title>
+  <meta name="description" content="摘要    摘要 代码段配置了在TensorBoard中展示的生成图像数量，并通过循环选取指定数量的图像，利用make_grid函数将这些图像整理成网格形式，做好归一化处理以优化显示效果。随后，使用tb_writer.add_image功能将整理好的图像网格添加至TensorBoard的日志中，标以’Generated Images’，并借助global_step参数记录了训练进程中的具体步数">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Coding-可视化-tensorboard的使用">
+<meta property="og:url" content="http://example.com/2024/05/25/coding_use_tensorboard/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="摘要    摘要 代码段配置了在TensorBoard中展示的生成图像数量，并通过循环选取指定数量的图像，利用make_grid函数将这些图像整理成网格形式，做好归一化处理以优化显示效果。随后，使用tb_writer.add_image功能将整理好的图像网格添加至TensorBoard的日志中，标以’Generated Images’，并借助global_step参数记录了训练进程中的具体步数">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-05-25T04:12:26.731Z">
+<meta property="article:modified_time" content="2024-05-25T04:20:02.629Z">
 <meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Code-基础模型">
 <meta name="twitter:card" content="summary">
   <!-- Canonical links -->
-  <link rel="canonical" href="http://example.com/archives/2024/05/index.html">
+  <link rel="canonical" href="http://example.com/2024/05/25/coding_use_tensorboard/index.html">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -197,98 +202,127 @@
   
   
 <main class="main" role="main">
-  	<article class="content article article-archives article-type-list" itemscope="">
-	    <header class="article-header">
-	      <h1 itemprop="title">归档: 2024/5</h1>
-	      <p class="text-muted">共 37 篇文章</p>
-	    </header>
-	    <div class="article-body">
-	      
-  
-  
+  <div class="content">
+  <article id="post-coding_use_tensorboard" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
     
-    
+    <div class="article-header">
       
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Coding-可视化-tensorboard的使用
+    </h1>
+  
+
       
-      <section class="panel panel-default b-no">
-        <div class="panel-heading" role="tab">
-          <h3 class="panel-title">
-            <a data-toggle="collapse" href="#collapse2024" aria-expanded="true">
-              <i class="icon icon-calendar-plus text-active"></i><i class="icon icon-calendar-minus text"></i>
-              2024
-            </a>
-            <!-- <a href="/archives/2024" class="archive-year">2024</a> -->
-          </h3>
-        </div>
-        <div id="collapse2024" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading2024">
-        <div class="panel-body">
-          <div class="collection">
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2024/05/25/coding_use_tensorboard/" class="article-date">
+	  <time datetime="2024-05-25T04:12:26.731Z" itemprop="datePublished">2024-05-25</time>
+	</a>
+</span>
+        
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
+    <a class="article-category-link" href="/categories/%E7%BC%96%E7%A8%8B/">编程</a>
+  </span>
+
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link-link" href="/tags/Code-%E5%9F%BA%E7%A1%80%E6%A8%A1%E5%9E%8B/" rel="tag">Code-基础模型</a>
+  </span>
+
+
+        
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2024/05/25/coding_use_tensorboard/#comments" class="article-comment-link">评论</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <!-- toc -->
+<ul>
+<li><a href="#%E6%91%98%E8%A6%81">摘要</a></li>
+</ul>
+<!-- tocstop -->
+<h3><span id="摘要"> 摘要</span></h3>
+<p>代码段配置了在TensorBoard中展示的生成图像数量，并通过循环选取指定数量的图像，利用make_grid函数将这些图像整理成网格形式，做好归一化处理以优化显示效果。随后，使用tb_writer.add_image功能将整理好的图像网格添加至TensorBoard的日志中，标以’Generated Images’，并借助global_step参数记录了训练进程中的具体步数，以便于观察模型生成图像随训练进展的变化情况。</p>
+<p>代码可以写在for循环最后。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch.utils.tensorboard <span class="keyword">as</span> tb</span><br><span class="line"><span class="keyword">from</span> torchvision.utils <span class="keyword">import</span> save_image,make_grid</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置要在TensorBoard中展示的图像数量</span></span><br><span class="line">num_images_to_log = <span class="number">4</span>  <span class="comment"># 你希望在TensorBoard可视化界面中展示的生成图像的数量</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 遍历生成的图像，注意限制范围以不超过用户定义的数量或当前批次生成的图像总数</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">min</span>(num_images_to_log, gen_imgs.size(<span class="number">0</span>))):  <span class="comment"># 确保索引不会超出生成图像列表的边界</span></span><br><span class="line">    <span class="comment"># 使用make_grid函数将一批图像排列成网格以便展示，这里取连续的5张图像（i:i+5）</span></span><br><span class="line">    <span class="comment"># nrow参数指定了网格的列数，这里设置为5列，因此会形成一个正方形的网格布局</span></span><br><span class="line">    <span class="comment"># normalize参数设为True意味着将图像像素值归一化到[0,1]区间，这对于展示更有利，避免像素值溢出</span></span><br><span class="line">    <span class="comment"># scale_each为True则会对每张图像单独进行缩放，确保对比度一致，即使图像间亮度有差异</span></span><br><span class="line">    img_grid = make_grid(gen_imgs[i:i+<span class="number">5</span>], nrow=<span class="number">5</span>, normalize=<span class="literal">True</span>, scale_each=<span class="literal">True</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 假设gen_imgs中的图像数据已经被适当处理（如归一化），则normalize和scale_each的设定可根据实际情况调整或省略</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 将生成的图像网格添加到TensorBoard中，&#x27;Generated Images&#x27;是该图像系列在TensorBoard中的日志标签</span></span><br><span class="line">    <span class="comment"># global_step参数用于标记这是训练过程中的哪一步（比如迭代次数），有助于跟踪随时间的变化</span></span><br><span class="line">    <span class="comment"># 这行代码在每个epoch训练结束时执行（由外部循环控制batches_done计数），将最新的生成图像更新到TensorBoard</span></span><br><span class="line">    tb_writer.add_image(<span class="string">&#x27;Generated Images&#x27;</span>, img_grid, global_step=batches_done)</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <div class="article-footer">
+      <!-- <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
     
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="http://example.com/2024/05/25/coding_use_tensorboard/" title="Coding-可视化-tensorboard的使用" target="_blank" rel="external">http://example.com/2024/05/25/coding_use_tensorboard/</a>
+    </li>
     
-<a href="/2024/05/25/coding_use_tensorboard/" class="collection-item"   itemprop="url">
-  <time datetime="2024-05-25T04:12:26.731Z" itemprop="datePublished">2024-05-25</time>
-  <span>&nbsp;&nbsp;&nbsp;</span> Coding-可视化-tensorboard的使用
-</a>
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote> -->
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/chandlerye" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/favicon.ico" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/chandlerye" target="_blank"><span class="text-dark">Chandler</span><small class="ml-1x">一头牛马</small></a></h3>
+        <div>江上两条红船，寒风斜雨摇摆</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+  </section>
 
 
   
-    
-    
-    
-<a href="/2024/05/24/coding_crop_image/" class="collection-item"   itemprop="url">
-  <time datetime="2024-05-24T06:39:59.576Z" itemprop="datePublished">2024-05-24</time>
-  <span>&nbsp;&nbsp;&nbsp;</span> Coding-重新设置图像尺寸-裁剪
-</a>
+</div>
 
-
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
   
+  <ul class="pager pull-left">
     
     
-    
-<a href="/2024/05/22/coding_resize_image/" class="collection-item"   itemprop="url">
-  <time datetime="2024-05-22T12:10:04.536Z" itemprop="datePublished">2024-05-22</time>
-  <span>&nbsp;&nbsp;&nbsp;</span> Coding-重新设置图像尺寸-非裁剪
-</a>
-
-
-  
+    <li class="next">
+      <a href="/2024/05/24/coding_crop_image/" title="Coding-重新设置图像尺寸-裁剪"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
     
     
-    
-<a href="/2024/05/21/coding_hight_resolutions_GAN/" class="collection-item"   itemprop="url">
-  <time datetime="2024-05-21T12:01:12.975Z" itemprop="datePublished">2024-05-21</time>
-  <span>&nbsp;&nbsp;&nbsp;</span> Coding-SRGAN-超分辨生成对抗网络-基于RGB图片数据
-</a>
-
-
-  
-    
-    
-    
-<a href="/2024/05/21/coding_image_GAN/" class="collection-item"   itemprop="url">
-  <time datetime="2024-05-21T11:55:09.914Z" itemprop="datePublished">2024-05-21</time>
-  <span>&nbsp;&nbsp;&nbsp;</span> Coding-GAN-生成对抗网络-基于RGB图片数据
-</a>
-
-
-  
-    
-    
-    
-<a href="/2024/05/16/coding_qt_link_mysql/" class="collection-item"   itemprop="url">
-  <time datetime="2024-05-16T11:33:35.467Z" itemprop="datePublished">2024-05-16</time>
-  <span>&nbsp;&nbsp;&nbsp;</span> Coding-QT-连接云端Mysql配置
-</a>
-
-
+  </ul>
   
   
-    </div></div></div></section>
+  
+  <div class="bar-right">
+    
+  </div>
+  </div>
+</nav>
   
 
-	    </div>
-  	</article>
-  	 	
+
 </main>
 
   <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
@@ -345,6 +379,12 @@ window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
 
 
 
+   
+
+
+
+
+   
 
 
 
