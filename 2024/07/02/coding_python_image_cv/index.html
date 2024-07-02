@@ -17,21 +17,21 @@
   <meta http-equiv="window-target" content="_top" />
   
   
-  <title>Coding-重新设置图像尺寸-裁剪 | Chandler&#39;s blog</title>
-  <meta name="description" content="摘要    摘要 将图片裁剪成预定尺寸，如果图片小于预定尺寸则会用黑底填充 123456789101112131415161718192021222324252627282930313233343536373839404142from PIL import Imageimport ossource_folder &#x3D; &amp;#x27;data&amp;#x27;output_folder &#x3D; &amp;#x27;o">
+  <title>Coding-opencv-开运算-闭运算-膨胀-腐蚀-高斯滤波-中值滤波 | Chandler&#39;s blog</title>
+  <meta name="description" content="开运算-闭运算-膨胀-腐蚀-高斯滤波-中值滤波    开运算-闭运算-膨胀-腐蚀-高斯滤波-中值滤波 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051import cv2import numpy as npfrom matplotlib import pyp">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Coding-重新设置图像尺寸-裁剪">
-<meta property="og:url" content="http://example.com/2024/05/24/coding_crop_image/index.html">
+<meta property="og:title" content="Coding-opencv-开运算-闭运算-膨胀-腐蚀-高斯滤波-中值滤波">
+<meta property="og:url" content="http://example.com/2024/07/02/coding_python_image_cv/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="摘要    摘要 将图片裁剪成预定尺寸，如果图片小于预定尺寸则会用黑底填充 123456789101112131415161718192021222324252627282930313233343536373839404142from PIL import Imageimport ossource_folder &#x3D; &amp;#x27;data&amp;#x27;output_folder &#x3D; &amp;#x27;o">
+<meta property="og:description" content="开运算-闭运算-膨胀-腐蚀-高斯滤波-中值滤波    开运算-闭运算-膨胀-腐蚀-高斯滤波-中值滤波 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051import cv2import numpy as npfrom matplotlib import pyp">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-05-24T06:39:59.576Z">
-<meta property="article:modified_time" content="2024-05-24T06:41:13.871Z">
+<meta property="article:published_time" content="2024-07-02T06:09:20.048Z">
+<meta property="article:modified_time" content="2024-07-02T06:19:31.219Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="Code-图像处理">
 <meta name="twitter:card" content="summary">
   <!-- Canonical links -->
-  <link rel="canonical" href="http://example.com/2024/05/24/coding_crop_image/index.html">
+  <link rel="canonical" href="http://example.com/2024/07/02/coding_python_image_cv/index.html">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -203,14 +203,14 @@
   
 <main class="main" role="main">
   <div class="content">
-  <article id="post-coding_crop_image" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+  <article id="post-coding_python_image_cv" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
     
     <div class="article-header">
       
         
   
     <h1 class="article-title" itemprop="name">
-      Coding-重新设置图像尺寸-裁剪
+      Coding-opencv-开运算-闭运算-膨胀-腐蚀-高斯滤波-中值滤波
     </h1>
   
 
@@ -218,8 +218,8 @@
       <div class="article-meta">
         <span class="article-date">
     <i class="icon icon-calendar-check"></i>
-	<a href="/2024/05/24/coding_crop_image/" class="article-date">
-	  <time datetime="2024-05-24T06:39:59.576Z" itemprop="datePublished">2024-05-24</time>
+	<a href="/2024/07/02/coding_python_image_cv/" class="article-date">
+	  <time datetime="2024-07-02T06:09:20.048Z" itemprop="datePublished">2024-07-02</time>
 	</a>
 </span>
         
@@ -237,7 +237,7 @@
 
         
 
-        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2024/05/24/coding_crop_image/#comments" class="article-comment-link">评论</a></span>
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2024/07/02/coding_python_image_cv/#comments" class="article-comment-link">评论</a></span>
         
       </div>
     </div>
@@ -245,12 +245,11 @@
       
         <!-- toc -->
 <ul>
-<li><a href="#%E6%91%98%E8%A6%81">摘要</a></li>
+<li><a href="#%E5%BC%80%E8%BF%90%E7%AE%97-%E9%97%AD%E8%BF%90%E7%AE%97-%E8%86%A8%E8%83%80-%E8%85%90%E8%9A%80-%E9%AB%98%E6%96%AF%E6%BB%A4%E6%B3%A2-%E4%B8%AD%E5%80%BC%E6%BB%A4%E6%B3%A2">开运算-闭运算-膨胀-腐蚀-高斯滤波-中值滤波</a></li>
 </ul>
 <!-- tocstop -->
-<h3><span id="摘要"> 摘要</span></h3>
-<p>将图片裁剪成预定尺寸，如果图片小于预定尺寸则会用黑底填充</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line">source_folder = <span class="string">&#x27;data&#x27;</span></span><br><span class="line">output_folder = <span class="string">&#x27;output1024&#x27;</span></span><br><span class="line">target_resolution = (<span class="number">1024</span>, <span class="number">1024</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(output_folder):</span><br><span class="line">    os.makedirs(output_folder)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> filename <span class="keyword">in</span> os.listdir(source_folder):</span><br><span class="line">    <span class="keyword">if</span> filename.endswith(<span class="string">&#x27;.jpg&#x27;</span>) <span class="keyword">or</span> filename.endswith(<span class="string">&#x27;.jpeg&#x27;</span>):</span><br><span class="line">        img_path = os.path.join(source_folder, filename)</span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            <span class="keyword">with</span> Image.<span class="built_in">open</span>(img_path) <span class="keyword">as</span> img:</span><br><span class="line">                <span class="comment"># 获取当前图片的尺寸</span></span><br><span class="line">                current_size = img.size</span><br><span class="line">                </span><br><span class="line">                <span class="comment"># 计算裁剪区域以保持纵横比并确保裁剪出的目标尺寸</span></span><br><span class="line">                width_ratio = current_size[<span class="number">0</span>] / target_resolution[<span class="number">0</span>]</span><br><span class="line">                height_ratio = current_size[<span class="number">1</span>] / target_resolution[<span class="number">1</span>]</span><br><span class="line">                crop_ratio = <span class="built_in">max</span>(width_ratio, height_ratio)</span><br><span class="line">                cropped_size = (<span class="built_in">int</span>(current_size[<span class="number">0</span>] / crop_ratio), <span class="built_in">int</span>(current_size[<span class="number">1</span>] / crop_ratio))</span><br><span class="line">                </span><br><span class="line">                <span class="comment"># 调整图片大小以便裁剪（这步可选，取决于是否需要先按调整大小后的图片中心进行裁剪）</span></span><br><span class="line">                <span class="comment"># img = img.resize(cropped_size, resample=Image.LANCZOS)</span></span><br><span class="line">                </span><br><span class="line">                <span class="comment"># 计算裁剪的起始坐标以中心对齐</span></span><br><span class="line">                left = (current_size[<span class="number">0</span>] - cropped_size[<span class="number">0</span>]) // <span class="number">2</span></span><br><span class="line">                top = (current_size[<span class="number">1</span>] - cropped_size[<span class="number">1</span>]) // <span class="number">2</span></span><br><span class="line">                </span><br><span class="line">                <span class="comment"># 直接进行中心裁剪到目标尺寸</span></span><br><span class="line">                img = img.crop((left, top, left + target_resolution[<span class="number">0</span>], top + target_resolution[<span class="number">1</span>]))</span><br><span class="line">                </span><br><span class="line">                <span class="comment"># 保存处理后的图片到目标文件夹</span></span><br><span class="line">                output_path = os.path.join(output_folder, filename)</span><br><span class="line">                img.save(output_path, quality=<span class="number">95</span>)</span><br><span class="line">                </span><br><span class="line">        <span class="keyword">except</span> IOError <span class="keyword">as</span> e:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">f&quot;Error processing <span class="subst">&#123;img_path&#125;</span>: <span class="subst">&#123;e&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Images have been processed and saved to&quot;</span>, output_folder)</span><br></pre></td></tr></table></figure>
+<h4><span id="开运算-闭运算-膨胀-腐蚀-高斯滤波-中值滤波"> 开运算-闭运算-膨胀-腐蚀-高斯滤波-中值滤波</span></h4>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> matplotlib <span class="keyword">import</span> pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">display_images</span>(<span class="params">images, titles</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;显示多个图像&quot;&quot;&quot;</span></span><br><span class="line">    <span class="comment"># 调整布局为3行3列，因为共有7张图，最后一行只会有一个图像</span></span><br><span class="line">    rows = <span class="number">3</span></span><br><span class="line">    cols = <span class="number">3</span></span><br><span class="line">    <span class="keyword">for</span> i, (image, title) <span class="keyword">in</span> <span class="built_in">enumerate</span>(<span class="built_in">zip</span>(images, titles)):</span><br><span class="line">        <span class="comment"># 使用np.mod来计算正确的子图位置，确保不超过总格数</span></span><br><span class="line">        plt.subplot(rows, cols, i + <span class="number">1</span>), plt.imshow(image, cmap=<span class="string">&#x27;gray&#x27;</span>)</span><br><span class="line">        plt.title(title), plt.xticks([]), plt.yticks([])</span><br><span class="line">    plt.tight_layout()  <span class="comment"># 自动调整子图间距</span></span><br><span class="line">    plt.show()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 图像路径</span></span><br><span class="line">image_path = <span class="string">&#x27;data\\archive\\jpeg_images\\IMAGES\\img_0001.jpeg&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 读取图像并转换为灰度图</span></span><br><span class="line">image = cv2.imread(image_path, cv2.IMREAD_GRAYSCALE)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 结构元素定义</span></span><br><span class="line"><span class="comment"># kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (3, 3))</span></span><br><span class="line">kernel = np.ones((<span class="number">3</span>, <span class="number">3</span>), np.uint8)  </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 腐蚀操作</span></span><br><span class="line">erosion = cv2.erode(image, kernel, iterations=<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 膨胀操作</span></span><br><span class="line">dilation = cv2.dilate(image, kernel, iterations=<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 开运算（先腐蚀后膨胀）</span></span><br><span class="line">opening = cv2.morphologyEx(image, cv2.MORPH_OPEN, kernel)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 闭运算（先膨胀后腐蚀）</span></span><br><span class="line">closing = cv2.morphologyEx(image, cv2.MORPH_CLOSE, kernel)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 高斯滤波</span></span><br><span class="line">gaussian_blur = cv2.GaussianBlur(image, (<span class="number">5</span>, <span class="number">5</span>), <span class="number">0</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 中值滤波</span></span><br><span class="line">median_blur = cv2.medianBlur(image, <span class="number">5</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 准备显示的图像和标题</span></span><br><span class="line">images = [image, erosion, dilation, opening, closing, gaussian_blur, median_blur]</span><br><span class="line">titles = [<span class="string">&#x27;Original Image&#x27;</span>, <span class="string">&#x27;Erosion&#x27;</span>, <span class="string">&#x27;Dilation&#x27;</span>, <span class="string">&#x27;Opening&#x27;</span>, <span class="string">&#x27;Closing&#x27;</span>, <span class="string">&#x27;Gaussian Blur&#x27;</span>, <span class="string">&#x27;Median Blur&#x27;</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 显示图像</span></span><br><span class="line">display_images(images, titles)</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -260,7 +259,7 @@
     
     <li class="post-copyright-link hidden-xs">
       <strong>本文链接：</strong>
-      <a href="http://example.com/2024/05/24/coding_crop_image/" title="Coding-重新设置图像尺寸-裁剪" target="_blank" rel="external">http://example.com/2024/05/24/coding_crop_image/</a>
+      <a href="http://example.com/2024/07/02/coding_python_image_cv/" title="Coding-opencv-开运算-闭运算-膨胀-腐蚀-高斯滤波-中值滤波" target="_blank" rel="external">http://example.com/2024/07/02/coding_python_image_cv/</a>
     </li>
     
     <li class="post-copyright-license">
@@ -304,13 +303,9 @@
   
   <ul class="pager pull-left">
     
-    <li class="prev">
-      <a href="/2024/05/25/coding_use_tensorboard/" title="Coding-可视化-tensorboard的使用"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
-    </li>
-    
     
     <li class="next">
-      <a href="/2024/05/22/coding_resize_image/" title="Coding-重新设置图像尺寸-非裁剪"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+      <a href="/2024/07/02/coding_python_delete_file/" title="Coding-python-删除指定文件夹下文件"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
     </li>
     
     
