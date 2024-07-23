@@ -17,21 +17,21 @@
   <meta http-equiv="window-target" content="_top" />
   
   
-  <title>Coding-QT-连接云端Mysql配置 | Chandler&#39;s blog</title>
-  <meta name="description" content="进入数据库 1mysql -u root -p 创建新用户 1CREATE USER &amp;#x27;yyy&amp;#x27;@&amp;#x27;localhost&amp;#x27; IDENTIFIED BY &amp;#x27;password&amp;#x27;; 查看用户 1SELECT yyy,host FROM mysql.user; 使用数据库, 为特定用户（yyy）修改host 123use mysql;updat">
+  <title>Coding-视频转图片 | Chandler&#39;s blog</title>
+  <meta name="description" content="按将一个视频切片成图片    按将一个视频切片成图片 123456789101112131415161718192021222324252627282930313233343536import cv2import osdef extract_frames(video_path, output_folder):    &quot;&quot;&quot;    Extract frames fr">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Coding-QT-连接云端Mysql配置">
-<meta property="og:url" content="http://example.com/2024/05/16/coding_qt_link_mysql/index.html">
+<meta property="og:title" content="Coding-视频转图片">
+<meta property="og:url" content="http://example.com/2024/07/23/coding_python_video2pic/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="进入数据库 1mysql -u root -p 创建新用户 1CREATE USER &amp;#x27;yyy&amp;#x27;@&amp;#x27;localhost&amp;#x27; IDENTIFIED BY &amp;#x27;password&amp;#x27;; 查看用户 1SELECT yyy,host FROM mysql.user; 使用数据库, 为特定用户（yyy）修改host 123use mysql;updat">
+<meta property="og:description" content="按将一个视频切片成图片    按将一个视频切片成图片 123456789101112131415161718192021222324252627282930313233343536import cv2import osdef extract_frames(video_path, output_folder):    &quot;&quot;&quot;    Extract frames fr">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-05-16T11:33:35.467Z">
-<meta property="article:modified_time" content="2024-05-21T12:22:40.975Z">
+<meta property="article:published_time" content="2024-07-23T08:03:44.310Z">
+<meta property="article:modified_time" content="2024-07-23T08:05:44.939Z">
 <meta property="article:author" content="John Doe">
-<meta property="article:tag" content="Qt">
+<meta property="article:tag" content="Code-基础知识汇总">
 <meta name="twitter:card" content="summary">
   <!-- Canonical links -->
-  <link rel="canonical" href="http://example.com/2024/05/16/coding_qt_link_mysql/index.html">
+  <link rel="canonical" href="http://example.com/2024/07/23/coding_python_video2pic/index.html">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -203,14 +203,14 @@
   
 <main class="main" role="main">
   <div class="content">
-  <article id="post-coding_qt_link_mysql" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+  <article id="post-coding_python_video2pic" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
     
     <div class="article-header">
       
         
   
     <h1 class="article-title" itemprop="name">
-      Coding-QT-连接云端Mysql配置
+      Coding-视频转图片
     </h1>
   
 
@@ -218,8 +218,8 @@
       <div class="article-meta">
         <span class="article-date">
     <i class="icon icon-calendar-check"></i>
-	<a href="/2024/05/16/coding_qt_link_mysql/" class="article-date">
-	  <time datetime="2024-05-16T11:33:35.467Z" itemprop="datePublished">2024-05-16</time>
+	<a href="/2024/07/23/coding_python_video2pic/" class="article-date">
+	  <time datetime="2024-07-23T08:03:44.310Z" itemprop="datePublished">2024-07-23</time>
 	</a>
 </span>
         
@@ -231,40 +231,25 @@
         
   <span class="article-tag">
     <i class="icon icon-tags"></i>
-	<a class="article-tag-link-link" href="/tags/Qt/" rel="tag">Qt</a>
+	<a class="article-tag-link-link" href="/tags/Code-%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E6%B1%87%E6%80%BB/" rel="tag">Code-基础知识汇总</a>
   </span>
 
 
         
 
-        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2024/05/16/coding_qt_link_mysql/#comments" class="article-comment-link">评论</a></span>
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2024/07/23/coding_python_video2pic/#comments" class="article-comment-link">评论</a></span>
         
       </div>
     </div>
     <div class="article-entry marked-body" itemprop="articleBody">
       
         <!-- toc -->
+<ul>
+<li><a href="#%E6%8C%89%E5%B0%86%E4%B8%80%E4%B8%AA%E8%A7%86%E9%A2%91%E5%88%87%E7%89%87%E6%88%90%E5%9B%BE%E7%89%87">按将一个视频切片成图片</a></li>
+</ul>
 <!-- tocstop -->
-<p>进入数据库</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -u root -p</span><br></pre></td></tr></table></figure>
-<p>创建新用户</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CREATE USER &#x27;yyy&#x27;@&#x27;localhost&#x27; IDENTIFIED BY &#x27;password&#x27;;</span><br></pre></td></tr></table></figure>
-<p>查看用户</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT yyy,host FROM mysql.user;</span><br></pre></td></tr></table></figure>
-<p>使用数据库, 为特定用户（yyy）修改host</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">use mysql;</span><br><span class="line"></span><br><span class="line">update user set host=&#x27;%&#x27; where user=&#x27;yyy&#x27;;</span><br></pre></td></tr></table></figure>
-<p>接着进行用户赋权</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">GRANT ALL PRIVILEGES ON test_db.* TO &#x27;yyy&#x27;@&#x27;%&#x27; WITH GRANT OPTION;</span><br><span class="line"># test_db是数据库名</span><br></pre></td></tr></table></figure>
-<p>查看MySQL是否对外开放</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netstat -an | grep 3306</span><br></pre></td></tr></table></figure>
-<p>如果没有要修改配置文件</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cd /etc/mysql/mysql.conf.d</span><br><span class="line"> </span><br><span class="line">vim mysqld.cnf</span><br><span class="line"># 注释掉 blind-address 和 myswlx-blind-adress</span><br></pre></td></tr></table></figure>
-<p>然后重启</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service mysql restart</span><br></pre></td></tr></table></figure>
-<p>开放3306端口</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ufw allow 3306</span><br></pre></td></tr></table></figure>
-<p>QT连接代码</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;mainwindow.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;QApplication&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;QLocale&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;QTranslator&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;QCoreApplication&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;QDebug&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;QPluginLoader&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;QSql&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;QSqlDatabase&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;QSqlQuery&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> *argv[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="function">QApplication <span class="title">a</span><span class="params">(argc, argv)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//本地</span></span><br><span class="line">     QSqlDatabase db=QSqlDatabase::<span class="built_in">addDatabase</span>(<span class="string">&quot;QMYSQL&quot;</span>);</span><br><span class="line">     db.<span class="built_in">setHostName</span>(<span class="string">&quot;localhost&quot;</span>); <span class="comment">// 本地数据库 远程DB是：ipaddress</span></span><br><span class="line">     db.<span class="built_in">setPort</span>(<span class="number">3306</span>); <span class="comment">// 设置端口号</span></span><br><span class="line">     db.<span class="built_in">setDatabaseName</span>(<span class="string">&quot;test_db&quot;</span>); <span class="comment">// 使用的数据库 sql = use &#x27;数据库名&#x27;</span></span><br><span class="line">     db.<span class="built_in">setUserName</span>(<span class="string">&quot;yyy&quot;</span>);</span><br><span class="line">     db.<span class="built_in">setPassword</span>(<span class="string">&quot;passwd&quot;</span>);</span><br><span class="line"></span><br><span class="line">     <span class="keyword">if</span>(db.<span class="built_in">open</span>())&#123;</span><br><span class="line">         <span class="built_in">qDebug</span>()&lt;&lt;<span class="string">&quot;成功&quot;</span>;</span><br><span class="line">     &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">         <span class="built_in">qDebug</span>()&lt;&lt;<span class="string">&quot;失败&quot;</span>;</span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line">    QTranslator translator;</span><br><span class="line">    <span class="type">const</span> QStringList uiLanguages = QLocale::<span class="built_in">system</span>().<span class="built_in">uiLanguages</span>();</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">const</span> QString &amp;locale : uiLanguages) &#123;</span><br><span class="line">        <span class="type">const</span> QString baseName = <span class="string">&quot;main_&quot;</span> + <span class="built_in">QLocale</span>(locale).<span class="built_in">name</span>();</span><br><span class="line">        <span class="keyword">if</span> (translator.<span class="built_in">load</span>(<span class="string">&quot;:/i18n/&quot;</span> + baseName)) &#123;</span><br><span class="line">            a.<span class="built_in">installTranslator</span>(&amp;translator);</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    MainWindow w;</span><br><span class="line">    w.<span class="built_in">show</span>();</span><br><span class="line">    <span class="keyword">return</span> a.<span class="built_in">exec</span>();</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4><span id="按将一个视频切片成图片"> 按将一个视频切片成图片</span></h4>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">extract_frames</span>(<span class="params">video_path, output_folder</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    Extract frames from a video and save them to a specified folder.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    Parameters:</span></span><br><span class="line"><span class="string">    video_path (str): The path to the video file.</span></span><br><span class="line"><span class="string">    output_folder (str): The path to the folder where frames will be saved.</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="comment"># Create the output folder if it does not exist</span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(output_folder):</span><br><span class="line">        os.makedirs(output_folder)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Open the video file</span></span><br><span class="line">    vidcap = cv2.VideoCapture(video_path)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Check if video file was opened successfully</span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> vidcap.isOpened():</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;Error opening video file&quot;</span>)</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># Read the video frame by frame</span></span><br><span class="line">    success, image = vidcap.read()</span><br><span class="line">    count = <span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span> success:</span><br><span class="line">        <span class="comment"># Save the frame as an image file</span></span><br><span class="line">        cv2.imwrite(os.path.join(output_folder, <span class="string">&quot;frame&#123;:d&#125;.jpg&quot;</span>.<span class="built_in">format</span>(count)), image)</span><br><span class="line">        success, image = vidcap.read()</span><br><span class="line">        count += <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;Extracted <span class="subst">&#123;count&#125;</span> frames.&quot;</span>)</span><br><span class="line"></span><br><span class="line">video_path = <span class="string">&#x27;nn.mp4&#x27;</span></span><br><span class="line">video_outdir =  <span class="string">&#x27;video_data4&#x27;</span></span><br><span class="line">extract_frames(video_path,video_outdir)</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -274,7 +259,7 @@
     
     <li class="post-copyright-link hidden-xs">
       <strong>本文链接：</strong>
-      <a href="http://example.com/2024/05/16/coding_qt_link_mysql/" title="Coding-QT-连接云端Mysql配置" target="_blank" rel="external">http://example.com/2024/05/16/coding_qt_link_mysql/</a>
+      <a href="http://example.com/2024/07/23/coding_python_video2pic/" title="Coding-视频转图片" target="_blank" rel="external">http://example.com/2024/07/23/coding_python_video2pic/</a>
     </li>
     
     <li class="post-copyright-license">
@@ -319,12 +304,12 @@
   <ul class="pager pull-left">
     
     <li class="prev">
-      <a href="/2024/05/21/coding_image_GAN/" title="Coding-GAN-生成对抗网络-基于RGB图片数据"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
+      <a href="/2024/07/23/coding_python_pic2video/" title="Coding-图片转视频"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
     </li>
     
     
     <li class="next">
-      <a href="/2024/02/26/note-LaoDongFaDaGang/" title="Note-1922年《劳动法大纲》"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+      <a href="/2024/07/13/coding_python_image_maskrcnn/" title="Coding-使用torch的maskrcnn识别&amp;分割"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
     </li>
     
     
