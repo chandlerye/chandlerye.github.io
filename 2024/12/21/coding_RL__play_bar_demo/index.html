@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>Coding-强化学习-策略梯度方法(PG)-控制倒立杆 | Chandler&#39;s blog</title>
+  <meta name="description" content="摘要 play code train code test code    摘要 使用策略梯度方法训练策略网络 1.play code 2.训练code 3.测试code  play code 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Coding-强化学习-策略梯度方法(PG)-控制倒立杆">
+<meta property="og:url" content="http://example.com/2024/12/21/coding_RL__play_bar_demo/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="摘要 play code train code test code    摘要 使用策略梯度方法训练策略网络 1.play code 2.训练code 3.测试code  play code 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-12-21T07:01:20.987Z">
+<meta property="article:modified_time" content="2024-12-24T08:24:52.093Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Code-强化学习">
+<meta property="article:tag" content="Code-模型库">
+<meta name="twitter:card" content="summary">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://example.com/2024/12/21/coding_RL__play_bar_demo/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    <link href="//cdn.jsdelivr.net/npm/katex@0.9.0/dist/katex.min.css" rel="stylesheet">
+  
+  
+  
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/chandlerye" target="_blank">
+          <img class="img-circle img-rotate" src="/images/favicon.ico" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">Chandler</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">一头牛马</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> YanTai, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="搜索" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="想要查找什么..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">首页</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">归档</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">分类</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">标签</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/chandlerye" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">公告</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>记录学习历程!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget-body">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Paper/">Paper</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BC%96%E7%A8%8B/">编程</a><span class="category-list-count">51</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget-body tagcloud">
+      <a href="/tags/Code-%E5%88%86%E7%B1%BB/" style="font-size: 13.5px;">Code-分类</a> <a href="/tags/Code-%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/" style="font-size: 13.88px;">Code-图像处理</a> <a href="/tags/Code-%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/" style="font-size: 13.13px;">Code-强化学习</a> <a href="/tags/Code-%E6%96%87%E4%BB%B6%E5%A4%84%E7%90%86/" style="font-size: 14px;">Code-文件处理</a> <a href="/tags/Code-%E6%9C%BA%E5%99%A8%E4%BA%BA/" style="font-size: 13.25px;">Code-机器人</a> <a href="/tags/Code-%E6%A8%A1%E5%9E%8B%E5%BA%93/" style="font-size: 13.63px;">Code-模型库</a> <a href="/tags/Code-%E7%94%9F%E6%88%90/" style="font-size: 13.25px;">Code-生成</a> <a href="/tags/Paper-%E5%8C%BB%E5%AD%A6%E5%BD%B1%E5%83%8F/" style="font-size: 13.75px;">Paper-医学影像</a> <a href="/tags/Paper-%E7%BB%BC%E8%BF%B0%E6%96%87%E7%AB%A0/" style="font-size: 13.38px;">Paper-综述文章</a> <a href="/tags/Qt/" style="font-size: 13.13px;">Qt</a> <a href="/tags/%E5%8C%BB%E5%AD%A6/" style="font-size: 13.13px;">医学</a> <a href="/tags/%E6%B3%95%E5%BE%8B/" style="font-size: 13px;">法律</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" style="font-size: 13.25px;">编程基础知识</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/12/">十二月 2024</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/11/">十一月 2024</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/07/">七月 2024</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/06/">六月 2024</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/05/">五月 2024</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">二月 2024</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">一月 2024</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">十二月 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">十月 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">九月 2023</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">八月 2023</a><span class="archive-list-count">7</span></li></ul>
+    </div>
+  </div>
+
+
+    
+  </div>
+</aside>
+
+  
+  
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-coding_RL__play_bar_demo" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Coding-强化学习-策略梯度方法(PG)-控制倒立杆
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2024/12/21/coding_RL__play_bar_demo/" class="article-date">
+	  <time datetime="2024-12-21T07:01:20.987Z" itemprop="datePublished">2024-12-21</time>
+	</a>
+</span>
+        
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
+    <a class="article-category-link" href="/categories/%E7%BC%96%E7%A8%8B/">编程</a>
+  </span>
+
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link-link" href="/tags/Code-%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/" rel="tag">Code-强化学习</a>, <a class="article-tag-link-link" href="/tags/Code-%E6%A8%A1%E5%9E%8B%E5%BA%93/" rel="tag">Code-模型库</a>
+  </span>
+
+
+        
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2024/12/21/coding_RL__play_bar_demo/#comments" class="article-comment-link">评论</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <!-- toc -->
+<ul>
+<li><a href="#%E6%91%98%E8%A6%81">摘要</a></li>
+<li><a href="#play-code">play code</a></li>
+<li><a href="#train-code">train code</a></li>
+<li><a href="#test-code">test code</a></li>
+</ul>
+<!-- tocstop -->
+<h3><span id="摘要"> 摘要</span></h3>
+<p>使用策略梯度方法训练策略网络<br>
+1.play code<br>
+2.训练code<br>
+3.测试code</p>
+<h3><span id="play-code"> play code</span></h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">import</span> gym</span><br><span class="line"><span class="keyword">import</span> pygame</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">这个脚本是一个简单的 OpenAI Gym 库中 CartPole-v1 环境的实现。</span></span><br><span class="line"><span class="string">游戏通过键盘上的左右箭头键进行控制。</span></span><br><span class="line"><span class="string">目标是尽可能长时间地平衡一个移动小车上的杆。</span></span><br><span class="line"><span class="string">如果杆倒下或小车移出边界，游戏将结束。</span></span><br><span class="line"><span class="string">脚本使用 Pygame 处理键盘输入，并在每一步之间暂停游戏一小段时间以允许人类反应。</span></span><br><span class="line"><span class="string">游戏将在每一步打印小车和杆的状态，并在游戏结束时显示总时间和步数。</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    pygame.init()</span><br><span class="line">    env = gym.make(<span class="string">&#x27;CartPole-v1&#x27;</span>,render_mode=<span class="string">&#x27;human&#x27;</span>)</span><br><span class="line">    </span><br><span class="line">    state = env.reset()</span><br><span class="line"></span><br><span class="line">    cart_position = state[<span class="number">0</span>]<span class="comment">#小车的位置</span></span><br><span class="line">    cart_speed = state[<span class="number">1</span>]<span class="comment">#小车的速度</span></span><br><span class="line">    pole_angle = state[<span class="number">2</span>]<span class="comment">#杆的角度</span></span><br><span class="line">    pole_speed = state[<span class="number">3</span>]<span class="comment">#杆的尖端速度</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;Begin state: <span class="subst">&#123;state&#125;</span>&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;cart_position = <span class="subst">&#123;cart_position:<span class="number">.2</span>f&#125;</span>&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;cart_speed = <span class="subst">&#123;cart_speed:<span class="number">.2</span>f&#125;</span>&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;pole_anglee=t<span class="subst">&#123;pole_angle:<span class="number">.2</span>f&#125;</span>&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;pole_speed = <span class="subst">&#123;pole_speed:<span class="number">.2</span>f&#125;</span>&quot;</span>)</span><br><span class="line">    time.sleep(<span class="number">3</span>)<span class="comment">#暂停环境3秒，给玩家一个缓冲时间</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">#实现游戏过程</span></span><br><span class="line">    start_time = time.time()<span class="comment">#记录游戏的开始时间小</span></span><br><span class="line">    max_action = <span class="number">10000</span> <span class="comment">#设置游戏的最大执行次数</span></span><br><span class="line">    <span class="comment">#最多让用户输入1000次方向键，游戏就以通关结束</span></span><br><span class="line">    <span class="comment">#这里要说的是，1000次其实已经很多了，我大概最多就能坚持100多次</span></span><br><span class="line">    step = <span class="number">0</span></span><br><span class="line">    fail = <span class="literal">False</span></span><br><span class="line">    <span class="keyword">for</span> step <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, max_action + <span class="number">1</span>):</span><br><span class="line">        <span class="comment">#首先使用time.sleep，使游戏暂停θ.3秒，用于人的反应</span></span><br><span class="line">        time.sleep(<span class="number">0.3</span>)</span><br><span class="line">        <span class="comment">#如果觉得自己反应够快，这里可以设置更短的时间，比如0.1秒</span></span><br><span class="line">        <span class="comment">#觉得自己反应慢，就设置更长的时间，比如1秒。</span></span><br><span class="line">        <span class="comment">#以非阻塞的方式，接收用户的键盘输入</span></span><br><span class="line">        keys = pygame.key.get_pressed()</span><br><span class="line">        action = <span class="number">0</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> keys[pygame.K_LEFT] <span class="keyword">and</span> <span class="keyword">not</span> keys[pygame.K_RIGHT]:</span><br><span class="line">            action = random.choice([<span class="number">0</span>,<span class="number">1</span>])</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> keys[pygame.K_LEFT]:</span><br><span class="line">            action = <span class="number">0</span></span><br><span class="line">        <span class="keyword">elif</span> keys[pygame.K_RIGHT]:</span><br><span class="line">            action = <span class="number">1</span></span><br><span class="line"></span><br><span class="line">        state,_,done,_ = env.step(action)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> done:</span><br><span class="line">            fail = <span class="literal">True</span></span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        <span class="comment">#打印一些调试信息</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;step = <span class="subst">&#123;step&#125;</span> action = <span class="subst">&#123;action&#125;</span>&quot;</span></span><br><span class="line">            <span class="string">f&quot;angle = <span class="subst">&#123;state[<span class="number">2</span>]:<span class="number">.2</span>f&#125;</span> position = <span class="subst">&#123;state[<span class="number">0</span>]:<span class="number">.2</span>f&#125;</span>&quot;</span>)</span><br><span class="line">    <span class="comment">#计算结束时间</span></span><br><span class="line">    end_time = time.time()</span><br><span class="line">    game_time = end_time - start_time</span><br><span class="line">    <span class="comment">#打印提示</span></span><br><span class="line">    <span class="keyword">if</span> fail:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;Game over, you play <span class="subst">&#123;game_time:<span class="number">.2</span>f&#125;</span> seconds, <span class="subst">&#123;step&#125;</span> steps.&quot;</span>)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;Congratulation! You play <span class="subst">&#123;game_time:<span class="number">.2</span>f&#125;</span> seconds, <span class="subst">&#123;step&#125;</span> steps.&quot;</span>)</span><br><span class="line">    env.close()</span><br></pre></td></tr></table></figure>
+<h3><span id="train-code"> train code</span></h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> gym</span><br><span class="line"><span class="keyword">import</span> pygame</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> torch <span class="keyword">import</span> nn</span><br><span class="line"><span class="keyword">import</span> torch.nn.functional <span class="keyword">as</span> F</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="comment">#实现损失函数的计算方法，函数传入步数n和这n步对应的概率Log-p</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">compute_policy_loss</span>(<span class="params">n, log_p</span>):</span><br><span class="line">    <span class="comment">#R就是q</span></span><br><span class="line">    r = <span class="built_in">list</span>()</span><br><span class="line">    <span class="comment">#构造奖励r的列表</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n, <span class="number">0</span>, -<span class="number">1</span>):</span><br><span class="line">        r.append(i * <span class="number">1.0</span>)</span><br><span class="line">    r = torch.tensor(r)</span><br><span class="line">    r=(r-r.mean())/r.std()<span class="comment">#进行标准化处理</span></span><br><span class="line">    loss = <span class="number">0</span></span><br><span class="line">    <span class="comment">#计算损失函数</span></span><br><span class="line">    <span class="keyword">for</span> pi, ri <span class="keyword">in</span> <span class="built_in">zip</span>(log_p, r):</span><br><span class="line">        loss += -pi * ri</span><br><span class="line">    <span class="keyword">return</span> loss</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">CartPolePolicy</span>(nn.Module):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="built_in">super</span>(CartPolePolicy, self).__init__()</span><br><span class="line">        <span class="comment">#定义两个线性层，大小分别是4*128与128*2</span></span><br><span class="line">        self.fc1 = nn.Linear(<span class="number">4</span>, <span class="number">128</span>)</span><br><span class="line">        self.fc2 = nn.Linear(<span class="number">128</span>, <span class="number">2</span>)</span><br><span class="line">        <span class="comment">#定义一个dropout层，丢弃比率是60%</span></span><br><span class="line">        self.drop = nn.Dropout(p=<span class="number">0.6</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, x</span>):</span><br><span class="line">        x = self.fc1(x)</span><br><span class="line">        x = self.drop(x)</span><br><span class="line">        x = F.relu(x)</span><br><span class="line">        x = self.fc2(x)</span><br><span class="line">        <span class="comment">#使用softmax决策最终的行动，是向左还是向右</span></span><br><span class="line">        <span class="keyword">return</span> F.softmax(x, dim = <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    pygame.init()</span><br><span class="line">    env = gym.make(<span class="string">&#x27;CartPole-v1&#x27;</span>,render_mode=<span class="string">&#x27;human&#x27;</span>)</span><br><span class="line">    </span><br><span class="line">    state = env.reset()</span><br><span class="line">    policy = CartPolePolicy()</span><br><span class="line">    optimizer = torch.optim.Adam(policy.parameters(),lr=<span class="number">0.01</span>) </span><br><span class="line">    max_episode=<span class="number">1000</span></span><br><span class="line">    max_action=<span class="number">10000</span></span><br><span class="line">    max_steps=<span class="number">5000</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> episode <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, max_episode + <span class="number">1</span>):</span><br><span class="line">        <span class="comment">#对于每一轮循环，都要重新启动一次游戏环境小黑黑讲</span></span><br><span class="line">        state = env.reset()</span><br><span class="line">        step =<span class="number">0</span></span><br><span class="line">        log_p = <span class="built_in">list</span>()</span><br><span class="line">        <span class="keyword">for</span> step <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, max_action + <span class="number">1</span>):</span><br><span class="line">            state = torch.from_numpy(state).<span class="built_in">float</span>().unsqueeze(<span class="number">0</span>)</span><br><span class="line">            probs=policy(state) <span class="comment">#计算神经网络给出的行动概率</span></span><br><span class="line">            <span class="comment">#基于网络给出的概率分布，随机选择行动,m是一个概率对象</span></span><br><span class="line">            m = torch.distributions.Categorical(probs)</span><br><span class="line">            action=m.sample()</span><br><span class="line">            <span class="comment"># 这里并不是直接使用概率较大的行动</span></span><br><span class="line">            <span class="comment">#而是通过概率分布生成action，这样可以进一步探索低概率的行动</span></span><br><span class="line"></span><br><span class="line">            state,_,done,_ = env.step(action.item())</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> done:</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line"></span><br><span class="line">            log_p.append(m.log_prob(action))</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> step&gt;max_steps:<span class="comment">#当step大于最大步数时</span></span><br><span class="line">            <span class="built_in">print</span>(<span class="string">f&quot;Done! Last episode <span class="subst">&#123;episode&#125;</span> Run steps: <span class="subst">&#123;step&#125;</span>&quot;</span>)</span><br><span class="line">            <span class="keyword">break</span> <span class="comment">#跳出循环，结束训练</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">#每一回合游戏，都会做一次梯度下降算法</span></span><br><span class="line">        <span class="comment"># Example of calculating the natural logarithm of an array using numpy</span></span><br><span class="line">   </span><br><span class="line"></span><br><span class="line">        optimizer.zero_grad()</span><br><span class="line">        Loss = compute_policy_loss(step, log_p)</span><br><span class="line">        Loss.backward()</span><br><span class="line">        optimizer.step()</span><br><span class="line">        <span class="keyword">if</span> episode % <span class="number">10</span>==<span class="number">0</span>:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">f&#x27;Episode <span class="subst">&#123;episode&#125;</span> Run steps: <span class="subst">&#123;step&#125;</span>&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    torch.save(policy.state_dict(),<span class="string">&#x27;cartpole_policy.pth&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<h3><span id="test-code"> test code</span></h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> gym</span><br><span class="line"><span class="keyword">import</span> pygame</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> torch <span class="keyword">import</span> nn</span><br><span class="line"><span class="keyword">import</span> torch.nn.functional <span class="keyword">as</span> F</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="comment">#实现损失函数的计算方法，函数传入步数n和这n步对应的概率Log-p</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">compute_policy_loss</span>(<span class="params">n, log_p</span>):</span><br><span class="line">    r = <span class="built_in">list</span>()</span><br><span class="line">    <span class="comment">#构造奖励r的列表</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n, <span class="number">0</span>, -<span class="number">1</span>):</span><br><span class="line">        r.append(i * <span class="number">1.0</span>)</span><br><span class="line">    r = torch.tensor(r)</span><br><span class="line">    r=(r-r.mean())/r.std()<span class="comment">#进行标准化处理</span></span><br><span class="line">    Loss = <span class="number">0</span></span><br><span class="line">    <span class="comment">#计算损失函数</span></span><br><span class="line">    <span class="keyword">for</span> pi, ri <span class="keyword">in</span> <span class="built_in">zip</span>(log_p, r):</span><br><span class="line">        loss += -pi * ri</span><br><span class="line">    <span class="keyword">return</span> loss</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">CartPolePolicy</span>(nn.Module):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="built_in">super</span>(CartPolePolicy, self).__init__()</span><br><span class="line">        <span class="comment">#定义两个线性层，大小分别是4*128与128*2</span></span><br><span class="line">        self.fc1 = nn.Linear(<span class="number">4</span>, <span class="number">128</span>)</span><br><span class="line">        self.fc2 = nn.Linear(<span class="number">128</span>, <span class="number">2</span>)</span><br><span class="line">        <span class="comment">#定义一个dropout层，丢弃比率是60%</span></span><br><span class="line">        self.drop = nn.Dropout(p=<span class="number">0.6</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, x</span>):</span><br><span class="line">        x = self.fc1(x)</span><br><span class="line">        x = self.drop(x)</span><br><span class="line">        x = F.relu(x)</span><br><span class="line">        x = self.fc2(x)</span><br><span class="line">        <span class="comment">#使用softmax决策最终的行动，是向左还是向右</span></span><br><span class="line">        <span class="keyword">return</span> F.softmax(x, dim = <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    pygame.init()</span><br><span class="line">    env = gym.make(<span class="string">&#x27;CartPole-v1&#x27;</span>,render_mode=<span class="string">&#x27;human&#x27;</span>)</span><br><span class="line">    </span><br><span class="line">    state = env.reset()</span><br><span class="line"></span><br><span class="line">    cart_position = state[<span class="number">0</span>]<span class="comment">#小车的位置</span></span><br><span class="line">    cart_speed = state[<span class="number">1</span>]<span class="comment">#小车的速度</span></span><br><span class="line">    pole_angle = state[<span class="number">2</span>]<span class="comment">#杆的角度</span></span><br><span class="line">    pole_speed = state[<span class="number">3</span>]<span class="comment">#杆的尖端速度</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;Begin state: <span class="subst">&#123;state&#125;</span>&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;cart_position = <span class="subst">&#123;cart_position:<span class="number">.2</span>f&#125;</span>&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;cart_speed = <span class="subst">&#123;cart_speed:<span class="number">.2</span>f&#125;</span>&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;pole_anglee=t<span class="subst">&#123;pole_angle:<span class="number">.2</span>f&#125;</span>&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;pole_speed = <span class="subst">&#123;pole_speed:<span class="number">.2</span>f&#125;</span>&quot;</span>)</span><br><span class="line">    time.sleep(<span class="number">3</span>)<span class="comment">#暂停环境3秒，给玩家一个缓冲时间</span></span><br><span class="line"></span><br><span class="line">    policy = CartPolePolicy()</span><br><span class="line">    policy.load_state_dict(torch.load(<span class="string">&#x27;cartpole_policy.pth&#x27;</span>))</span><br><span class="line">    policy.<span class="built_in">eval</span>()</span><br><span class="line">    <span class="comment">#实现游戏过程</span></span><br><span class="line">    start_time = time.time()<span class="comment">#记录游戏的开始时间小</span></span><br><span class="line">    max_action = <span class="number">1000</span> <span class="comment">#设置游戏的最大执行次数</span></span><br><span class="line">    <span class="comment">#最多让用户输入1000次方向键，游戏就以通关结束</span></span><br><span class="line">    step = <span class="number">0</span></span><br><span class="line">    fail = <span class="literal">False</span></span><br><span class="line">    <span class="keyword">for</span> step <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, max_action + <span class="number">1</span>):</span><br><span class="line">        <span class="comment">#首先使用time.sleep，使游戏暂停θ.3秒，用于人的反应</span></span><br><span class="line">        time.sleep(<span class="number">0.1</span>)</span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">        state = torch.from_numpy(state).<span class="built_in">float</span>().unsqueeze(<span class="number">0</span>)</span><br><span class="line">        probs = policy(state)</span><br><span class="line">        action = torch.argmax(probs,dim=<span class="number">1</span>).item()</span><br><span class="line">        state,_,done,_ = env.step(action)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> done:</span><br><span class="line">            fail = <span class="literal">True</span></span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        <span class="comment">#打印一些调试信息</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;step = <span class="subst">&#123;step&#125;</span> action = <span class="subst">&#123;action&#125;</span>&quot;</span></span><br><span class="line">            <span class="string">f&quot;angle = <span class="subst">&#123;state[<span class="number">2</span>]:<span class="number">.2</span>f&#125;</span> position = <span class="subst">&#123;state[<span class="number">0</span>]:<span class="number">.2</span>f&#125;</span>&quot;</span>)</span><br><span class="line">    <span class="comment">#计算结束时间</span></span><br><span class="line">    end_time = time.time()</span><br><span class="line">    game_time = end_time - start_time</span><br><span class="line">    <span class="comment">#打印提示</span></span><br><span class="line">    <span class="keyword">if</span> fail:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;Game over, you play <span class="subst">&#123;game_time:<span class="number">.2</span>f&#125;</span> seconds, <span class="subst">&#123;step&#125;</span> steps.&quot;</span>)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;Congratulation! You play <span class="subst">&#123;game_time:<span class="number">.2</span>f&#125;</span> seconds, <span class="subst">&#123;step&#125;</span> steps.&quot;</span>)</span><br><span class="line">    env.close()</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <div class="article-footer">
+      <!-- <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="http://example.com/2024/12/21/coding_RL__play_bar_demo/" title="Coding-强化学习-策略梯度方法(PG)-控制倒立杆" target="_blank" rel="external">http://example.com/2024/12/21/coding_RL__play_bar_demo/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote> -->
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/chandlerye" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/favicon.ico" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/chandlerye" target="_blank"><span class="text-dark">Chandler</span><small class="ml-1x">一头牛马</small></a></h3>
+        <div>江上两条红船，寒风斜雨摇摆</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    
+    <li class="next">
+      <a href="/2024/12/06/coding_python_robot_jojstick_check/" title="Coding-robot-手柄按键检测"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  
+  <div class="bar-right">
+    
+  </div>
+  </div>
+</nav>
+  
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/chandlerye" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+
+
+
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/js/plugin.min.js"></script>
+
+
+<script src="/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+
+
+
+
+   
+
+
+
+
+   
+
+
+
+
+
+
+</body>
+</html>
