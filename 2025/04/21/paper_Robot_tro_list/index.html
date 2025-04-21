@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>PaperReading-Robot_list-TRO | Chandler&#39;s blog</title>
+  <meta name="description" content="英文题目：A Dexterous and Compliant (DexCo) Hand Based on Soft Hydraulic Actuation for Human-Inspired Fine In-Hand Manipulation  中文题目：基于软液压驱动的灵巧柔顺（DexCo）手实现仿人精细手部操作 研究背景： 机器人操作在解决劳动力短缺、降低成本等方面有广阔前景，但在灵巧操作">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PaperReading-Robot_list-TRO">
+<meta property="og:url" content="http://example.com/2025/04/21/paper_Robot_tro_list/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="英文题目：A Dexterous and Compliant (DexCo) Hand Based on Soft Hydraulic Actuation for Human-Inspired Fine In-Hand Manipulation  中文题目：基于软液压驱动的灵巧柔顺（DexCo）手实现仿人精细手部操作 研究背景： 机器人操作在解决劳动力短缺、降低成本等方面有广阔前景，但在灵巧操作">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-04-21T08:26:15.932Z">
+<meta property="article:modified_time" content="2025-04-21T08:28:45.066Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Paper-Robot_list">
+<meta property="article:tag" content="Paper-TRO">
+<meta name="twitter:card" content="summary">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://example.com/2025/04/21/paper_Robot_tro_list/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+  
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/chandlerye" target="_blank">
+          <img class="img-circle img-rotate" src="/images/favicon.ico" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">Chandler</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">一头牛马</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> YanTai, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="搜索" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="想要查找什么..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">首页</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">归档</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">分类</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">标签</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/chandlerye" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">公告</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>记录学习历程!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget-body">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Paper/">Paper</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BC%96%E7%A8%8B/">编程</a><span class="category-list-count">52</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget-body tagcloud">
+      <a href="/tags/Code-isaacsim/" style="font-size: 13px;">Code-isaacsim</a> <a href="/tags/Code-%E5%88%86%E7%B1%BB/" style="font-size: 13.5px;">Code-分类</a> <a href="/tags/Code-%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/" style="font-size: 13.88px;">Code-图像处理</a> <a href="/tags/Code-%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/" style="font-size: 13.13px;">Code-强化学习</a> <a href="/tags/Code-%E6%96%87%E4%BB%B6%E5%A4%84%E7%90%86/" style="font-size: 14px;">Code-文件处理</a> <a href="/tags/Code-%E6%9C%BA%E5%99%A8%E4%BA%BA/" style="font-size: 13.25px;">Code-机器人</a> <a href="/tags/Code-%E6%A8%A1%E5%9E%8B%E5%BA%93/" style="font-size: 13.63px;">Code-模型库</a> <a href="/tags/Code-%E7%94%9F%E6%88%90/" style="font-size: 13.25px;">Code-生成</a> <a href="/tags/Paper-CVPR/" style="font-size: 13px;">Paper-CVPR</a> <a href="/tags/Paper-ICRA/" style="font-size: 13px;">Paper-ICRA</a> <a href="/tags/Paper-Robot-list/" style="font-size: 13.25px;">Paper-Robot_list</a> <a href="/tags/Paper-TRO/" style="font-size: 13px;">Paper-TRO</a> <a href="/tags/Paper-%E5%8C%BB%E5%AD%A6%E5%BD%B1%E5%83%8F/" style="font-size: 13.75px;">Paper-医学影像</a> <a href="/tags/Paper-%E7%BB%BC%E8%BF%B0%E6%96%87%E7%AB%A0/" style="font-size: 13.38px;">Paper-综述文章</a> <a href="/tags/Qt/" style="font-size: 13.13px;">Qt</a> <a href="/tags/%E5%8C%BB%E5%AD%A6/" style="font-size: 13.13px;">医学</a> <a href="/tags/%E6%B3%95%E5%BE%8B/" style="font-size: 13px;">法律</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" style="font-size: 13.25px;">编程基础知识</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/04/">四月 2025</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/12/">十二月 2024</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/11/">十一月 2024</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/07/">七月 2024</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/06/">六月 2024</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/05/">五月 2024</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">二月 2024</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">一月 2024</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">十二月 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">十月 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">九月 2023</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">八月 2023</a><span class="archive-list-count">7</span></li></ul>
+    </div>
+  </div>
+
+
+    
+  </div>
+</aside>
+
+  
+  
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-paper_Robot_tro_list" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      PaperReading-Robot_list-TRO
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2025/04/21/paper_Robot_tro_list/" class="article-date">
+	  <time datetime="2025-04-21T08:26:15.932Z" itemprop="datePublished">2025-04-21</time>
+	</a>
+</span>
+        
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
+    <a class="article-category-link" href="/categories/Paper/">Paper</a>
+  </span>
+
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link-link" href="/tags/Paper-Robot-list/" rel="tag">Paper-Robot_list</a>, <a class="article-tag-link-link" href="/tags/Paper-TRO/" rel="tag">Paper-TRO</a>
+  </span>
+
+
+        
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2025/04/21/paper_Robot_tro_list/#comments" class="article-comment-link">评论</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <h3><span id="英文题目a-dexterous-and-compliant-dexco-hand-based-on-soft-hydraulic-actuation-for-human-inspired-fine-in-hand-manipulation"> 英文题目：A Dexterous and Compliant (DexCo) Hand Based on Soft Hydraulic Actuation for Human-Inspired Fine In-Hand Manipulation</span></h3>
+<h3><span id="中文题目基于软液压驱动的灵巧柔顺dexco手实现仿人精细手部操作"> 中文题目：基于软液压驱动的灵巧柔顺（DexCo）手实现仿人精细手部操作</span></h3>
+<p><strong>研究背景</strong>：<br>
+机器人操作在解决劳动力短缺、降低成本等方面有广阔前景，但在灵巧操作方面与人类仍存在较大差距。人类能利用手指间及手指与环境的交互完成各种精细手部操作，而机器人要实现这些操作颇具挑战。过去几十年，机器人手的发展主要集中在高灵巧度但复杂的拟人化机器人手和简单专用的抓手上，如何在控制复杂性、柔顺性、灵巧性、运动精度和系统复杂性之间取得平衡仍是难题。</p>
+<p><strong>所存在的问题</strong>：</p>
+<ul>
+<li><strong>现有机器人手设计</strong>：传统两指抓手虽简单但功能有限；增加手指和关节数量的设计在任务多样性上有提升，但存在控制复杂、建模困难等问题；拟人化机器人手受驱动、结构、控制复杂性和硬件便携性等因素制约，难以获取训练数据和定义任务；现有柔顺手在复杂操作任务中优势不明显。</li>
+<li><strong>手驱动方式</strong>：电机驱动的机器人手控制复杂，流体驱动的虽有优势，但也存在完全驱动系统硬件和控制复杂、欠驱动系统算法和控制简单但应用受限的问题。</li>
+<li><strong>手感知方面</strong>：灵巧手的位置和力感知影响算法可靠性，现有外部感知方法依赖外部设备，内部感知方法受安装位置和尺寸限制，新兴感知方法存在精度、滞后和耐久性问题。</li>
+</ul>
+<p><strong>解决方法</strong>：<br>
+提出DexCo手系统，包括以下关键部分：</p>
+<ul>
+<li><strong>DexCo手设计</strong>：模仿人类拇指和食指的操作特征，设计具有拟人化结构和运动学的手指，每个手指有三个自由度（两个用于弯曲，一个用于外展/内收），手掌可线性运动，增加操作灵巧性；采用软液压驱动，利用折纸式执行器，实现精确、柔顺和双向驱动，通过弹性力和静水力建模优化设计；使用线性滑动电位器和IMU进行本体感知，获取关节角度信息。</li>
+<li><strong>DexCo手建模</strong>：从单指和整手的运动学角度对灵巧性和可操作性进行建模，通过定义可操作性指标评估手部运动性能；对DexCo手的柔顺性进行建模，分析在抓取和操作过程中的变形和力的关系。</li>
+<li><strong>实验验证与控制</strong>：通过实验验证DexCo手的硬件和本体感知系统性能，包括液压执行器局部柔顺性、本体感知准确性和稳定性、抓取力、抓取周期时间、手指力、手指重复性和扭转力等方面的测试；设计速度和位置遥操作控制器，实现对DexCo手的有效控制。</li>
+</ul>
+<p><strong>所用到的数据集</strong>：<br>
+文中未提及专门用于训练或评估的公开数据集，主要是通过自行设计实验，对DexCo手在不同任务和测试中的表现进行数据收集和分析，如在抓取力实验中，使用3D打印的不同形状和尺寸的工件进行测试，并记录相关数据；在手指强度实验中，对手指1和手指2在不同运动类型下的力量数据进行收集和对比等。</p>
+<p><strong>所进行的实验</strong>：</p>
+<ul>
+<li><strong>液压执行器局部柔顺性验证</strong>：将折纸式执行器按在机器人手中的锁定方式固定，一端连接单轴力传感器，另一端连接线性滑块。由注射器泵驱动执行器在一定长度范围内运动，线性滑块在不使执行器严重屈服的情况下对其进行拉伸和压缩，重复测试三次，记录各位置的平均受力。</li>
+<li><strong>本体感知验证</strong>：分为准确性和稳定性测试。准确性测试中，DexCo手摆出不同姿势，收集传感器数据和运动捕捉系统数据，将运动捕捉系统数据作为真实值，与IMU数据对比评估IMU估计手部姿势的准确性；稳定性测试中，DexCo手保持不同静止姿势，收集2分钟IMU数据，分析数据漂移情况。</li>
+<li><strong>抓取力验证</strong>：使用3D打印的工件，分为捏合和包裹抓取两种方式，在工件两端固定力传感器，通过位置控制使手达到期望配置，多次循环抓取，去除每个周期非零数据的首尾10%，计算中间80%数据的平均合力等统计量。</li>
+<li><strong>抓取周期时间验证</strong>：实验设置和过程与抓取力测试相同，记录每次抓取中从完全打开到抓取完成再打开的时间，计算每个工件的抓取周期时间。</li>
+<li><strong>手指力验证</strong>：每个手指推压固定在地面的捏合盒，通过位置控制使手达到期望配置，多次重复打开和关闭动作，收集准静态期的平均力，对比新制造的手指1和使用两天且液压执行器有气泡的手指2的力量表现。</li>
+<li><strong>手指重复性验证</strong>：使用线性位移传感器测试手指从相同方向到达相同位置的一致性，手指在工作空间内移动到四个独特位置后返回起始位置，多次循环，记录位移数据评估重复性。</li>
+<li><strong>DexCo手扭转力验证</strong>：引入扭转力基准测试，DexCo手先完全打开，再完全关闭达到最大抓取力后进行扭转运动，使用扭矩传感器测量准静态条件下的最大扭矩，测试不同尺寸工件的扭转力。</li>
+<li><strong>精细手部操作实验</strong>：展示DexCo手在多种精细手部操作任务中的能力，如组装灯泡、打开卡片盒、分拣药丸、在杂乱环境中拾取物品、数卡片、打开塑料袋、进行包络操作和手部内旋转等任务。</li>
+</ul>
+<h3><span id="英文题目a-multitentacle-gripper-for-dynamic-capture"> <strong>英文题目</strong>：A Multitentacle Gripper for Dynamic Capture</span></h3>
+<h3><span id="中文题目用于动态捕获的多触手抓手"> <strong>中文题目</strong>：用于动态捕获的多触手抓手</span></h3>
+<ul>
+<li><strong>研究背景</strong>：在自然界，生物捕获动态目标颇具挑战，像猎豹、猎鹰等捕食成功率并不高，人类也难以保证接住高速飞行的球。在工程领域，随着机器人应用场景向复杂非结构化环境拓展，动态捕获的需求日益增长，如机场捕捉入侵无人机、水下采集生物样本、太空清理碎片等。实现动态目标捕获的关键在于目标估计以及捕获装置设计。</li>
+<li><strong>所存在的问题</strong>
+<ul>
+<li><strong>刚性抓手的局限</strong>：刚性抓手和机械手臂虽借助精确传感与复杂算法能主动捕捉运动目标，但碰撞时的冲击力易使物体反弹，定位或定向的微小误差也会致使任务失败。</li>
+<li><strong>现有柔性捕获方式的不足</strong>：基于网或系绳的捕获方法虽能扩大安全半径，却降低了可控性，难以应对目标轨迹变化；受大象鼻子启发的触手状软连续体操纵器在控制上存在难题，其适应性和可靠性有待提升；软机器人手和抓手在抓取来自不同方向的飞行物体时适应性欠佳。</li>
+</ul>
+</li>
+<li><strong>解决方法</strong>
+<ul>
+<li><strong>设计多触手抓手</strong>：从海葵的捕获原理获取灵感，设计出包含12个连续体臂（分主动臂和被动臂）和可展开基座的多触手抓手。主动臂位于外层，用于主动包围捕获目标；被动臂在内层，负责碰撞目标、吸收动能并适应目标形状，辅助完成捕获。</li>
+<li><strong>创新可展开基座</strong>：借鉴折纸和Sarrus机构设计可展开基座，其能同步运动，调整连续体臂的相对位置和角度，扩大工作空间，辅助手臂挤压目标。</li>
+<li><strong>搭建控制系统</strong>：在可展开基座内安装惯性测量单元（IMU），用于检测与动态目标碰撞产生的加速度突变。控制系统在接收到碰撞信号后，驱动气缸完成捕获动作。</li>
+</ul>
+</li>
+<li><strong>所用到的数据集</strong>：文章未提及使用公开数据集。实验采用自行准备的多种运动状态的目标物体，如网球（直径68mm，质量58g）、篮球（儿童用，直径130mm，质量126g）、30g的纸巾包、装有半瓶水的饮料瓶以及活金鱼等。</li>
+<li><strong>所进行的实验</strong>
+<ul>
+<li><strong>高容错性实验</strong>：通过调整KUKA机器人末端执行器与自由落体球的相对位置和角度，改变球与抓手的接触位置、速度和角度，用网球和篮球进行实验，评估抓手对不同运动状态球的捕获成功率，以此验证其对动态目标的高容错性。</li>
+<li><strong>强鲁棒性实验</strong>：在部分连续体臂被移除的极端情况下开展实验，改变移除臂的数量和位置，用网球和篮球进行自由落体实验，测试抓手的捕获成功率，进而验证其鲁棒性。</li>
+<li><strong>动态捕获适应性实验</strong>：利用KUKA机器人搭载抓手，对随机抛出的纸巾包、饮料瓶以及水下的活金鱼进行捕获实验，展现抓手对不同形状和随机轨迹目标的良好适应性。</li>
+</ul>
+</li>
+</ul>
+<h3><span id="英文题目adaptive-fingers-coordination-for-robust-grasp-and-in-hand-manipulation-under-disturbances-and-unknown-dynamics"> <strong>英文题目</strong>：Adaptive Fingers Coordination for Robust Grasp and In-Hand Manipulation Under Disturbances and Unknown Dynamics</span></h3>
+<h3><span id="中文题目在干扰和未知动力学下用于稳健抓握和手内操作的自适应手指协调"> <strong>中文题目</strong>：在干扰和未知动力学下用于稳健抓握和手内操作的自适应手指协调</span></h3>
+<ul>
+<li><strong>研究背景</strong>：在机器人领域，手内操作是指在手中重新定位物体的能力，使用多自由度机器人手进行更复杂物体的抓握和操作成为研究热点。然而，在实际手内操作中，确保物体稳定和任务成功依赖于手指动力学的精确同步，面对系统机械属性的不确定和不精确估计时，稳健地执行手内操作颇具挑战。例如，当物体质量分布不均匀或变化时，传统的抓握和操作方法难以应对，同时外部干扰也会增加操作难度。</li>
+<li><strong>所存在的问题</strong>
+<ul>
+<li><strong>手内操作面临的挑战</strong>：在实际执行手内操作时，由于对物体属性、接触力学和机器人动力学的了解不精确，导致任务规划复杂且反馈控制律效率低下。</li>
+<li><strong>现有方法的不足</strong>：在规划抓握和操作方面，如Shi等人控制手指加速度的方法推导非层流物体加速度曲线困难；Sundaralingam和Hermans的方法依赖物体形状知识，在实际应用中面临挑战。在控制抓握和操作方面，基于物体动力学调制手指阻抗的方法，存在需要确保零空间、精确估计抓握矩阵等问题。数据驱动方法虽能应对部分挑战，但在处理扰动时存在困难，且依赖完美模拟环境。此外，手内操作还需确保物体在手指可及范围内，以往研究大多考虑单步操作，对于质量分布不均匀或变化的物体，重新抓握几乎不可能。</li>
+</ul>
+</li>
+<li><strong>解决方法</strong>
+<ul>
+<li><strong>基于耦合动力系统的手指同步</strong>：提出一种基于耦合动力系统（DSs）的控制策略，通过引入中间动力学调节手指相对速度，实现手指运动同步。设计中间变量z及其动力系统，使手指能根据物体状态调整运动，确保所有手指遵循特定期望轨迹，使物体达到期望姿态。</li>
+<li><strong>关节空间自适应控制器</strong>：采用基于扭矩的控制方法，提出关节级自适应扭矩控制器，通过估计和训练自适应控制增益，在线调整关节扭矩，以跟踪手指期望轨迹并调节关节阻抗增益，补偿机器人动力学、物体 - 手指相互作用和物体物理属性的不确定性。</li>
+<li><strong>抓握和操作优化</strong>：在抓握阶段，通过启发式估计稳定抓握配置，利用接触扳手构建物体级阻抗，优化接触力以稳定物体；在手内操作阶段，根据抓握矩阵和期望物体速度重新定位吸引子，实现物体的操作。同时，通过触觉观察估计接触框架，为抓握优化提供信息。</li>
+</ul>
+</li>
+<li><strong>所用到的数据集</strong>
+<ul>
+<li><strong>接触框架估计数据集</strong>：收集BioTac电极阻抗、指尖基部方向和接触平面方向数据，用于训练人工神经网络（ANN）模型，以估计接触框架。数据集包含40000个样本，按75%和25%的比例划分为训练集和测试集。</li>
+<li><strong>从人类演示学习数据集</strong>：记录人类演示中物体的姿态、手指位置和接触力，通过OptiTrack运动捕捉系统以250Hz记录位置信息，用TPS触觉传感器以50Hz记录接触力信息。这些数据用于识别任务段、抓握位置和手指角色。</li>
+</ul>
+</li>
+<li><strong>所进行的实验</strong>
+<ul>
+<li><strong>协调手指控制评估</strong>：通过让指尖从静止位置移动到准备位置，再跟踪特定吸引子序列，测试控制器性能，观察到跟踪误差降低且关节刚度能调节到期望值。将该控制算法与基于阻抗的控制器对比，在不同手部姿态下进行跟踪任务，结果表明该控制器在精度上更具优势。</li>
+<li><strong>不确定环境下的抓握适应评估</strong>：使用Allegro手抓取不同属性的物体，在手腕旋转时，通过OptiTrack系统记录物体质心相对于手部框架的运动，评估抓握鲁棒性。实验发现控制器能适应物体惯性变化，稳定抓握物体，并能通过重新估计接触法线向量调整接触力。</li>
+<li><strong>手内操作准确性和鲁棒性评估</strong>：对不同形状和质量属性的物体进行手内平移和旋转操作实验，以齿轮箱装配任务为例展示手内操作应用。实验结果表明该控制方法跟踪误差低，相比之前研究，在位置和方向误差上表现更优。</li>
+<li><strong>手指步态实验</strong>：通过学习人类演示，利用HMM提取手指角色和任务段，使用该控制方法进行手内物体滚动实验。实验在真实机器人手上实现了类似人类的操作，虽存在部分失败情况，但整体成功率较高，且在面对多种干扰时表现出鲁棒性。</li>
+</ul>
+</li>
+</ul>
+<h3><span id="英文题目autonomous-learning-of-page-flipping-movements-via-tactile-feedback"> <strong>英文题目</strong>：Autonomous Learning of Page Flipping Movements via Tactile Feedback</span></h3>
+<h3><span id="中文题目通过触觉反馈自主学习翻页动作"> <strong>中文题目</strong>：通过触觉反馈自主学习翻页动作</span></h3>
+<ul>
+<li><strong>研究背景</strong>：操作技能是人类的重要能力，在需要灵巧操作的任务中，触觉对于预测操作过程中的关键状态转换起着重要作用。当视觉被遮挡时，触觉的重要性更加凸显。为使机器人具备类似人类的灵巧操作能力，给机器人配备触觉传感器至关重要。然而，过去由于触觉传感硬件技术的限制，解决机器人在操作过程中的学习挑战存在困难。传统触觉传感器变形能力低，难以满足需要详细了解手指 - 表面相互作用的任务需求。尽管近年来开发了一些可变形的触觉传感器，但在更一般形式的物体操作，尤其是对高度可变形物体（如纸张）的操作中，其应用仍较为罕见。</li>
+<li><strong>所存在的问题</strong>
+<ul>
+<li><strong>触觉传感器与物体相互作用建模困难</strong>：当触觉传感器和被操作物体都可变形时，它们之间的动力学相互作用难以精确建模。</li>
+<li><strong>基于触觉信息量化操作任务功能性能困难</strong>：在大多数情况下，仅依靠本质上局限于手指 - 物体相互作用的触觉信息，很难量化操作任务的整体功能性能。</li>
+<li><strong>现有方法应用局限</strong>：目前对可变形物体的操作主要依赖视觉传感，触觉传感多应用于物体属性分类或形状估计，在可变形物体操作方面应用有限。且现有方法要么需要复杂的物体内部物理状态模型，难以在实际机器人实验中部署；要么需要精确的辅助传感机制，而非单纯依靠触觉传感。</li>
+</ul>
+</li>
+<li><strong>解决方法</strong>
+<ul>
+<li><strong>基于强化学习学习名义轨迹</strong>：采用无模型强化学习过程，通过动觉教学由人类演示引导，利用基于触觉信号和运动跟踪数据的奖励函数，学习翻页任务的名义轨迹。具体使用动态运动原语（DMPs）作为轨迹的参数表示，通过调整DMPs的参数来重现演示轨迹，并使用基于模型的相对熵策略搜索（MORE）算法对轨迹进行优化。</li>
+<li><strong>基于感知耦合适应轨迹</strong>：在学习了名义翻页轨迹后，基于感知耦合的原理学习一个额外的触觉反馈项，以将名义轨迹适应不同大小的笔记本页面（不同任务情境）。假设不同页面大小的功能行为对应的名义传感轨迹相似，通过最小化当前传感轨迹与名义传感轨迹之间的差异来学习适应策略。</li>
+<li><strong>选择合适的触觉传感轨迹表示</strong>：考虑了两种触觉传感轨迹的表示方法，一种是基于生物启发触觉传感器人工顶毛的部分通道表示，另一种是基于主成分分析（PCA）特征值的表示。通过实验对比，选择能在有效学习的触觉信息丰富度和在实际机器人上部署的计算可处理性之间达到平衡的表示方法。</li>
+</ul>
+</li>
+<li><strong>所用到的数据集</strong>
+<ul>
+<li><strong>用于学习名义轨迹的演示数据</strong>：通过动觉教学记录人类演示的关节角度和关节角速度数据，采样频率为50Hz，用于初始化DMPs的参数。</li>
+<li><strong>触觉传感器数据</strong>：使用BioTac触觉传感器记录触觉数据，包括低频压力（(P_{dc})）和19个阻抗电极（(E)）的数据，采样频率为100Hz。在实验中，通过分析这些数据来评估不同翻页轨迹下的触觉信号特征，以及用于定义奖励函数和学习适应策略。</li>
+<li><strong>标记跟踪数据</strong>：使用被动运动捕捉标记和六个T - Series相机以100Hz的频率跟踪装有笔记本页面的刚性装订器的位移，用于评估任务性能和在学习名义轨迹时定义奖励函数。</li>
+</ul>
+</li>
+<li><strong>所进行的实验</strong>
+<ul>
+<li><strong>学习名义轨迹实验</strong>：使用7自由度机器人手臂和配备BioTac触觉传感器的夹爪，对两种不同大小（小页面：8.5”×11”；大页面：11”×11”）的笔记本页面进行翻页实验。通过动觉教学获取初始轨迹，然后使用MORE算法和设计的奖励函数优化轨迹。结果表明，机器人能够学习到避免页面翘曲和折断的翻页轨迹，且触觉状态在学习过程中起主要作用。</li>
+<li><strong>触觉传感轨迹表示影响实验</strong>：在简化的轨迹适应学习子问题中，研究两种触觉传感轨迹表示方法（人工顶毛表示和PCA特征值表示）对奖励函数样本值的影响。实验结果表明，PCA特征值表示能够更好地区分功能翻页轨迹和非功能轨迹，且使用该表示方法学习到的适应轨迹更温和，对装订器的位移影响更小。</li>
+<li><strong>完整轨迹适应实验</strong>：采用PCA特征值表示法，对学习到的名义轨迹进行完整的适应实验，将为大页面学习的名义轨迹应用于小页面，且不提供小页面目标位置的先验信息。实验结果表明，通过触觉驱动的感知耦合，机器人能够成功地将大页面的名义轨迹适应小页面，学习到合适的目标位置和翻页轨迹，使触觉传感轨迹收敛到理想情况。</li>
+</ul>
+</li>
+</ul>
+<h3><span id="英文题目do-you-need-a-hand-a-bimanual-robotic-dressing-assistance-scheme"> <strong>英文题目</strong>：Do You Need a Hand? – A Bimanual Robotic Dressing Assistance Scheme</span></h3>
+<h3><span id="中文题目需要帮忙吗一种双机器人穿衣辅助方案"> <strong>中文题目</strong>：需要帮忙吗？——一种双机器人穿衣辅助方案</span></h3>
+<ul>
+<li><strong>研究背景</strong>：全球护理人员短缺，人口老龄化加剧，辅助机器人有望缓解这一问题，其中机器人辅助穿衣是极具挑战的任务。该任务涉及与柔软衣物和人体的直接物理交互，与传统人机交互任务不同，其存在交互力难以获取、手臂运动估计困难等问题。以往研究多采用单机器人进行穿衣辅助，常假设手臂静态姿势，且大多依赖视觉跟踪手臂姿势，但在穿衣过程中，视觉易受遮挡，导致现有视觉算法失效。</li>
+<li><strong>所存在的问题</strong>
+<ul>
+<li><strong>单机器人辅助的局限性</strong>：多数现有机器人穿衣策略采用单机器人，难以充分应对穿衣任务的复杂性，且通常假设手臂处于静态姿势，这在实际中很难满足。</li>
+<li><strong>手臂姿势跟踪困难</strong>：穿衣过程中存在严重遮挡，基于视觉的深度学习姿势跟踪算法难以准确跟踪手臂姿势，额外的传感模块虽能辅助，但仍存在问题。</li>
+<li><strong>交互力获取难题</strong>：衣物柔软易变形，使得在穿衣过程中难以获取直接的交互力反馈，这增加了穿衣策略制定的难度。</li>
+</ul>
+</li>
+<li><strong>解决方法</strong>
+<ul>
+<li><strong>提出双机器人协作方案</strong>：采用两个机器人的协作框架，一个交互机器人与人类牵手，支持和引导人类手臂运动，辅助穿衣；另一个穿衣机器人负责执行穿衣任务，通过这种方式解决单机器人辅助的局限，并利用交互机器人实现仅通过本体感受传感器就能跟踪手臂姿势。</li>
+<li><strong>设计基于肘部角度的最优伸展策略</strong>：分析发现肘部角度是影响穿衣策略的关键特征，根据该特征为交互机器人设计最优伸展控制器，通过笛卡尔阻抗控制，使引导力方向与连接手和肩膀的方向一致，以增大肘部角度，便于穿衣。</li>
+<li><strong>定义穿衣坐标并学习穿衣策略</strong>：定义依赖于手臂姿势的穿衣坐标，将机器人在笛卡尔坐标中的运动转换到该坐标下，利用高斯混合模型（GMM）和高斯混合回归（GMR）从专家演示中学习穿衣策略，提高策略的灵活性和适应性。</li>
+</ul>
+</li>
+<li><strong>所用到的数据集</strong>：实验中使用了多种数据，包括通过运动捕捉设备（如XSens运动捕捉套装）收集的人体手臂运动数据，用于计算姿势估计方案中的权重矩阵Q；通过Franka机器人进行示教收集的不同手臂姿势下的穿衣路径和手臂姿势数据，用于研究肘部角度对穿衣策略的影响；在不同实验中记录的机器人穿衣过程中的数据，如穿衣路径、手臂姿势、交互力等，用于评估和改进穿衣辅助方案。</li>
+<li><strong>所进行的实验</strong>
+<ul>
+<li><strong>肘部角度对穿衣策略的影响实验</strong>：通过Franka机器人进行运动学示教，收集不同手臂姿势下的穿衣路径和手臂姿势数据，将穿衣路径投影到手臂平面上进行分析。实验结果表明，当肘部角度较小时，专家演示更倾向于采用外策略，验证了肘部角度对穿衣策略的影响。</li>
+<li><strong>姿势估计方案评估实验</strong>：使用XSens运动捕捉套装收集手臂运动数据作为真实值，计算不同情况下的肘部估计误差。结果显示，该方案的最大误差约为3cm，与其他方法相比，性能较好，能够满足穿衣任务的需求。</li>
+<li><strong>交互式穿衣实验</strong>：使用三种不同类型的衣服（短袖刚性衬衫、长袖刚性衬衫和长袖柔软衬衫）在人体和假人上进行实验，对比基于穿衣坐标的方法和传统的TPGMM方法。实验结果表明，基于穿衣坐标的方法成功率更高，且在人体不完全配合的情况下仍能成功穿衣，展示了该框架的鲁棒性和灵活性。</li>
+</ul>
+</li>
+</ul>
+<h3><span id="英文题目dual-critic-deep-reinforcement-learning-for-push-grasping-synergy-in-cluttered-environment"> <strong>英文题目</strong>：Dual-Critic Deep Reinforcement Learning for Push-Grasping Synergy in Cluttered Environment</span></h3>
+<h3><span id="中文题目用于杂乱环境中推抓协同的双评论家深度强化学习"> <strong>中文题目</strong>：用于杂乱环境中推抓协同的双评论家深度强化学习</span></h3>
+<ul>
+<li><strong>研究背景</strong>：机器人抓取在非杂乱环境中已取得不错成果，但在密集杂乱环境中仍面临诸多挑战。在这种环境下，物体相互遮挡，可操作空间减少，严重影响机器人抓取效率。为解决这些问题，研究者引入了推抓协同策略，即通过额外的推行动作辅助抓取，但现有方法仍存在一些未解决的问题。</li>
+<li><strong>所存在的问题</strong>
+<ul>
+<li><strong>推行动作冗余</strong>：现有推抓协同方法中，推行动作存在冗余现象，导致动作效率低下，不能有效辅助抓取，例如有些推行动作只是为了执行而执行，没有真正为抓取创造有利条件。</li>
+<li><strong>未能充分利用视觉特征</strong>：部分方法在处理视觉特征时不够全面，手动设计的规则在特定条件下可能失效，导致错误的指令，影响抓取成功率。</li>
+<li><strong>目标导向任务难度大</strong>：在目标导向的抓取任务中，从环境中区分出目标物体较为困难，现有方法在处理此类任务时，难以高效地实现对目标物体的抓取。</li>
+</ul>
+</li>
+<li><strong>解决方法</strong>
+<ul>
+<li><strong>提出双评论家深度强化学习框架</strong>：引入两个不同的深度Q学习评论家，Critic I基于视觉解释选择最佳行动方案，Critic II评估当前状态 - 行动配对的成功率，以此优化推抓协同，提高机器人动作的准确性和效率。</li>
+<li><strong>设计双步学习和多阶段训练机制</strong>：通过双步学习过程优化推行动作的训练奖励函数，增强推行动作的目的性。多阶段训练包括抓取训练、推行动作双步学习训练以及协同动作训练，逐步提升模型性能。</li>
+<li><strong>改进网络结构和训练设置</strong>：采用预训练的DenseNet - 121作为特征提取器，PushNet和GraspNet使用特定的全卷积网络结构，Critic II使用三层CNN。训练过程中采用Huber损失和BCEloss作为损失函数，利用优先经验回放提高训练效率，并设置了合适的超参数。</li>
+</ul>
+</li>
+<li><strong>所用到的数据集</strong>：文中未提及使用公开数据集。模拟实验中使用了9种不同形状和颜色的3D模型作为实验对象；真实世界实验中使用了玩具积木和多种标准办公物品进行测试，通过Intel RealSense D435相机获取分辨率为1280×720的RGB - D图像作为感知数据。</li>
+<li><strong>所进行的实验</strong>
+<ul>
+<li><strong>模拟实验</strong>：在CoppeliaSim中使用UR5服务机器人和RG - 2夹爪进行实验，设定了目标无关和目标导向两种任务类型。目标无关任务又分为随机设置和挑战案例，随机设置包含15、20、25和30个随机放置的物体，挑战案例设计了9个不同复杂度的案例；目标导向任务同样分为随机和挑战案例，随机案例有30个物体且随机选择目标，挑战案例指定特定目标。实验结果表明，该框架在抓取成功率和动作效率等指标上优于对比方法，尤其在挑战案例中优势明显。</li>
+<li><strong>真实世界实验</strong>：使用UR5服务机器人和ROBOTIQ - 85夹爪，通过Intel RealSense D435相机获取数据。实验集中于目标无关抓取任务，使用玩具积木和新的办公物品测试模型的泛化能力。结果显示，该框架在真实场景中同样表现出色，在抓取成功率和动作效率方面优于VPG方法。</li>
+</ul>
+</li>
+</ul>
+<h3><span id="英文题目dual-fingered-stable-grasping-control-for-an-optimal-force-angle"> <strong>英文题目</strong>：Dual-Fingered Stable Grasping Control for an Optimal Force Angle</span></h3>
+<h3><span id="中文题目用于优化力角的双指稳定抓取控制"> <strong>中文题目</strong>：用于优化力角的双指稳定抓取控制</span></h3>
+<ul>
+<li><strong>研究背景</strong>：机器人抓取研究需满足力/扭矩闭合以及力角在摩擦锥范围内这两个条件，以确保物体被稳定抓取。早期多指机器人手的研究多关注手部模型开发和空间约束，忽视了力角条件；部分考虑力角的方法对物体形状有限制，或依赖精确的物体模型和参数；基于触觉传感器的研究虽能实现稳定抓取，但存在未考虑力角问题或无法保证系统动态稳定性等不足。因此，开发适用于任意形状物体的抓取控制方法具有重要意义。</li>
+<li><strong>所存在的问题</strong>
+<ul>
+<li><strong>早期研究忽视力角条件</strong>：早期多指机器人手的研究主要关注类似人类手部外观的多关节手指模型开发，采用开环控制系统，仅考虑力/扭矩平衡，假定力角条件自然满足，未直接关注力角问题。</li>
+<li><strong>部分方法对物体形状有局限</strong>：一些考虑力角的控制方法，如针对具有特定形状（如平面、圆形）物体的方法，无法应用于任意形状物体或形状未知的物体。</li>
+<li><strong>现有方法存在其他缺陷</strong>：基于触觉传感器的方法，有的忽略动态行为，有的虽考虑动态但未考虑力角问题，有的无法保证系统动态稳定性和提供抓取力角的最优解。</li>
+</ul>
+</li>
+<li><strong>解决方法</strong>
+<ul>
+<li><strong>提出新型控制方法</strong>：提出一种双指机器人的抓取控制方法，通过优化力角提高抓取稳定性，使其适用于任意形状物体。该方法基于指尖与物体表面的滚动接触约束，仅要求物体在接触点附近具有光滑曲率。</li>
+<li><strong>设计控制器</strong>：设计的控制器为(u=-k_{v}\dot{q}-f_{d}J_{f}^{T}(q)[cos\phi_{0} cos\phi_{0} sin\phi_{0} sin\phi_{0}]^{T}) ，其中(k_{v})和(f_{d})为正常数，第一项用于提供阻尼，第二项用于建立期望抓取力并抵消物体的转动力矩。该控制律仅需测量关节角度、关节角速度、接触角和手指运动学参数，无需物体信息、预规划和力传感器。</li>
+<li><strong>进行稳定性分析</strong>：运用Lyapunov直接方法证明所提控制器的稳定性。通过构造合适的Lyapunov函数，并对其求导分析，得出在满足一定条件时，系统的平衡点是一致渐近稳定的，从而保证了抓取的稳定性。</li>
+</ul>
+</li>
+<li><strong>所用到的数据集</strong>：本文未提及使用公开数据集。在仿真实验中，自定义了相关参数来模拟双指机器人抓取任意形状物体的场景，包括设置物体的形状参数（如曲率中心位置、曲率半径）、机器人手指的参数（如各关节长度、指尖半径、质量、转动惯量）以及初始状态参数（如初始关节角度、初始力角）等。</li>
+<li><strong>所进行的实验</strong>：通过仿真实验对比验证所提控制方法的性能。实验设置两个具有3个自由度的平面手指，采用半球形指尖抓取一个具有两个曲率表面的任意形状物体。在仿真中，设定了物体、手指的相关参数以及控制器的参数（如阻尼增益(k_{v}=0.008) ，期望抓取力(f_{d}=0.8N) ）。结果显示，所提方法能够实现动态力/扭矩平衡，且力角渐近收敛到等效值，相比之前的控制方法，能更好地实现稳定抓取。</li>
+</ul>
+<h3><span id="英文题目enhancing-the-universality-of-a-pneumatic-gripper-via-continuously-adjustable-initial-grasp-postures"> <strong>英文题目</strong>：Enhancing the Universality of a Pneumatic Gripper via Continuously Adjustable Initial Grasp Postures</span></h3>
+<h3><span id="中文题目通过连续可调的初始抓取姿势提升气动抓手的通用性"> <strong>中文题目</strong>：通过连续可调的初始抓取姿势提升气动抓手的通用性</span></h3>
+<ul>
+<li><strong>研究背景</strong>：机器人操纵器和抓手在工业自动化和日常生活辅助中应用广泛。传统刚性抓手在抓取时需精确计算目标位置和几何形状，成本高且通用性受限，还易损坏易碎物品。软机器人因具有重量轻、安全性高、控制复杂度低和自由度高等优点成为新兴领域，其中气动软抓手因成本低、驱动简单而备受关注。近年来虽有众多研究致力于提升气动软抓手的抓取性能，但在抓取尺寸范围广泛的物体方面仍存在局限。</li>
+<li><strong>所存在的问题</strong>：现有软气动抓手在抓取不同尺寸物体时存在局限性，部分研究虽对抓手的某些性能进行了改进，如增加运动范围、提升抓取力等，但仍无法用同一抓手有效抓取尺寸跨度大的各类物体。一些改进方法需要手动调整，难以满足自动化需求。</li>
+<li><strong>解决方法</strong>
+<ul>
+<li><strong>设计新型气动软-硬混合多指抓手</strong>：提出一种气动驱动的软-硬混合多指抓手，通过调整初始抓取姿势来扩大抓取范围。该抓手由四个模块组成，每个模块包含距离调节、角度调节和手指三个气动执行器及刚性连接器。</li>
+<li><strong>优化执行器设计</strong>：距离调节执行器采用软-硬混合设计，通过内部软执行器和外部刚性外骨骼增强轴向和弯曲刚度；角度调节执行器使用织物增强的弯曲弹性体执行器，保证弯曲刚度；手指执行器采用宽度递减设计，增加与物体的接触面积，提高抓取性能。</li>
+<li><strong>采用模块化设计</strong>：模块化设计便于维护和更换组件，通过3D打印的固定结构将各模块组合在一起，使抓手结构紧凑，易于安装在机械臂上。</li>
+</ul>
+</li>
+<li><strong>所用到的数据集</strong>：本文未使用公开数据集。实验中自定义了相关数据，如通过3D打印制作不同尺寸的半圆形结构，组合成直径为6cm、10cm和14cm的圆柱体，用于测量抓手的抓取力；从Yale - Columbia - Berkeley（YCB）物体集中选择工具类和形状类物体，以及一些日常生活中的物体，用于测试抓手的实际抓取能力。</li>
+<li><strong>所进行的实验</strong>
+<ul>
+<li><strong>执行器性能测试实验</strong>：对距离调节执行器、角度调节执行器和手指执行器分别进行性能测试。包括测量距离调节执行器的伸长量与充气压力的关系、轴向及弯曲扭转刚度；测量角度调节执行器的弯曲角度与压力的关系和弯曲刚度；通过模拟和实验对比四种不同类型手指执行器的曲率变化和指尖力。</li>
+<li><strong>抓取能力测试实验</strong>：通过设置不同的初始抓取姿势，测试抓手对不同尺寸、形状和重量物体的抓取能力。使用自制的测量装置，定量测量抓手对不同直径圆柱体的横向抓取力和最大垂直拉力；对比具有锥形手指（type 4）和直手指（type 1）的抓手的抓取能力；对YCB物体集和日常生活中的物体进行抓取实验，验证抓手在实际应用中的抓取能力。</li>
+</ul>
+</li>
+</ul>
+<h3><span id="英文题目from-simulation-to-reality-a-learning-framework-for-fish-like-robots-to-perform-control-tasks"> <strong>英文题目</strong>：From Simulation to Reality: A Learning Framework for Fish-Like Robots to Perform Control Tasks</span></h3>
+<h3><span id="中文题目从仿真到现实一种用于仿鱼机器人执行控制任务的学习框架"> <strong>中文题目</strong>：从仿真到现实：一种用于仿鱼机器人执行控制任务的学习框架</span></h3>
+<ul>
+<li><strong>研究背景</strong>：仿鱼机器人作为典型的仿生自主水下航行器，凭借其生物启发的结构和仿生运动方式，在机动性和低噪音方面具有优势，在水下探测等领域有广泛应用前景。然而，由于其在游泳过程中存在复杂的流固相互作用，难以建立精确的动力学模型，导致基于模型的控制方法效率低下。强化学习（RL）虽为解决机器人控制问题提供了新途径，但传统RL在复杂控制任务中存在维度困境，深度强化学习（DRL）虽有所改进，但在应用于实际机器人时，因仿真与现实存在差距，导致训练的策略难以直接在现实中应用。因此，设计一个能快速训练DRL控制策略且适用于实际水下机器人的学习框架具有重要意义。</li>
+<li><strong>所存在的问题</strong>
+<ul>
+<li><strong>建模困难</strong>：仿鱼机器人在游泳时，流固相互作用复杂，其动力学模型难以精确建立，甚至无法建立，使得基于模型的控制方法难以有效设计控制策略。</li>
+<li><strong>RL应用受限</strong>：传统RL在处理复杂控制任务时，存在维度困境，难以满足高精度要求的任务。早期将RL应用于仿鱼机器人控制的研究虽有开创性，但仍面临诸多挑战。</li>
+<li><strong>仿真与现实差距</strong>：将DRL训练的策略从仿真转移到现实时，由于模拟器难以准确反映现实情况，导致策略在现实中往往失效，这限制了DRL在实际移动机器人中的应用。</li>
+</ul>
+</li>
+<li><strong>解决方法</strong>
+<ul>
+<li><strong>构建仿真系统</strong>：提出Self-Switching-Simulator（Tri-S）系统，结合基于计算流体动力学（CFD）的环境和数据驱动的代理环境。CFD环境采用HyperFLOW软件构建，能逼真模拟水下机器人与流体环境的相互作用；代理环境依据物理实验数据构建，可快速训练控制策略，两者结合有效平衡了仿真精度和计算速度。</li>
+<li><strong>设计训练方法</strong>：设计基于DRL的训练方法，采用优势演员-评论家（A2C）算法，结合价值函数和策略搜索。训练过程分两个阶段，先在代理环境中训练，当平均奖励达到预设阈值后，自动切换到CFD环境继续训练，直至奖励超过完成阈值，从而获得可直接应用于物理机器人的控制策略。</li>
+<li><strong>选择合适任务验证</strong>：选取路径跟踪控制任务和姿态控制任务来验证框架的有效性。路径跟踪控制任务要求机器人跟踪预定义路径，姿态控制任务要求机器人在无预设路径的情况下达到目标姿态，通过这两个典型任务全面验证框架在不同类型任务中的表现。</li>
+</ul>
+</li>
+<li><strong>所用到的数据集</strong>：本文未使用公开数据集。实验中使用的数据主要源于物理仿鱼机器人的实验，包括在不同控制输入下机器人的运动数据，如线性速度、位置变化、姿态变化等。通过对这些数据的采样和处理，构建代理环境中的映射关系，用于训练和验证控制策略。</li>
+<li><strong>所进行的实验</strong>
+<ul>
+<li><strong>路径跟踪控制实验</strong>：在仿真中训练机器人跟踪直线，将训练得到的策略(\pi_{Pa}<sup>{*})部署到物理机器人上，让其跟踪随机生成的贝塞尔曲线，并与对比DRL策略(\pi_{Pa}</sup>{s})和视线（LOS）控制器(u_{Pa}<sup>{*})进行比较。实验结果表明，(\pi_{Pa}</sup>{*})在平均跟踪误差、标准误差和最大跟踪误差等指标上表现更优，验证了学习框架在路径跟踪控制任务中的有效性和从仿真到现实的转移能力。</li>
+<li><strong>姿态控制实验</strong>：该任务要求机器人同时实现位置和方向的控制，是一个更具挑战性的多目标问题。通过引入课程学习方法处理稀疏奖励问题，在仿真中训练得到策略(\Pi_{Po}^{<em>}) ，并在物理机器人上进行实验。实验结果显示，(\Pi_{Po}^{</em>})能成功控制机器人完成姿态控制任务，在不同难度任务下的最终位置误差和最终方向误差均较小。</li>
+</ul>
+</li>
+</ul>
+<h3><span id="英文题目grasping-living-objects-with-adversarial-behaviors-using-inverse-reinforcement-learning"> <strong>英文题目</strong>：Grasping Living Objects With Adversarial Behaviors Using Inverse Reinforcement Learning</span></h3>
+<h3><span id="中文题目利用逆强化学习抓取具有对抗行为的活体目标"> <strong>中文题目</strong>：利用逆强化学习抓取具有对抗行为的活体目标</span></h3>
+<ul>
+<li><strong>研究背景</strong>：机器人抓取是机器人学的重要研究课题，传统研究多聚焦于非活体目标，而活体目标具有对抗行为，其运动和变形难以预测与建模，这使得抓取活体目标成为具有挑战性且尚未充分探索的问题。现有针对非活体目标的抓取算法及强化学习（RL）抓取方法，在面对活体目标时会因目标的对抗行为而失效，且可能产生较大接触力，损伤目标或机器人抓手。</li>
+<li><strong>所存在的问题</strong>
+<ul>
+<li><strong>建模与预测困难</strong>：活体目标的对抗行为使其运动和变形难以精确建模和预测，增加了抓取的难度。</li>
+<li><strong>稀疏奖励问题</strong>：传统的稀疏奖励机制难以区分对抗行为和正常行为，无法有效引导机器人学习高质量的抓取策略。</li>
+<li><strong>忽视手部结构</strong>：传统基于RL的控制器在设计抓取策略时，未充分考虑机器人手部结构，难以实现手指关节的协同作用，影响抓取效果。</li>
+</ul>
+</li>
+<li><strong>解决方法</strong>
+<ul>
+<li><strong>两阶段RL算法</strong>：将抓取活体目标问题分解为预抓取和抓持两个阶段，分别用RL学习相应策略。预抓取阶段关注目标的对抗行为，寻找合适抓取姿态；抓持阶段计算高质量手指动作，在稳定抓持的同时尽量减小接触力。</li>
+<li><strong>逆强化学习获取奖励函数</strong>：在预抓取阶段，采用逆强化学习（IRL）从活体目标的对抗行为中学习奖励函数，将其负值加入抓取智能体的奖励函数，引导机器人对抗目标的逃避行为，提高抓取成功率。</li>
+<li><strong>动态模型学习</strong>：利用高斯过程在线学习动力学模型，以估计背景分布，为计算对抗奖励的梯度提供支持，同时采用选择性遗忘机制，解决数据增多时模型计算复杂度增加的问题。</li>
+<li><strong>图卷积网络优化抓持策略</strong>：在抓持阶段，将机器人手部状态表示为图，采用图卷积网络（GCN）处理状态图，生成高质量抓持动作，使不同手指关节能协同工作，同时设计密集奖励函数，鼓励长时间稳定抓持并惩罚大接触力。</li>
+</ul>
+</li>
+<li><strong>所用到的数据集</strong>：本文未使用公开数据集。实验数据主要源于模拟环境和真实环境的测试。在模拟环境中，使用PyBullet和OpenAI Gym框架，将活体目标模拟为三连杆铰接机器人；在真实环境中，使用UR10机器人和机动玩具鱼进行实验，通过RGB-D相机获取目标姿态数据，并利用点云配准算法处理数据。</li>
+<li><strong>所进行的实验</strong>
+<ul>
+<li><strong>对抗奖励性能实验</strong>：通过对比成功和失败抓取情节中对抗奖励的值，验证其能在抓取过程中提前区分成功与失败，为智能体提供密集反馈信号。让人类控制机器人抓取并记录数据，与奖励函数输出对比，结果表明奖励值趋势与人类判断的抓取概率趋势相符，且使用对抗奖励训练的智能体成功率更高。</li>
+<li><strong>预抓取阶段性能实验</strong>：对比本文方法与一阶段RL、Q学习的奖励，结果显示本文方法能学习到更有效的抓取策略，奖励值更高。与工业抓取方法和QT-Opt方法比较，本文方法在处理活体目标快速姿态变化时表现更优，成功率更高。</li>
+<li><strong>抓持阶段性能实验</strong>：对比图RL算法和普通RL算法，图RL算法奖励更高，表现更优。对比本文学习的策略和手动设计的“关闭”策略，本文策略的接触力更小，成功率更高，且实验验证了所提图结构对提高抓取性能的有效性。</li>
+<li><strong>泛化能力实验</strong>：在多种不同的活体目标上测试训练的策略，结果表明对与训练目标相似的物体成功率较高，对差异较大的物体微调后成功率显著提升，验证了方法的泛化能力🔶13-1</li>
+</ul>
+</li>
+</ul>
+<h3><span id="英文题目heavy-material-handling-manipulator-for-agricultural-robot"> <strong>英文题目</strong>：Heavy Material Handling Manipulator for Agricultural Robot</span></h3>
+<h3><span id="中文题目用于农业机器人的重型物料搬运机械臂"> <strong>中文题目</strong>：用于农业机器人的重型物料搬运机械臂</span></h3>
+<ul>
+<li><strong>研究背景</strong>：在农业领域，存在大量搬运重物的作业，如收获西瓜、南瓜等蔬菜以及搬运有机肥料袋等，这些工作劳动强度大。随着日本老龄化加剧，对相关技术的需求更为迫切。20世纪90年代虽提出许多农业机器人，但此前常用的极坐标型机械臂等并不适合搬运重型物料。</li>
+<li><strong>所存在的问题</strong>：传统用于农业的机器人机械臂，如极坐标型和关节型，在搬运重型物料时存在局限性。其关节扭矩会随物料远离机器人而增大，不适用于重型物料搬运，难以满足农业生产需求。</li>
+<li><strong>解决方法</strong>：设计并开发一种适用于农业机器人搬运重型物料的平行型机械臂。通过对不同类型机械臂的运动学指标分析，确定平行型机械臂在搬运重型物料和适配移动平台方面具有优势。该机械臂的设计综合考虑了农业作业特点，如采用履带式移动平台以适应潮湿环境，机械臂结构设计满足物料分散、水平搬运的需求。</li>
+<li><strong>所用到的数据集</strong>：本文未使用公开数据集。在实验过程中，自行采集了相关数据，如在西瓜收获实验中，测量了西瓜的直径、质量，以及机械臂在操作过程中的关节位移、作业时间等数据。</li>
+<li><strong>所进行的实验</strong>：进行了西瓜收获实验以验证机械臂的性能。实验在京都大学实验农场开展，使用搭载平行型机械臂的机器人进行西瓜采摘。实验中利用光学测量仪器获取西瓜位置，机器人按照特定流程进行采摘。多次重复实验后，机器人采摘成功率达到86.7%，且采摘过程中未对西瓜造成损伤，但部分失败案例是由于目标西瓜过小且离机器人较远，同时发现采摘时间有待通过设计新的控制系统进一步缩短。</li>
+</ul>
+<h3><span id="英文题目hierarchical-diffusion-policy-manipulation-trajectory-generation-via-contact-guidance"> <strong>英文题目</strong>：Hierarchical Diffusion Policy: manipulation trajectory generation via contact guidance</span></h3>
+<h3><span id="中文题目分层扩散策略通过接触引导生成操作轨迹"> <strong>中文题目</strong>：分层扩散策略：通过接触引导生成操作轨迹</span></h3>
+<ul>
+<li><strong>研究背景</strong>：基于学习的机器人操作策略在处理3D场景感知、丰富接触和人机交互等问题时面临挑战。强化学习样本效率低、泛化性弱，模仿学习难以超越专家表现且处理多模态动作分布困难。扩散模型虽在建模复杂数据分布方面有优势，但现有基于扩散模型的机器人操作策略在接触丰富的任务中表现不佳。</li>
+<li><strong>所存在的问题</strong>：现有机器人操作策略难以有效处理接触丰富的任务，端到端策略交互性有限，且传统方法在处理多模态动作分布、从演示中学习超越专家行为以及应对复杂任务时存在不足。</li>
+<li><strong>解决方法</strong>
+<ul>
+<li><strong>提出分层扩散策略（HDP）</strong>：将操作规划分为高层接触规划和低层轨迹生成，通过引入接触点指导轨迹生成，提高机器人操作的精确性和可解释性。Guider网络基于扩散过程预测接触点，Actor网络根据观察和接触点预测动作序列，Critic网络通过Q学习优化Actor网络，引导动作趋向接触点。</li>
+<li><strong>关键技术改进</strong>：采用一次性梯度优化，提高训练速度；引入轨迹增强，通过添加噪声构造负样本，增强Critic评估Actor的能力；提出提示引导，允许手动指定接触点，增强人机交互性。</li>
+</ul>
+</li>
+<li><strong>所用到的数据集</strong>
+<ul>
+<li><strong>模拟环境数据集</strong>：使用Robomimic中的2个任务数据集，包含熟练人类（PH）遥操作演示数据集和混合熟练/非熟练人类（MH）演示数据集；自行构建Tilt和Push-T任务数据集，分别用于测试机器人在复杂操作和精确推物任务中的表现。</li>
+<li><strong>真实世界数据集</strong>：在Move-T和布料展开任务中，通过实验采集相关数据，包括机器人的操作轨迹、物体的姿态和点云信息等。</li>
+</ul>
+</li>
+<li><strong>所进行的实验</strong>
+<ul>
+<li><strong>模拟实验</strong>：在多个模拟任务中对比HDP与其他基线方法，如扩散策略（Diffusion Policy）、基于序列建模的方法（LSTM-GMM、BET）和基于能量模型的方法（IBC）。结果表明HDP在所有测试任务上均显著优于基线方法，平均成功率提高了17.0%，且在表达多模态动作分布、利用3D条件信息和学习最优演示方面表现出色。</li>
+<li><strong>真实世界实验</strong>：在Move-T任务和布料展开任务中对HDP进行测试。Move-T任务中，HDP相比Diffusion Policy平均成功率提高了84.1%，提示引导可使成功率提高145%，且在面对干扰时表现出较强的鲁棒性；布料展开任务中，HDP成功率达到76%，比Diffusion Policy高26.7% ，证明HDP能有效处理刚性和可变形物体的操作任务。</li>
+</ul>
+</li>
+</ul>
+<h3><span id="英文题目ifem20-dense-3-d-contact-force-field-reconstruction-and-assessment-for-vision-based-tactile-sensors"> <strong>英文题目</strong>：iFEM2.0: Dense 3-D Contact Force Field Reconstruction and Assessment for Vision-Based Tactile Sensors</span></h3>
+<h3><span id="中文题目ifem20基于视觉触觉传感器的密集三维接触力场重建与评估"> <strong>中文题目</strong>：iFEM2.0：基于视觉触觉传感器的密集三维接触力场重建与评估</span></h3>
+<ul>
+<li><strong>研究背景</strong>：在机器人执行复杂任务时，触觉感知尤其是密集三维接触力感知至关重要，它有助于机器人在非结构化任务中安全地与人交互，并提供物体属性信息。然而，实现机器人对密集三维接触力场的可靠感知颇具挑战，现有触觉传感器和相关算法存在诸多问题，如传统传感器难以精确测量切向力，基于视觉的触觉传感器在重建接触力时易受噪声影响，且缺乏统一的评估设备和标准。</li>
+<li><strong>所存在的问题</strong>
+<ul>
+<li><strong>传感器局限</strong>：传统触觉传感器在测量切向力方面存在困难，且部分新型传感器存在空间分辨率低、制造复杂、耐久性差和成本高等问题。</li>
+<li><strong>算法缺陷</strong>：现有基于视觉触觉传感器的接触力重建方法，如机器学习、自然亥姆霍兹 - 霍奇分解等，存在结果噪声大、只能测量合力而非完整分布、依赖特定假设或受物体纹理影响等问题。</li>
+<li><strong>评估困难</strong>：缺乏直接测量三维接触力分布的设备，现有间接测量方法和模拟手段存在引入局部扰动、信号集成困难、结果不准确等问题。</li>
+</ul>
+</li>
+<li><strong>解决方法</strong>
+<ul>
+<li><strong>提出iFEM2.0算法</strong>：采用多层逆有限元方法，通过多层网格约束和岭正则化，有效解决模型不准确和病态问题，增强对测量噪声的处理能力，实现更精确、鲁棒的三维接触力分布重建。</li>
+<li><strong>确定参数组合</strong>：系统分析触觉传感器的本构模型、单元参数和材料属性等，通过仿真比较和原位机械校准，确定适合iFEM2.0的参数组合，平衡算法的准确性和效率。</li>
+<li><strong>建立评估基准</strong>：建立涵盖准确性、保真度和抗噪性的综合评估基准，为三维接触力重建方法提供统一的评估标准，有助于比较不同方法的性能。</li>
+</ul>
+</li>
+<li><strong>所用到的数据集</strong>
+<ul>
+<li><strong>模拟数据集</strong>：利用Abaqus/Standard进行仿真，获取不同接触场景下的模拟数据，包括传感器的几何形状、材料属性、接触条件和加载情况等信息，用于确定参数组合和评估算法性能。</li>
+<li><strong>实验数据集</strong>：使用GelSlim 3.0视觉触觉传感器在实际实验中采集数据，包括与各种标准和日常物体接触时的视觉触觉图像，以及通过ATI力/扭矩传感器测量得到的高精度三维合力数据，作为实验的真实值。</li>
+</ul>
+</li>
+<li><strong>所进行的实验</strong>
+<ul>
+<li><strong>仿真实验</strong>：根据建立的评估基准，对iFEM2.0算法在模拟环境下进行全面评估，包括准确性、保真度、抗噪性和泛化性。实验结果表明，iFEM2.0在重建三维接触力场时，精度高、能有效捕捉力场细节、抗噪性强，且在不同接触场景下具有良好的泛化能力。</li>
+<li><strong>实际验证</strong>：搭建实验平台，使用GelSlim 3.0传感器与多种物体进行接触实验，通过图像处理算法和iFEM2.0算法重建三维接触力场，并与ATI传感器测量结果对比。结果显示，iFEM2.0在实际应用中能有效捕捉和可视化动态三维接触力分布，虽存在一些失效模式，但整体精度较高，实时性能良好，适用于机器人控制等实际场景。</li>
+</ul>
+</li>
+</ul>
+<h3><span id="英文题目rgb-d-object-recognition-and-grasp-detection-using-hierarchical-cascaded-forests"> <strong>英文题目</strong>：RGB-D Object Recognition and Grasp Detection Using Hierarchical Cascaded Forests</span></h3>
+<ul>
+<li><strong>中文题目</strong>：基于分层级联森林的RGB-D物体识别与抓取检测</li>
+</ul>
+<h3><span id="研究背景物体识别和抓取检测是自主机器人实现视觉感知和与现实世界交互的关键能力-但在复杂环境中由于视觉信息分割-相似物体区分-抗噪声等因素该任务极具挑战性-现有物体识别方法存在诸多问题如局部描述符难以处理结构简单或纹理少的物体全局描述符在遮挡情况下准确性低基于词袋bow的方法计算成本高且信息损失大在机器人抓取方面现有方法在设计通用输入特征和实现快速运行时存在困难"> <strong>研究背景</strong>：物体识别和抓取检测是自主机器人实现视觉感知和与现实世界交互的关键能力。但在复杂环境中，由于视觉信息分割、相似物体区分、抗噪声等因素，该任务极具挑战性。现有物体识别方法存在诸多问题，如局部描述符难以处理结构简单或纹理少的物体，全局描述符在遮挡情况下准确性低，基于词袋（BOW）的方法计算成本高且信息损失大；在机器人抓取方面，现有方法在设计通用输入特征和实现快速运行时存在困难。</span></h3>
+<ul>
+<li><strong>所存在的问题</strong>
+<ul>
+<li><strong>物体识别挑战</strong>：同一类物体外观差异大（类内方差）、不同类物体形状相似（类间相似性），以及识别时间和计算复杂度随学习的物体类别数量线性增加，影响识别准确性和效率。</li>
+<li><strong>机器人抓取难题</strong>：机器人抓取依赖于机械臂的姿态和物体结构属性，现有基于学习的方法在设计能泛化到未知物体的输入特征和实现快速运行时方面存在不足。</li>
+</ul>
+</li>
+<li><strong>解决方法</strong>
+<ul>
+<li><strong>提出统一框架</strong>：设计了一个统一的框架，通过提出新的训练目标函数，在图像层次结构的不同级别（如面片和物体级别）学习离散和连续预测器，降低物体类别和抓取姿态概率分布的不确定性，实现物体识别和抓取检测。</li>
+<li><strong>创新数据表示</strong>：引入“结构嵌入”（STEM）的RGB-D数据表示方法，通过多个特征图（RGB颜色、LAB颜色梯度、局部表面法线、表面法线的局部方向和点云点的投影距离）捕捉点云的外观和结构信息，利用预训练的卷积神经网络（CNNs）提取高度判别性特征。</li>
+<li><strong>构建级联森林架构</strong>：采用分层级联森林架构，在面片和物体级别计算物体类别标签和抓取姿态概率，并将这些概率融合为累积概率输出，用于推断目标物体的类别标签和抓取姿态。</li>
+</ul>
+</li>
+<li><strong>所用到的数据集</strong>
+<ul>
+<li><strong>华盛顿RGB-D物体数据集（Washington RGB-D object dataset）</strong>：包含300个物体，分为51个类别，用于评估物体识别性能，测试不同方法在类别识别和实例识别任务中的准确率。</li>
+<li><strong>华盛顿场景数据集（Washington Scene dataset）</strong>：由办公室、厨房和会议室环境的视频序列组成，用于评估基于深度的物体识别性能，测试模型在复杂场景中对不同物体类别的识别能力。</li>
+<li><strong>康奈尔抓取物体数据集（Cornell Grasping object dataset）</strong>：包含885张图像和标注的抓取矩形框，用于评估物体识别和抓取检测性能，通过不同的数据分割方式测试模型对已知物体新位置和未知物体的泛化能力。</li>
+</ul>
+</li>
+<li><strong>所进行的实验</strong>
+<ul>
+<li><strong>物体识别实验</strong>：在华盛顿RGB-D物体数据集上，对比了不同方法的类别识别和实例识别准确率，结果表明所提框架在两种任务上均优于现有方法；在华盛顿场景数据集上，验证了基于STEM的深度特征在深度物体识别上的优势。</li>
+<li><strong>抓取检测实验</strong>：在康奈尔抓取物体数据集上，使用“矩形度量”评估抓取检测结果，结果显示所提框架从单层级推理到级联分层推理，性能逐步提升，且选择性抓取模型能进一步优化抓取结果。</li>
+<li><strong>特征重要性实验</strong>：通过与从原始RGB-D图像中提取的局部特征对比，验证了基于STEM的CNN特征在分离物体类别和实例方面的优势，即使在训练数据较少的情况下也表现出色。</li>
+<li><strong>参数选择实验</strong>：分析了框架中参数ω、树的数量(N_{t})和分割分辨率对性能的影响，结果表明ω = 0.6时能在分类和回归之间取得最佳平衡，(N_{t}=50)且树深度为6时模型性能较好，增加分割分辨率对整体准确率影响不大</li>
+</ul>
+</li>
+</ul>
+<h3><span id="英文题目safe-multiagent-motion-planning-under-uncertainty-for-drones-using-filtered-reinforcement-learning"> <strong>英文题目</strong>：Safe Multiagent Motion Planning Under Uncertainty for Drones Using Filtered Reinforcement Learning</span></h3>
+<h3><span id="中文题目基于滤波强化学习的无人机在不确定性环境下的安全多智能体运动规划"> <strong>中文题目</strong>：基于滤波强化学习的无人机在不确定性环境下的安全多智能体运动规划</span></h3>
+<ul>
+<li><strong>研究背景</strong>：在杂乱且存在随机不确定性的工作空间中进行多智能体运动规划，是设计可靠自主系统的关键挑战，在交通、物流、监测和农业等领域对这类规划器需求迫切。基于强化学习（RL）的运动规划虽能处理通用动力系统和复杂任务，但缺乏安全保证，且多智能体RL存在非平稳性和可扩展性问题。在确定性和随机环境下，已有多种多智能体运动规划方法被提出，但都存在一定的局限性。</li>
+<li><strong>所存在的问题</strong>
+<ul>
+<li><strong>安全保障不足</strong>：多数基于RL的方法通过软约束来保证安全，存在训练误差，无法提供可靠的安全保障。</li>
+<li><strong>多智能体RL的缺陷</strong>：多智能体RL存在非平稳性和可扩展性问题，训练难以收敛，且随着智能体数量增加，联合状态空间和动作空间维度快速增长，训练难度加大。</li>
+<li><strong>随机环境下规划困难</strong>：在随机环境中，概率约束使运动规划问题更具挑战性，需平衡运动计划的保守性与风险，同时确保满足其他问题目标的解决方案存在。现有一些单智能体运动规划方法扩展到多智能体系统时计算成本过高，且部分方法未考虑多智能体设置或不能保证递归可行性。</li>
+</ul>
+</li>
+<li><strong>解决方法</strong>：提出一种结合RL和基于约束控制的轨迹规划方法，用于在随机、杂乱的工作空间中进行安全的多智能体运动规划。先通过单智能体RL从数据中学习运动计划，该计划可能存在碰撞风险；再利用基于约束控制的安全滤波器，通过凸优化、机会约束和基于集合的方法，对RL生成的运动计划进行在线评估和修正，确保智能体在存在不确定性的情况下，以高概率满足安全约束，实现安全运动规划。</li>
+<li><strong>所用到的数据集</strong>：未使用公开数据集。在研究过程中，自行设定实验场景参数来模拟相关数据，如在实验中使用Crazyflie 2.1 quadrotors作为目标平台，设定其2-D运动的相关动力学参数、噪声协方差、风险界限等数据，用于实验中的控制设定和性能评估，未提及数据的具体来源和性质。</li>
+<li><strong>所进行的实验</strong>
+<ul>
+<li><strong>实验验证</strong>：使用六个四旋翼无人机在3×3米的工作空间进行实验，工作空间内设有七个圆形障碍物和两个目标区域。对比了基于RL控制器和安全滤波器的组合方法与仅使用安全滤波器的基线控制器（比例控制器）。结果显示，RL控制器与安全滤波器结合的方法能使智能体更快到达目标，而基线控制器下粉色智能体常被困在障碍物之间无法到达目标。同时，实验还通过绘制智能体间的间隙图，验证了系统的集体安全性，且求解QP的时间小于控制采样周期，满足实时性要求。</li>
+<li><strong>RL运动规划器评估</strong>：在100×100的网格上对学习到的策略进行确定性评估，结果表明RL智能体在多数初始条件下能学会导航到目标，但策略并不完美，存在碰撞或无法到达目标的情况。然而，RL与安全滤波器的组合确保了安全运动规划，对于不到2%的初始条件，虽RL策略在800个时间步内未到达目标，但仍保证了安全性。</li>
+<li><strong>仿真研究</strong>：将提出的方法与纯MPC（模型预测控制）的运动规划器进行比较。在100次蒙特卡罗模拟中，提出的方法完成运动规划任务的成功率（99%）显著高于纯MPC方法（55%）。使用终端约束通常会使智能体与障碍物及智能体之间的最小间距更大，任务完成时间更短，但也会使问题难度增加。此外，研究还发现提出的方法在保证安全的同时，任务完成时间比无终端约束的纯MPC方法更长，体现了安全与性能之间的权衡。</li>
+<li><strong>可扩展性研究</strong>：通过在仿真中改变智能体数量（从2到24）、减小智能体半径以及降低噪声协方差，收集安全滤波器的计算时间。结果表明，随着智能体数量增加，安全滤波器的计算时间仅适度增加，得益于其凸QP结构。与确定性设置下的前期工作相比，虽计算量有所增加，但仍在可接受范围内，证明了该方法具有一定的可扩展性。</li>
+</ul>
+</li>
+</ul>
+<h3><span id="英文题目safe-reinforcement-learning-in-uncertain-contexts"> <strong>英文题目</strong>：Safe Reinforcement Learning in Uncertain Contexts</span></h3>
+<h3><span id="中文题目不确定环境下的安全强化学习"> <strong>中文题目</strong>：不确定环境下的安全强化学习</span></h3>
+<ul>
+<li><strong>研究背景</strong>：在现实世界中部署机器学习算法时，确保安全性至关重要，安全学习算法应运而生。然而，多数现有算法仅考虑机器人内部动力学及外部约束，未充分关注外部环境变化对机器人动力学的影响。实际应用中，机器人常面临离散的外部环境变化，如操作不同重量物体或在不同表面作业等，这些变化可建模为离散的上下文变量，但现有文献通常假定上下文变量已知，与实际情况不符。</li>
+<li><strong>所存在的问题</strong>
+<ul>
+<li><strong>上下文变量难以测量</strong>：在实际机器人学习场景中，虽然机器人可获取一些与上下文相关的测量信息，如摄像头图像，但难以从这些信息中准确推断上下文变量，如物体重量等。</li>
+<li><strong>现有方法假设不切实际</strong>：多数安全学习算法在处理上下文变量时，假设其已知或可精确测量，这在现实中往往不成立。而考虑未知上下文的现有方法，或假设无上下文信息，或需依赖与上下文直接相关的低维任务参数，均不适用于本文研究场景。</li>
+<li><strong>分类算法缺乏适用的理论保证</strong>：现有的分类算法众多，但在与安全学习算法结合时，缺乏能提供输入相关的频率主义不确定性区间的理论保证，难以满足在不确定环境下安全学习的需求。</li>
+</ul>
+</li>
+<li><strong>解决方法</strong>
+<ul>
+<li><strong>推导多分类的频率主义界限</strong>：基于条件平均嵌入（CMEs）推导多分类的频率主义不确定性界限，为从测量中估计当前上下文概率提供理论依据，从而使分类器输出能用于安全学习算法并提供安全保证。</li>
+<li><strong>提出上下文识别方法</strong>：利用最大平均差异（MMD）比较系统轨迹的概率分布，结合子采样策略和定义的上下文差异阈值，提出一种具有统计保证的上下文识别方法，在分类器不确定性过高时，用于确定当前上下文。</li>
+<li><strong>结合分类与上下文识别的安全学习算法</strong>：将基于CMEs的多分类方法与上下文识别方法相结合，融入安全学习算法。根据分类器输出的概率和不确定性界限，判断是否需要进行上下文识别实验，以确保在不确定环境下安全地学习最优策略。</li>
+</ul>
+</li>
+<li><strong>所用到的数据集</strong>
+<ul>
+<li><strong>Furuta摆实验</strong>：使用Furuta摆实验数据，通过在摆杆上添加不同重量的物体改变动力学特性，用智能手机摄像头拍摄重量图像，将图像转换为灰度图并缩放至32×32像素，用于训练和测试算法。实验中，每次实验开始时随机确定当前上下文（添加不同重量或不添加重量），并基于此进行相关操作和数据收集。</li>
+<li><strong>MNIST数据集</strong>：用于评估分类界限的性能，该数据集包含手写数字图像，任务是预测图像中的数字，并通过算法推断分类的确定性。使用其中前10000个训练图像训练算法，在测试集中每个数字的首次出现处进行评估。</li>
+<li><strong>德国交通标志识别基准（GTSRB）数据集</strong>：用于进一步验证算法在实际场景中的有效性，该数据集包含不同交通标志的图像。随机选择十个交通标志，使用前1000个包含这些标志的图像训练分类器，在测试集中这些标志的首次出现处进行评估。</li>
+</ul>
+</li>
+<li><strong>所进行的实验</strong>
+<ul>
+<li><strong>Furuta摆实验</strong>：以Furuta摆为实验对象，使用SAFEOPT算法学习平衡控制器，在实验过程中，通过随机添加不同重量或不添加重量到摆杆，模拟不同上下文环境。实验初期，由于缺乏先验知识，不确定性界限较高，需通过上下文识别确定当前上下文；随着实验进行，积累的数据使分类器能做出更自信的决策。最终实验结果表明，在所有实验中，Furuta摆的杆从未掉落，成功保证了安全性。</li>
+<li><strong>与SAFEOPT算法对比实验</strong>：在模拟环境中，对比本文算法与未改进的SAFEOPT算法。结果显示，本文算法虽因上下文识别需要额外实验而增加了训练时间，但能有效避免失败；而未考虑上下文的SAFEOPT算法虽训练时间最短，但在实验中积累了较多失败案例。</li>
+<li><strong>敏感性分析实验</strong>：在模拟的Furuta摆实验中，改变分类接受阈值(p_{safe})，研究其对分类结果的影响。实验发现，随着(p_{safe})增加，分类器超过阈值的情况减少，误分类数量也减少；对于难以区分的上下文，分类器常报告低确定性，需进行上下文分类。</li>
+</ul>
+</li>
+</ul>
+<h3><span id="英文题目surface-based-detection-and-6-dof-pose-estimation-of-3-d-objects-in-cluttered-scenes"> <strong>英文题目</strong>：Surface-Based Detection and 6-DoF Pose Estimation of 3-D Objects in Cluttered Scenes</span></h3>
+<h3><span id="中文题目基于表面的杂乱场景中三维物体检测与六自由度位姿估计"> <strong>中文题目</strong>：基于表面的杂乱场景中三维物体检测与六自由度位姿估计</span></h3>
+<ul>
+<li><strong>研究背景</strong>：在基于视觉感知的自主机器人操作中，估计目标物体的六自由度（6-DoF）位姿至关重要。然而，在杂乱的三维环境中，由于遮挡、复杂背景以及不同光照和视角导致的物体外观变化，通用的物体识别和6-DoF位姿估计仍是计算机/机器人视觉领域中未解决的难题。现有方法在处理这些问题时存在诸多不足，因此需要新的方法来解决这些挑战。</li>
+<li><strong>所存在的问题</strong>
+<ul>
+<li><strong>基于关键点的方法</strong>：现有基于关键点或关键点对的物体检测和位姿估计方法，将整幅图像作为一个整体处理，在杂乱场景和物体部分遮挡时，易对背景或非目标区域进行不必要或错误的处理，且对目标物体区域的处理可能不足。同时，该方法存在参数难以确定、依赖大量计算来匹配关键点、难以处理噪声和同一物体的多个实例等问题。</li>
+<li><strong>基于分割的方法</strong>：基于RGB-D数据分割的物体检测方法，部分仅关注物体检测而未涉及6-DoF位姿估计；有的虽进行位姿估计，但存在分割不准确、对物体形状和纹理要求较高、无法直接应用于杂乱场景等问题。</li>
+<li><strong>基于外观的三维物体建模方法</strong>：现有的基于外观的三维物体建模工作通常需要在非常受控的环境中进行，难以获取完整的物体模型，且无法处理物体表面的透明区域。</li>
+</ul>
+</li>
+<li><strong>解决方法</strong>
+<ul>
+<li><strong>建立物体模型</strong>：提出一种基于RGB-D图像中分割出的光滑表面建立物体模型的策略。通过在不同视角下拍摄物体的RGB-D图像，利用环境中的关键点（如两个具有丰富视觉信息的地标）来注册不同视图，构建包含自动分割和注册的3-D光滑表面、视觉特征及相对位姿信息的物体模型。该模型对物体表面信息缺失（如透明区域）具有鲁棒性，且无需精确的物体和相机位置信息，便于自主构建。</li>
+<li><strong>物体检测和位姿估计</strong>：基于构建的物体模型，提出一种从单张图像中进行物体检测和6-DoF位姿估计的策略。先对测试图像中的光滑几何表面进行分割并描述其视觉特征，利用训练好的多类支持向量机（SVMs）分类器对表面片段进行识别和标注，再通过匹配ASIFT关键点对预测物体模型的位姿，必要时使用ICP算法优化位姿估计。之后，通过场景重建和基于图割的算法去除冗余和错误的物体识别结果，提高检测和位姿估计的准确性。</li>
+</ul>
+</li>
+<li><strong>所用到的数据集</strong>：自行创建了包含17个测试集的数据集，共92张RGB-D图像，这些图像由Microsoft Kinect从不同杂乱场景的不同视角拍摄。每个测试图像包含6 - 14个被遮挡的物体或同一物体的不同实例。此外，在训练过程中，为每个物体拍摄5×6张RGB-D图像，为背景拍摄12张RGB-D图像用于构建物体模型和训练分类器。</li>
+<li><strong>所进行的实验</strong>
+<ul>
+<li><strong>训练实验</strong>：对不同的k值（128、256、512、1024、2048）进行测试，选择k = 512作为ASIFT直方图的维度，并确定SVMs训练参数C = 6.73和γ = 0.04。通过K折交叉验证，分析不同视觉特征（HSV、ASIFT及其组合）下训练的SVMs分类器的最优准确率。</li>
+<li><strong>测试实验</strong>：将所有测试表面片段分类到物体标签的结果与物体实例的联合检测和位姿估计结果进行比较。结果表明，虽表面片段分类的精度 - 召回率曲线中召回率较高时精度较低，但物体实例</li>
+</ul>
+</li>
+</ul>
+<h3><span id="英文题目the-gr2-gripper-an-underactuated-hand-for-open-loop-in-hand-planar-manipulation"> <strong>英文题目</strong>：The GR2 Gripper: An Underactuated Hand for Open-Loop In-Hand Planar Manipulation</span></h3>
+<h3><span id="中文题目gr2夹爪一种用于开环手内平面操作的欠驱动手"> <strong>中文题目</strong>：GR2夹爪：一种用于开环手内平面操作的欠驱动手</span></h3>
+<ul>
+<li><strong>研究背景</strong>：在机器人操作领域，使用机器人夹爪在不借助高保真接触传感器、主动/滑动表面或先验工作空间探索的情况下，对未知物体进行灵巧操作仍是一个有待解决的问题，然而这一能力在许多机器人应用中至关重要。单自由度两指机器人夹爪虽在工业和研究中广泛应用，但在执行装配前的零件对齐等任务时存在局限性。为了克服这些局限性，增强夹爪的能力，实现对抓取物体的重新定向等手内操作，成为了研究的重点方向。</li>
+<li><strong>所存在的问题</strong>：传统两指机器人夹爪功能较为单一，通常仅用于抓取操作，在处理需要灵巧操作的任务时存在不足。如在装配任务中，面对零件的不对准问题，传统夹爪无法独立调整物体方向，需借助通用冗余机械臂、额外手腕机构或重新抓取等策略，但这些方法会受到空间限制、关节限制等因素制约，在非结构化环境中问题更为突出。同时，传统夹爪在进行手内操作时，需要高保真接触传感器和数值算法来协调手指运动，这增加了系统的复杂性和成本，限制了其实用性。</li>
+<li><strong>解决方法</strong>：提出GR2夹爪概念，对传统两指机器人夹爪的拓扑结构进行改进。将传统固定几何形状的底座改为由两个通过枢轴关节连接的三元连杆组成的可变几何形状的四元连杆，其中一个三元连杆为夹爪的接地底座，另一个可绕枢轴关节旋转，且通过拉伸弹簧与底座相连。采用简单的低电平位置 - 扭矩切换控制方案，在操作过程中，一个手指通过位置控制推动物体运动，另一个手指通过扭矩控制维持接触约束，无需精确协调手指运动即可保持对物体的稳定抓取。在抓取物体前，GR2夹爪的手指类似独立的四杆连杆；抓取物体后，输入角度固定，手 - 物体系统形成封闭机制，通过中央三角形枢轴的旋转改变四元连杆的尺寸，实现对物体的重新定向操作。</li>
+<li><strong>所用到的数据集</strong>：未使用公开数据集。研究过程中，自行设计并制作了一系列不同直径的圆形和方形测试物体，用于评估GR2夹爪的手内操作性能。方形物体在测试时，考虑了手指垫与物体侧面和角落接触的不同情况。这些测试物体的设计和使用，为研究GR2夹爪在不同条件下的操作表现提供了数据支持。</li>
+<li><strong>所进行的实验</strong>：构建GR2夹爪原型，其结构组件采用3D打印，指尖可拆卸以测试不同接触几何形状，中央三角形枢轴可锁定或预加载弹性带。每个手指由MX - 28 Dynamixel伺服电机通过肌腱驱动，通过特定方式实现扭矩控制模式。对GR2夹爪进行手内操作测试，使用Ascension trakSTAR传感器测量测试物体在操作过程中的位移和方向变化。在测试中，对不同尺寸的圆形和方形物体进行操作，对比中央三角形枢轴锁定和解锁两种情况下夹爪的操作性能。实验结果表明，解锁中央三角形枢轴时，GR2夹爪对不同尺寸物体能实现大致相同的笛卡尔工作空间，且物体的重新定向范围更大；而枢轴锁定时，传统设计的两指夹爪对较小物体的重新定向范围较小，最大可实现的方向变化也减小。此外，实验还发现枢轴解锁有助于系统保持与物体的稳定接触，减少滑动，且实际操作中滚动接触更常见，中央枢轴提供的额外自由度有助于克服单个手指的运动学限制。</li>
+</ul>
+
+      
+    </div>
+    <div class="article-footer">
+      <!-- <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="http://example.com/2025/04/21/paper_Robot_tro_list/" title="PaperReading-Robot_list-TRO" target="_blank" rel="external">http://example.com/2025/04/21/paper_Robot_tro_list/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote> -->
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/chandlerye" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/favicon.ico" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/chandlerye" target="_blank"><span class="text-dark">Chandler</span><small class="ml-1x">一头牛马</small></a></h3>
+        <div>江上两条红船，寒风斜雨摇摆</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/2025/04/21/paper_Robot_icra_list/" title="PaperReading-Robot_list-ICRA"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/2025/04/21/paper_Robot_cvpr_list/" title="PaperReading-Robot_list-CVPR"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  
+  <div class="bar-right">
+    
+  </div>
+  </div>
+</nav>
+  
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/chandlerye" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+
+
+
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/js/plugin.min.js"></script>
+
+
+<script src="/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+
+
+
+
+   
+
+
+
+
+   
+
+
+
+
+
+
+</body>
+</html>
