@@ -17,21 +17,21 @@
   <meta http-equiv="window-target" content="_top" />
   
   
-  <title>Everything | Chandler&#39;s blog</title>
-  <meta name="description" content="linux配置免密登录 screen命令 ssh: connect to host github.com port 22: Connection refused nignx正向代理配置 code-server错误解决 一些windows指令 图卷积神经网络基础   真理  酸葡萄心理 好坏制度     ###vscode python调试的launch.json配置文件 12345678910">
+  <title>环境配置 | Chandler&#39;s blog</title>
+  <meta name="description" content="代理设置 Ubuntu anaconda环境变量设置 Ubuntu cuda环境变量设置 conda清华换源 Ubuntu22.04 开启3389端口远程连接 vscode python调试的launch.json配置文件 linux配置免密登录 screen命令 nignx正向代理配置 windows指令    代理设置  windows  12set http_proxy&#x3D;http:&#x2F;&#x2F;1">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Everything">
-<meta property="og:url" content="http://example.com/2023/09/30/knowledge_daily_study/index.html">
+<meta property="og:title" content="环境配置">
+<meta property="og:url" content="http://example.com/2025/04/28/env_config/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="linux配置免密登录 screen命令 ssh: connect to host github.com port 22: Connection refused nignx正向代理配置 code-server错误解决 一些windows指令 图卷积神经网络基础   真理  酸葡萄心理 好坏制度     ###vscode python调试的launch.json配置文件 12345678910">
+<meta property="og:description" content="代理设置 Ubuntu anaconda环境变量设置 Ubuntu cuda环境变量设置 conda清华换源 Ubuntu22.04 开启3389端口远程连接 vscode python调试的launch.json配置文件 linux配置免密登录 screen命令 nignx正向代理配置 windows指令    代理设置  windows  12set http_proxy&#x3D;http:&#x2F;&#x2F;1">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-09-30T15:34:12.030Z">
-<meta property="article:modified_time" content="2024-11-29T11:53:20.117Z">
+<meta property="article:published_time" content="2025-04-28T03:05:09.549Z">
+<meta property="article:modified_time" content="2025-04-28T04:47:56.905Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="编程基础知识">
 <meta name="twitter:card" content="summary">
   <!-- Canonical links -->
-  <link rel="canonical" href="http://example.com/2023/09/30/knowledge_daily_study/index.html">
+  <link rel="canonical" href="http://example.com/2025/04/28/env_config/index.html">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -203,14 +203,14 @@
   
 <main class="main" role="main">
   <div class="content">
-  <article id="post-knowledge_daily_study" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+  <article id="post-env_config" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
     
     <div class="article-header">
       
         
   
     <h1 class="article-title" itemprop="name">
-      Everything
+      环境配置
     </h1>
   
 
@@ -218,8 +218,8 @@
       <div class="article-meta">
         <span class="article-date">
     <i class="icon icon-calendar-check"></i>
-	<a href="/2023/09/30/knowledge_daily_study/" class="article-date">
-	  <time datetime="2023-09-30T15:34:12.030Z" itemprop="datePublished">2023-09-30</time>
+	<a href="/2025/04/28/env_config/" class="article-date">
+	  <time datetime="2025-04-28T03:05:09.549Z" itemprop="datePublished">2025-04-28</time>
 	</a>
 </span>
         
@@ -237,7 +237,7 @@
 
         
 
-        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2023/09/30/knowledge_daily_study/#comments" class="article-comment-link">评论</a></span>
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2025/04/28/env_config/#comments" class="article-comment-link">评论</a></span>
         
       </div>
     </div>
@@ -245,24 +245,36 @@
       
         <!-- toc -->
 <ul>
+<li><a href="#%E4%BB%A3%E7%90%86%E8%AE%BE%E7%BD%AE">代理设置</a></li>
+<li><a href="#ubuntu-anaconda%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E8%AE%BE%E7%BD%AE">Ubuntu anaconda环境变量设置</a></li>
+<li><a href="#ubuntu-cuda%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E8%AE%BE%E7%BD%AE">Ubuntu cuda环境变量设置</a></li>
+<li><a href="#conda%E6%B8%85%E5%8D%8E%E6%8D%A2%E6%BA%90">conda清华换源</a></li>
+<li><a href="#ubuntu2204-%E5%BC%80%E5%90%AF3389%E7%AB%AF%E5%8F%A3%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5">Ubuntu22.04 开启3389端口远程连接</a></li>
+<li><a href="#vscode-python%E8%B0%83%E8%AF%95%E7%9A%84launchjson%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6">vscode python调试的launch.json配置文件</a></li>
 <li><a href="#linux%E9%85%8D%E7%BD%AE%E5%85%8D%E5%AF%86%E7%99%BB%E5%BD%95">linux配置免密登录</a></li>
 <li><a href="#screen%E5%91%BD%E4%BB%A4">screen命令</a></li>
-<li><a href="#ssh-connect-to-host-githubcom-port-22-connection-refused">ssh: connect to host github.com port 22: Connection refused</a></li>
 <li><a href="#nignx%E6%AD%A3%E5%90%91%E4%BB%A3%E7%90%86%E9%85%8D%E7%BD%AE">nignx正向代理配置</a></li>
-<li><a href="#code-server%E9%94%99%E8%AF%AF%E8%A7%A3%E5%86%B3">code-server错误解决</a></li>
-<li><a href="#%E4%B8%80%E4%BA%9Bwindows%E6%8C%87%E4%BB%A4">一些windows指令</a></li>
-<li><a href="#%E5%9B%BE%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80httpxtf615com20190224gcn">图卷积神经网络基础</a></li>
-</ul>
-<ul>
-<li><a href="#center%E7%9C%9F%E7%90%86center"><center>真理<center></center></center></a>
-<ul>
-<li><a href="#%E9%85%B8%E8%91%A1%E8%90%84%E5%BF%83%E7%90%86">酸葡萄心理</a></li>
-<li><a href="#%E5%A5%BD%E5%9D%8F%E5%88%B6%E5%BA%A6">好坏制度</a></li>
-</ul>
-</li>
+<li><a href="#windows%E6%8C%87%E4%BB%A4">windows指令</a></li>
 </ul>
 <!-- tocstop -->
-<p>###vscode python调试的launch.json配置文件</p>
+<h3><span id="代理设置"> 代理设置</span></h3>
+<blockquote>
+<p>windows</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">set http_proxy=http://192.168.1.140:1080</span><br><span class="line">set http_proxys=http://192.168.1.140:1080</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>ubuntu</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">set http_proxy=socks5://192.168.1.140:1080</span><br><span class="line">set https_proxy=socks5://192.168.1.140:1080</span><br></pre></td></tr></table></figure>
+<h3><span id="ubuntu-anaconda环境变量设置"> Ubuntu anaconda环境变量设置</span></h3>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sudo gedit ~/.bashrc</span><br><span class="line"></span><br><span class="line">export PATH=&quot;~/anaconda3/bin&quot;:$PATH</span><br><span class="line"></span><br><span class="line">source ~/.bashrc</span><br></pre></td></tr></table></figure>
+<h3><span id="ubuntu-cuda环境变量设置"> Ubuntu cuda环境变量设置</span></h3>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">sudo nano ~/.bashrc</span><br><span class="line"></span><br><span class="line">export PATH=/usr/local/cuda/bin:$PATH</span><br><span class="line"></span><br><span class="line">export LD_LIBRARY_PATH=/usr/local/cuda/lib64:$LD_LIBRARY_PATH</span><br><span class="line"></span><br><span class="line">source ~/.bashrc</span><br><span class="line"></span><br><span class="line">nvcc --version</span><br></pre></td></tr></table></figure>
+<h3><span id="conda清华换源"> conda清华换源</span></h3>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/</span><br><span class="line">conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/</span><br><span class="line">conda config --set show_channel_urls yes</span><br></pre></td></tr></table></figure>
+<h3><span id="ubuntu2204-开启3389端口远程连接"> Ubuntu22.04 开启3389端口远程连接</span></h3>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --add-port=3389/tcp --permanent</span><br><span class="line">firewall-cmd  --reload</span><br></pre></td></tr></table></figure>
+<h3><span id="vscode-python调试的launchjson配置文件"> vscode python调试的launch.json配置文件</span></h3>
 <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;version&quot;</span><span class="punctuation">:</span> <span class="string">&quot;0.2.0&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;configurations&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">        <span class="punctuation">&#123;</span></span><br><span class="line">            <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;Python: Run Image Detection Demo&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;debugpy&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;request&quot;</span><span class="punctuation">:</span> <span class="string">&quot;launch&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;program&quot;</span><span class="punctuation">:</span> <span class="string">&quot;$&#123;workspaceFolder&#125;/demo/image_demo.py&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;console&quot;</span><span class="punctuation">:</span> <span class="string">&quot;integratedTerminal&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;args&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">                </span><br><span class="line">                <span class="string">&quot;demo/demo.jpg&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="string">&quot;configs/mask_rcnn/mask-rcnn_r101_fpn_1x_coco.py&quot;</span><span class="punctuation">,</span> </span><br><span class="line">                <span class="string">&quot;--weights&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="string">&quot;mymodel/mask_rcnn_r101_fpn_1x_coco_20200204-1efe0ed5.pth&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="string">&quot;--texts&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="string">&quot;bench&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="string">&quot;--device&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="string">&quot;cuda:0&quot;</span></span><br><span class="line">            <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;env&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">                <span class="comment">// 如果有需要，可以在这里添加额外的环境变量</span></span><br><span class="line">            <span class="punctuation">&#125;</span></span><br><span class="line">        <span class="punctuation">&#125;</span></span><br><span class="line">    <span class="punctuation">]</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
 <h3><span id="linux配置免密登录"> linux配置免密登录</span></h3>
 <blockquote>
@@ -275,18 +287,9 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat id_rsa.pub &gt;&gt; authorized_keys</span><br></pre></td></tr></table></figure>
 <h3><span id="screen命令"> screen命令</span></h3>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 新建窗口</span></span><br><span class="line">screen -S  name</span><br><span class="line"></span><br><span class="line"><span class="comment"># 挂起 [detached] </span></span><br><span class="line">ctrl + a + d  </span><br><span class="line"></span><br><span class="line"><span class="comment"># 列出窗口列表</span></span><br><span class="line">screen -<span class="built_in">ls</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 杀死多余窗口</span></span><br><span class="line"><span class="built_in">kill</span> -9 threadnum</span><br><span class="line"></span><br><span class="line"><span class="comment"># 清除死去的窗口</span></span><br><span class="line">screen -wipe</span><br></pre></td></tr></table></figure>
-<h3><span id="ssh-connect-to-host-githubcom-port-22-connection-refused"> ssh: connect to host  port 22: Connection refused</span></h3>
-<blockquote>
-<p>解决方法：</p>
-</blockquote>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ vim ~/.ssh/config</span><br></pre></td></tr></table></figure>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># Add section below to it</span><br><span class="line">Host github.com</span><br><span class="line">  Hostname ssh.github.com</span><br><span class="line">  Port 443</span><br></pre></td></tr></table></figure>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ ssh -T git@github.com</span><br><span class="line">Hi xxxxx! You&#x27;ve successfully authenticated, but GitHub does not</span><br><span class="line">provide shell access.</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <h3><span id="nignx正向代理配置"> nignx正向代理配置</span></h3>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#正向代理转发http请求 </span></span><br><span class="line">server &#123;</span><br><span class="line">    <span class="comment">#指定DNS服务器IP地址 </span></span><br><span class="line">    <span class="comment"># resolver 114.114.114.114;</span></span><br><span class="line">    <span class="comment">#监听80端口，http默认端口80</span></span><br><span class="line">    listen <span class="number">80</span>;</span><br><span class="line">    <span class="comment">#服务器IP或域名</span></span><br><span class="line">    server_name  xxx.xxxxx.top;</span><br><span class="line">	</span><br><span class="line">    <span class="comment">#正向代理转发http请求</span></span><br><span class="line">    location / &#123;</span><br><span class="line">        proxy_pass                 http://xxxxx.top:<span class="number">20003</span>;</span><br><span class="line">        proxy_set_header           HOST $host;</span><br><span class="line">        proxy_buffers              <span class="number">256</span> 4k;</span><br><span class="line">        proxy_max_temp_file_size   0k;</span><br><span class="line">        proxy_connect_timeout      <span class="number">30</span>;</span><br><span class="line">        proxy_send_timeout         <span class="number">60</span>;</span><br><span class="line">        proxy_read_timeout         <span class="number">60</span>;</span><br><span class="line">        proxy_next_upstream error  timeout invalid_header http_502;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3><span id="code-server错误解决"> code-server错误解决</span></h3>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#正向代理转发http请求 code2</span></span><br><span class="line">server &#123;</span><br><span class="line">    <span class="comment">#指定DNS服务器IP地址 </span></span><br><span class="line">    <span class="comment"># resolver 114.114.114.114;</span></span><br><span class="line">    <span class="comment">#监听80端口，http默认端口80</span></span><br><span class="line">    listen <span class="number">80</span>;</span><br><span class="line">    <span class="comment">#服务器IP或域名</span></span><br><span class="line">    server_name  xxx.xxxxx.top;</span><br><span class="line">	</span><br><span class="line">    <span class="comment">#正向代理转发http请求</span></span><br><span class="line">    location / &#123;</span><br><span class="line">        proxy_pass                 http://xxxxx.top:<span class="number">20013</span>;</span><br><span class="line">        proxy_set_header           HOST $host;</span><br><span class="line">        proxy_buffers              <span class="number">256</span> 4k;</span><br><span class="line">        proxy_max_temp_file_size   0k;</span><br><span class="line">        proxy_connect_timeout      <span class="number">30</span>;</span><br><span class="line">        proxy_send_timeout         <span class="number">60</span>;</span><br><span class="line">        proxy_read_timeout         <span class="number">60</span>;</span><br><span class="line">        proxy_next_upstream error  timeout invalid_header http_502;  </span><br><span class="line">        proxy_set_header Upgrade $http_upgrade;    </span><br><span class="line">        proxy_set_header Connection upgrade;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3><span id="一些windows指令"> 一些windows指令</span></h3>
+<h3><span id="windows指令"> windows指令</span></h3>
 <blockquote>
 <p>Windows转发wsl</p>
 </blockquote>
@@ -295,82 +298,6 @@
 <p>代理设置</p>
 </blockquote>
 <figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">set</span> http_proxy=sock5://<span class="number">192</span>.<span class="number">168</span>.<span class="number">31</span>.<span class="number">100</span>:<span class="number">1080</span></span><br><span class="line"><span class="built_in">set</span> https_proxy=sock5://<span class="number">192</span>.<span class="number">168</span>.<span class="number">31</span>.<span class="number">100</span>:<span class="number">1080</span></span><br></pre></td></tr></table></figure>
-<h3><span id="图卷积神经网络基础"> </span></h3>
-<blockquote>
-<p><strong>麻黄</strong><br>
-麻黄碱属于肾上腺素受体激动剂，是从植物麻黄草中提取的一种生物碱。有以下药理作用：1、舒张支气管。2、增加心肌收缩力量，加大心脏血液输出量。3、能够兴奋中枢神经系统。在临床上用于慢性低血压、缓解支气管哮喘、对抗荨麻疹、血管神经性水肿。</p>
-</blockquote>
-<blockquote>
-<p>厚此薄彼，汉语成语，拼音是hòu cǐ bó bǐ，比喻对人、对事不同看待。</p>
-</blockquote>
-<h2><span id="真理"> <center>真理<center></center></center></span></h2>
-<blockquote>
-<p>不患寡而患不均</p>
-</blockquote>
-<h3><span id="酸葡萄心理"> 酸葡萄心理</span></h3>
-<blockquote>
-<p>否定自己之前想吃葡萄的意愿，把自己的“不得已”包装成一种自由，因为我是主动不吃的，因为葡萄不好吃。酸葡萄心理的本质是客观环境无力改变，那我就改变自己，调整自己来适应环境酸葡萄心理和甜柠檬心理往往是同时出现。两者一组合，往小了说，得过且过凑合用吧，往大了说，那就可以培养出奴性。比如说在古代皇权社会，臣民得不到自由，于是就会嫌弃自由，同时我没办法摆脱专制，那我就转而拥护专制，嗷嗷赞美统治者，人一旦经历这两个心理过程，奴性就养成了。奴才在得不到葡萄的情况下，给自己编造了甜柠檬神话</p>
-</blockquote>
-<h3><span id="好坏制度"> 好坏制度</span></h3>
-<blockquote>
-<p>一个制度的好坏，并不在于它鼓吹或奉行什么主义，而在于现实层面权力结构是否合理。<br>
-权力结构合理，有制约有监督，即使有国王皇帝也并不意味着就是君主专制。<br>
-但权力结构是垄断的，即使国名是民主主义共和国、宪法中写满民主，即使鼓吹解放全人类，自诩手里拿着一本宇宙真理，那也注定是暴政。</p>
-</blockquote>
-<blockquote>
-<p>马克思主义认为国家是阶级矛盾不可调和的产物，认为国家是统治阶级用来压迫另一阶级，维护自身统治的工具</p>
-</blockquote>
-<blockquote>
-<p>他们是恐惧的奴仆，谁掌控他们生死他们就爱谁</p>
-</blockquote>
-<blockquote>
-<p>掠之于民，民变在即便掠之于商</p>
-</blockquote>
-<blockquote>
-<p>摆不完的阔气，弄不完的权，吃不完的珍馐，花不完的钱，听不完的颂歌，收不完的了礼，享不尽的荣华富贵，过不完的年</p>
-</blockquote>
-<blockquote>
-<p>“长君之恶其罪小，逢君之恶其罪大”，只知道感恩戴德，不知道批评监督；只知道义务，不知道权利；只关心私人事务，不关心公共事务，对苦难和社会问题视而不见，对指出问题的人恶语相向，对持不同意见者进行思想霸凌，这些人要么是别有用心，要么是故意装傻，无论是哪一种，都是赢在当下，祸在千秋</p>
-</blockquote>
-<blockquote>
-<p>权力导致腐败，绝对的权力导致绝对的腐败</p>
-</blockquote>
-<blockquote>
-<p>他们始终把政治作为达成经济目的的手段</p>
-</blockquote>
-<blockquote>
-<p>传统文化占支配地位的部分是最腐朽的东西，必须进行严厉的自我批判，剩下的内容才有资格和共产主义拉关系。</p>
-</blockquote>
-<blockquote>
-<p>了解自己落后的原因，看看别人强大的根源，一味地仇恨，不会让人进步，只会让人疯狂</p>
-</blockquote>
-<blockquote>
-<p>“长君之恶其罪小，逢君之恶其罪大”，只知道感恩戴德，不知道批评监督；只知道义务，不知道权利；只关心私人事务，不关心公共事务，对苦难和社会问题视而不见，对指出问题的人恶语相向，对持不同意见者进行思想霸凌，这些人要么是别有用心，要么是故意装傻，无论是哪一种，都是赢在当下，祸在千秋</p>
-</blockquote>
-<blockquote>
-<p>一句没有经过任何证明的、不包含形容词副词修饰的、仅仅带了性别标签的话语，就成了某性别伪装成弱势群体无下限予取予求的遮羞布。</p>
-</blockquote>
-<blockquote>
-<p>亡国亡天下的区别，改变了皇帝的姓名和国家的称号，叫亡国。而灭绝人性和仁义，把人搞得和禽兽一样互相残害，叫亡天下。</p>
-</blockquote>
-<blockquote>
-<p>乌合之中只有把渺小的个体投身于一个虚无缥缈的伟大的事业中的时候，他才会觉得自己的人生有价值，才会觉得自己也曾干过大事业，绝对看不清自己从始至终炮灰人生的这种命运本质</p>
-</blockquote>
-<blockquote>
-<p>极权政治的一大特点，就是所有的政治博弈，都是暗箱操作，权力完全在一堆秘不示人的潜规则下运作，不可预知。拿到台面上来的结果都是不明不白的结果。所有人的安危都寄于一人之念，包括独裁者自己都没有绝对的安全可言，在独夫之下，都是奴才。</p>
-</blockquote>
-<blockquote>
-<p>在特权政治下的政治权力，不是被用来表达人民的意志，图谋人民的利益，在特权政治下的政治权力不是被运用来表达人民的意志，图谋人民的利益，反而是在“国家的”或“国民的”名义下，被运用来管制人民，奴役人民，以达成权势者自私自利的目的。这种政治形态存在的前提，是人民还被束缚被限制在愚昧无知的状态中</p>
-</blockquote>
-<blockquote>
-<p>文化存异，文明趋同</p>
-</blockquote>
-<blockquote>
-<p>但是特权阶级宣称他们的特权是天授，乃天命。后来又学会了更厉害的招数，那就是把自己隐藏在民族，国家这些宏大叙事后面，人民反对他们的特权就是逆天而行，就是不爱国。没有知识的民众也不晓得研究这些话有没有道理，只是盲目附和支持特权阶级，反而去反对那些为他们争取平等和自由权利的人</p>
-</blockquote>
-<blockquote>
-<p>奇技淫巧终究是小道，家国发展，需注重礼法，人情世故，钻营经济仕途，弘扬酒文化，方是正途。取中庸之道，无为而成大才。茶杯的摆放，酒桌上的礼仪，点菜的取舍，酒品的选择，敬酒的顺序，宣传稿的措辞，领导照相时的站位，领导的用词，领导的潜沟通，领导外部发言、领导内部谈话，领导之间的关系，这些才是艺术。我们还年轻，现在刚进入社会几年还不懂，年纪轻轻不理解这些，未来要学的还很多，路还很长</p>
-</blockquote>
 
       
     </div>
@@ -380,7 +307,7 @@
     
     <li class="post-copyright-link hidden-xs">
       <strong>本文链接：</strong>
-      <a href="http://example.com/2023/09/30/knowledge_daily_study/" title="Everything" target="_blank" rel="external">http://example.com/2023/09/30/knowledge_daily_study/</a>
+      <a href="http://example.com/2025/04/28/env_config/" title="环境配置" target="_blank" rel="external">http://example.com/2025/04/28/env_config/</a>
     </li>
     
     <li class="post-copyright-license">
@@ -424,13 +351,9 @@
   
   <ul class="pager pull-left">
     
-    <li class="prev">
-      <a href="/2023/10/04/cpp_tips/" title="C++基础知识"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
-    </li>
-    
     
     <li class="next">
-      <a href="/2023/09/30/coding_table_opeartion/" title="Coding-表格操作"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+      <a href="/2025/04/21/paper_Robot_icra_list/" title="PaperReading-Robot_list-ICRA"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
     </li>
     
     
