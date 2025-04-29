@@ -26,7 +26,7 @@
 <meta property="og:description" content="英文题目：CloudGripper: An Open Source Cloud Robotics Testbed for Robotic Manipulation Research, Benchmarking and Data Collection at Scale  中文题目：CloudGripper：一个用于机器人操作研究、基准测试和大规模数据收集的开源云机器人测试平台  研究背景：随着深度">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-04-21T08:28:48.661Z">
-<meta property="article:modified_time" content="2025-04-21T08:29:38.439Z">
+<meta property="article:modified_time" content="2025-04-29T11:22:46.725Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="Paper-Robot_list">
 <meta property="article:tag" content="Paper-ICRA">
@@ -293,32 +293,6 @@
 <ul>
 <li><strong>仿真实验</strong>：使用Pytorch在NVIDIA GPU上实现CMG-Net，以深度相机捕获的深度图转换后的点云作为输入，并随机下采样。采用抓取成功率（SR）、抓取完成率（CR）和抓取质量作为评估指标，对比GraspIt!和Multi-FinGan等方法。结果表明，CMG-Net在各项指标上均有显著提升，能很好地处理小物体并为复杂场景生成高质量的抓取姿势。此外，通过消融实验验证了网络中相关模块的有效性。</li>
 <li><strong>真实世界实验</strong>：在真实环境实验中，使用配备三指灵巧手的Franka Emika Panda机器人和Intel RealSense D435相机。通过深度图像分割去除背景和桌面点，将物体点云输入CMG-Net获取最终抓取姿势。在不同数量物体的场景中进行实验，结果显示在6物体场景中成功率可达74.4%，完成率可达86.1%，在9物体场景中也有相似表现，证明了该方法在杂乱环境中对未知物体的良好适应性。</li>
-</ul>
-</li>
-</ul>
-<h3><span id="英文题目design-principle-of-a-dual-actuated-robotic-hand-with-anthropomorphic-self-adaptive-grasping-and-dexterous-manipulation-abilities"> <strong>英文题目</strong>：Design Principle of a Dual-Actuated Robotic Hand With Anthropomorphic Self-Adaptive Grasping and Dexterous Manipulation Abilities</span></h3>
-<h3><span id="中文题目具有拟人自适应抓取和灵巧操作能力的双驱动机器人手的设计原理"> <strong>中文题目</strong>：具有拟人自适应抓取和灵巧操作能力的双驱动机器人手的设计原理</span></h3>
-<ul>
-<li><strong>研究背景</strong>：机器人设计的核心挑战之一是创造出具备人类抓取功能、灵巧操作能力且结构紧凑的机器人手，这在自动化工厂、服务机器人、危险环境作业和康复工程等领域有着迫切需求。早期科学家尝试开发全驱动多指灵巧手，但因使用过多的驱动器，导致此类手体积大、重量大、电路复杂且成本高昂，限制了其在实际场景中的应用。后来，自适应欠驱动机制成为欠驱动机器人手设计的重要部分，一系列基于不同技术的欠驱动机器人手不断涌现，但现有设计仍存在一些问题，如难以执行需要拇指和手指复杂协调运动的操作，且基于整体手协同的设计原则与人类手的内在分组运动特征不符，存在功能和控制差距。</li>
-<li><strong>所存在的问题</strong>
-<ul>
-<li><strong>全驱动设计的局限</strong>：全驱动多指灵巧手虽理论上能实现与人类手相同的灵巧性，但过多的驱动器带来了尺寸、重量、电路和成本等方面的问题，限制了其实际应用。</li>
-<li><strong>欠驱动设计的不足</strong>：自适应欠驱动机制虽减少了电机数量，提高了手指抓取物体的自适应能力，但现有欠驱动设计存在固定的运动模式，难以实现人手的一些灵巧操作和抓取动作，且基于整体手协同的设计原则与人类手的运动特征不一致，导致机器人手与人类手在功能和控制上存在差距。</li>
-</ul>
-</li>
-<li><strong>解决方法</strong>
-<ul>
-<li><strong>提出双驱动设计原则</strong>：构建一种设计理论，使拇指和手指能够独立驱动，同时四个手指协同驱动，确保设计的手具有人类手的固有运动特征，为丰富的抓取功能和灵巧操作能力奠定基础。</li>
-<li><strong>设计单驱动差动机构</strong>：发明一种新颖的单驱动差动手掌机构，将人类的两种主要特征抓取模式融入其中，通过独特的差动元件（齿轮、拖轴和滑块元件），确保无论在抓取过程中进行何种差动过程，该机构都能复制人类手的抓取行为和姿势。</li>
-<li><strong>采用混合驱动方式</strong>：对于拇指的驱动，采用混合驱动方案，即拇指的屈伸由电机主动控制，外展/内收由手动调节，在保证拇指主要功能的同时，考虑到了假肢手对尺寸的严格要求。</li>
-</ul>
-</li>
-<li><strong>所用到的数据集</strong>：文中未提及使用公开数据集。实验中使用的人体运动数据是从包含30名受试者和33种抓取类型的研究中提取而来，用于获取人体运动的相关特征，以验证所设计机器人手的运动传输关系与人类手的相似性。</li>
-<li><strong>所进行的实验</strong>
-<ul>
-<li><strong>机器人手的实现与运动传输关系验证</strong>：根据双驱动设计原则，制作了集成度高的mini X-hand，并列出了关键机构参数。通过对比机器人手与人类手的运动传输矩阵，发现两者高度接近，差异极小（(\left|U_{primary }^{robot }-U_{primary }^{human }\right|<em>{F}^{2} /\left|U</em>{primary }^{human }\right|_{F}^{2}=0.0008)），证明设计的机器人手能在实践中复制人类的抓取特征。</li>
-<li><strong>拟人运动能力评估</strong>：让机器人手和人类手佩戴数据手套进行抓取实验，实验对象包括球、圆柱体和小方块等不同形状和大小的物体，涵盖多种抓取类型。通过记录关节角度数据并计算相关性，结果显示在五种抓取中，最高相关系数均超过0.91，表明机器人手在典型自适应抓取过程中能保持拟人化的抓取行为。</li>
-<li><strong>抓取和操作能力测试</strong>：依据Feix分类法对mini X-hand的日常抓取能力进行评估，结果表明它能完成29种抓取类型。实验还验证了机器人手可以用不同的抓取力稳定抓取物体，并且在操作能力方面，虽然存在一定限制，但能够实现部分人类手的操作功能，如操作镊子、球以及拧瓶盖等，证明了双驱动设计原则赋予了机器人手一定的操作能力。</li>
 </ul>
 </li>
 </ul>
