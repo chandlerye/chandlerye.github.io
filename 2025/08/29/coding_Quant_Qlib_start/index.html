@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>Coding-量化交易-qlib workflow | Chandler&#39;s blog</title>
+  <meta name="description" content="摘要 Csv数据转化 convert_data.py mian.py myconfig.py    摘要 基于qlib的量化交易workflow框架实现，包括数据，因子，模型，回测部分。  Csv数据转化 convert_data.py 1234567891011121314151617# 从scripts.dump_bin模块导入DumpDataAll类from scripts.dump_b">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Coding-量化交易-qlib workflow">
+<meta property="og:url" content="http://example.com/2025/08/29/coding_Quant_Qlib_start/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="摘要 Csv数据转化 convert_data.py mian.py myconfig.py    摘要 基于qlib的量化交易workflow框架实现，包括数据，因子，模型，回测部分。  Csv数据转化 convert_data.py 1234567891011121314151617# 从scripts.dump_bin模块导入DumpDataAll类from scripts.dump_b">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-08-29T08:17:46.152Z">
+<meta property="article:modified_time" content="2025-08-29T08:25:10.179Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Code-量化交易">
+<meta name="twitter:card" content="summary">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://example.com/2025/08/29/coding_Quant_Qlib_start/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    <link href="//cdn.jsdelivr.net/npm/katex@0.9.0/dist/katex.min.css" rel="stylesheet">
+  
+  
+  
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/chandlerye" target="_blank">
+          <img class="img-circle img-rotate" src="/images/favicon.ico" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">Chandler</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">一头牛马</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Beijing, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="搜索" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="想要查找什么..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">首页</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">归档</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">分类</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">标签</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/chandlerye" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">公告</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>记录学习历程!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget-body">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Paper/">Paper</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BC%96%E7%A8%8B/">编程</a><span class="category-list-count">54</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget-body tagcloud">
+      <a href="/tags/Code-isaacsim/" style="font-size: 13px;">Code-isaacsim</a> <a href="/tags/Code-%E5%88%86%E7%B1%BB/" style="font-size: 13.5px;">Code-分类</a> <a href="/tags/Code-%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/" style="font-size: 13.88px;">Code-图像处理</a> <a href="/tags/Code-%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/" style="font-size: 13.13px;">Code-强化学习</a> <a href="/tags/Code-%E6%96%87%E4%BB%B6%E5%A4%84%E7%90%86/" style="font-size: 14px;">Code-文件处理</a> <a href="/tags/Code-%E6%9C%BA%E5%99%A8%E4%BA%BA/" style="font-size: 13.25px;">Code-机器人</a> <a href="/tags/Code-%E6%A8%A1%E5%9E%8B%E5%BA%93/" style="font-size: 13.63px;">Code-模型库</a> <a href="/tags/Code-%E7%94%9F%E6%88%90/" style="font-size: 13.25px;">Code-生成</a> <a href="/tags/Code-%E9%87%8F%E5%8C%96%E4%BA%A4%E6%98%93/" style="font-size: 13px;">Code-量化交易</a> <a href="/tags/Paper-CVPR/" style="font-size: 13px;">Paper-CVPR</a> <a href="/tags/Paper-ICRA/" style="font-size: 13px;">Paper-ICRA</a> <a href="/tags/Paper-Robot-list/" style="font-size: 13.25px;">Paper-Robot_list</a> <a href="/tags/Paper-TRO/" style="font-size: 13px;">Paper-TRO</a> <a href="/tags/Paper-%E5%8C%BB%E5%AD%A6%E5%BD%B1%E5%83%8F/" style="font-size: 13.75px;">Paper-医学影像</a> <a href="/tags/Paper-%E7%BB%BC%E8%BF%B0%E6%96%87%E7%AB%A0/" style="font-size: 13.38px;">Paper-综述文章</a> <a href="/tags/Qt/" style="font-size: 13.13px;">Qt</a> <a href="/tags/%E5%8C%BB%E5%AD%A6/" style="font-size: 13.13px;">医学</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" style="font-size: 13.38px;">编程基础知识</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/08/">八月 2025</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/04/">四月 2025</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/12/">十二月 2024</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/11/">十一月 2024</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/07/">七月 2024</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/06/">六月 2024</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/05/">五月 2024</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">二月 2024</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">一月 2024</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">十二月 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">十月 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">九月 2023</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">八月 2023</a><span class="archive-list-count">7</span></li></ul>
+    </div>
+  </div>
+
+
+    
+  </div>
+</aside>
+
+  
+  
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-coding_Quant_Qlib_start" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Coding-量化交易-qlib workflow
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2025/08/29/coding_Quant_Qlib_start/" class="article-date">
+	  <time datetime="2025-08-29T08:17:46.152Z" itemprop="datePublished">2025-08-29</time>
+	</a>
+</span>
+        
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
+    <a class="article-category-link" href="/categories/%E7%BC%96%E7%A8%8B/">编程</a>
+  </span>
+
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link-link" href="/tags/Code-%E9%87%8F%E5%8C%96%E4%BA%A4%E6%98%93/" rel="tag">Code-量化交易</a>
+  </span>
+
+
+        
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2025/08/29/coding_Quant_Qlib_start/#comments" class="article-comment-link">评论</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <!-- toc -->
+<ul>
+<li><a href="#%E6%91%98%E8%A6%81">摘要</a></li>
+<li><a href="#csv%E6%95%B0%E6%8D%AE%E8%BD%AC%E5%8C%96-convert_datapy">Csv数据转化 convert_data.py</a></li>
+<li><a href="#mianpy">mian.py</a></li>
+<li><a href="#myconfigpy">myconfig.py</a></li>
+</ul>
+<!-- tocstop -->
+<h3><span id="摘要"> 摘要</span></h3>
+<p>基于qlib的量化交易workflow框架实现，包括数据，因子，模型，回测部分。</p>
+<h3><span id="csv数据转化-convert_datapy"> Csv数据转化 convert_data.py</span></h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 从scripts.dump_bin模块导入DumpDataAll类</span></span><br><span class="line"><span class="keyword">from</span> scripts.dump_bin <span class="keyword">import</span> DumpDataAll</span><br><span class="line"></span><br><span class="line"><span class="comment"># 当脚本作为主程序运行时执行以下代码</span></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    <span class="comment"># 创建DumpDataAll类的实例，用于数据导出</span></span><br><span class="line">    dump_util = DumpDataAll(</span><br><span class="line">        data_path=<span class="string">&quot;./mydata/five_stock&quot;</span>,  <span class="comment"># 原始数据存放路径</span></span><br><span class="line">        qlib_dir=<span class="string">&quot;./my_qlib_dir/five_stock&quot;</span>,  <span class="comment"># QLib格式数据的输出目录</span></span><br><span class="line">        <span class="comment"># include_fields=&#x27;open,high,low,close,volume,position&#x27;,  # 注释掉的字段配置</span></span><br><span class="line">        include_fields=<span class="string">&#x27;volume,high,low,close,open&#x27;</span>,  <span class="comment"># 需要导出的字段列表</span></span><br><span class="line">        date_field_name=<span class="string">&quot;date&quot;</span>,  <span class="comment"># 日期字段的名称</span></span><br><span class="line">        symbol_field_name=<span class="string">&quot;symbol&quot;</span>,  <span class="comment"># 股票代码字段的名称</span></span><br><span class="line">        freq=<span class="string">&quot;day&quot;</span>  <span class="comment"># 数据频率，这里是日线数据</span></span><br><span class="line">    )</span><br><span class="line">    <span class="comment"># 调用dump方法执行数据导出操作</span></span><br><span class="line">    dump_util.dump()</span><br></pre></td></tr></table></figure>
+<h3><span id="mianpy"> </span></h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#  Copyright (c) Microsoft Corporation.</span></span><br><span class="line"><span class="comment">#  Licensed under the MIT License.</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">Qlib提供了两种类型的接口：</span></span><br><span class="line"><span class="string">(1) 用户可以通过简单的配置定义量化研究工作流</span></span><br><span class="line"><span class="string">(2) Qlib以模块化方式设计，支持像搭积木一样通过代码创建研究工作流</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">(1)的接口是`qrun XXX.yaml`，(2)的接口是类似本脚本的形式，其功能与`qrun XXX.yaml`几乎相同</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="comment"># 导入qlib库及相关组件</span></span><br><span class="line"><span class="keyword">import</span> qlib</span><br><span class="line"><span class="keyword">from</span> qlib.constant <span class="keyword">import</span> REG_CN  <span class="comment"># 导入中国市场常量</span></span><br><span class="line"><span class="keyword">from</span> qlib.utils <span class="keyword">import</span> init_instance_by_config, flatten_dict  <span class="comment"># 工具函数：通过配置初始化实例、字典扁平化</span></span><br><span class="line"><span class="keyword">from</span> qlib.workflow <span class="keyword">import</span> R  <span class="comment"># 实验记录与管理组件</span></span><br><span class="line"><span class="keyword">from</span> qlib.workflow.record_temp <span class="keyword">import</span> (  <span class="comment"># 记录模板：用于生成各种分析记录</span></span><br><span class="line">    SignalRecord,    <span class="comment"># 信号记录</span></span><br><span class="line">    PortAnaRecord,   <span class="comment"># 组合分析记录</span></span><br><span class="line">    SigAnaRecord     <span class="comment"># 信号分析记录</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 从自定义配置文件导入基准指数和任务配置</span></span><br><span class="line"><span class="keyword">from</span> mycode.myconfig <span class="keyword">import</span> CSI300_BENCH, CSI5_GBDT_TASK</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    <span class="comment"># 数据存储路径配置</span></span><br><span class="line">    provider_uri = <span class="string">&quot;./my_qlib_dir/five_stock&quot;</span>  <span class="comment"># 目标数据目录</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 初始化qlib</span></span><br><span class="line">    <span class="comment"># 注：GetData().qlib_data(...)用于获取数据，这里假设数据已存在</span></span><br><span class="line">    qlib.init(provider_uri=provider_uri, region=REG_CN)  <span class="comment"># 初始化并指定数据路径和市场区域（中国）</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 根据配置初始化模型和数据集</span></span><br><span class="line">    model = init_instance_by_config(CSI5_GBDT_TASK[<span class="string">&quot;model&quot;</span>])  <span class="comment"># 从任务配置中初始化模型</span></span><br><span class="line">    dataset = init_instance_by_config(CSI5_GBDT_TASK[<span class="string">&quot;dataset&quot;</span>])  <span class="comment"># 从任务配置中初始化数据集</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 组合分析配置（回测相关设置）</span></span><br><span class="line">    port_analysis_config = &#123;</span><br><span class="line">        <span class="string">&quot;executor&quot;</span>: &#123;  <span class="comment"># 执行器配置：控制回测执行逻辑</span></span><br><span class="line">            <span class="string">&quot;class&quot;</span>: <span class="string">&quot;SimulatorExecutor&quot;</span>,  <span class="comment"># 模拟器执行器</span></span><br><span class="line">            <span class="string">&quot;module_path&quot;</span>: <span class="string">&quot;qlib.backtest.executor&quot;</span>,  <span class="comment"># 执行器所在模块</span></span><br><span class="line">            <span class="string">&quot;kwargs&quot;</span>: &#123;</span><br><span class="line">                <span class="string">&quot;time_per_step&quot;</span>: <span class="string">&quot;day&quot;</span>,  <span class="comment"># 每步执行时间单位（按天）</span></span><br><span class="line">                <span class="string">&quot;generate_portfolio_metrics&quot;</span>: <span class="literal">True</span>,  <span class="comment"># 生成组合指标</span></span><br><span class="line">            &#125;,</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="string">&quot;strategy&quot;</span>: &#123;  <span class="comment"># 策略配置：定义交易策略逻辑</span></span><br><span class="line">            <span class="string">&quot;class&quot;</span>: <span class="string">&quot;TopkDropoutStrategy&quot;</span>,  <span class="comment"># TopkDropout策略（选取排名前k的股票，剔除部分）</span></span><br><span class="line">            <span class="string">&quot;module_path&quot;</span>: <span class="string">&quot;qlib.contrib.strategy.signal_strategy&quot;</span>,  <span class="comment"># 策略所在模块</span></span><br><span class="line">            <span class="string">&quot;kwargs&quot;</span>: &#123;</span><br><span class="line">                <span class="string">&quot;signal&quot;</span>: (model, dataset),  <span class="comment"># 信号源：使用模型和数据集生成信号</span></span><br><span class="line">                <span class="string">&quot;topk&quot;</span>: <span class="number">50</span>,  <span class="comment"># 选取排名前50的股票</span></span><br><span class="line">                <span class="string">&quot;n_drop&quot;</span>: <span class="number">5</span>,  <span class="comment"># 每次调仓剔除5只股票</span></span><br><span class="line">            &#125;,</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="string">&quot;backtest&quot;</span>: &#123;  <span class="comment"># 回测配置：定义回测的基本参数</span></span><br><span class="line">            <span class="string">&quot;start_time&quot;</span>: <span class="string">&quot;2019-11-28&quot;</span>,  <span class="comment"># 回测开始时间</span></span><br><span class="line">            <span class="string">&quot;end_time&quot;</span>: <span class="string">&quot;2020-09-23&quot;</span>,    <span class="comment"># 回测结束时间</span></span><br><span class="line">            <span class="string">&quot;account&quot;</span>: <span class="number">100000000</span>,        <span class="comment"># 初始资金（1亿元）</span></span><br><span class="line">            <span class="string">&quot;benchmark&quot;</span>: CSI300_BENCH,   <span class="comment"># 基准指数（沪深300）</span></span><br><span class="line">            <span class="string">&quot;exchange_kwargs&quot;</span>: &#123;         <span class="comment"># 交易所相关参数（手续费等）</span></span><br><span class="line">                <span class="string">&quot;freq&quot;</span>: <span class="string">&quot;day&quot;</span>,           <span class="comment"># 交易频率（按天）</span></span><br><span class="line">                <span class="string">&quot;limit_threshold&quot;</span>: <span class="number">0.095</span>, <span class="comment"># 涨跌停阈值（9.5%）</span></span><br><span class="line">                <span class="string">&quot;deal_price&quot;</span>: <span class="string">&quot;close&quot;</span>,   <span class="comment"># 成交价格（收盘价）</span></span><br><span class="line">                <span class="string">&quot;open_cost&quot;</span>: <span class="number">0.0005</span>,     <span class="comment"># 开仓手续费率（0.05%）</span></span><br><span class="line">                <span class="string">&quot;close_cost&quot;</span>: <span class="number">0.0015</span>,    <span class="comment"># 平仓手续费率（0.15%）</span></span><br><span class="line">                <span class="string">&quot;min_cost&quot;</span>: <span class="number">5</span>,           <span class="comment"># 最低手续费（5元）</span></span><br><span class="line">            &#125;,</span><br><span class="line">        &#125;,</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 注意：以下代码是可选的</span></span><br><span class="line">    <span class="comment"># 用于演示数据集可以单独使用</span></span><br><span class="line">    example_df = dataset.prepare(<span class="string">&quot;train&quot;</span>)  <span class="comment"># 获取训练集数据</span></span><br><span class="line">    <span class="built_in">print</span>(example_df.head())  <span class="comment"># 打印训练集前5行</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 开始实验（使用R组件记录实验过程）</span></span><br><span class="line">    <span class="keyword">with</span> R.start(experiment_name=<span class="string">&quot;workflow&quot;</span>):  <span class="comment"># 实验名称为&quot;workflow&quot;</span></span><br><span class="line">        <span class="comment"># 记录参数：将任务配置扁平化后存入日志</span></span><br><span class="line">        R.log_params(**flatten_dict(CSI5_GBDT_TASK))</span><br><span class="line">        <span class="comment"># 模型训练</span></span><br><span class="line">        model.fit(dataset)</span><br><span class="line">        <span class="comment"># 保存模型参数</span></span><br><span class="line">        R.save_objects(** &#123;<span class="string">&quot;params.pkl&quot;</span>: model&#125;)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 预测阶段</span></span><br><span class="line">        recorder = R.get_recorder()  <span class="comment"># 获取记录器</span></span><br><span class="line">        sr = SignalRecord(model, dataset, recorder)  <span class="comment"># 创建信号记录器</span></span><br><span class="line">        sr.generate()  <span class="comment"># 生成信号记录</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># 信号分析</span></span><br><span class="line">        sar = SigAnaRecord(recorder)  <span class="comment"># 创建信号分析记录器</span></span><br><span class="line">        sar.generate()  <span class="comment"># 生成信号分析结果</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># 回测分析</span></span><br><span class="line">        <span class="comment"># 注：如果用户想基于自己的预测结果进行回测，</span></span><br><span class="line">        <span class="comment"># 请参考https://qlib.readthedocs.io/en/latest/component/recorder.html#record-template</span></span><br><span class="line">        par = PortAnaRecord(recorder, port_analysis_config, <span class="string">&quot;day&quot;</span>)  <span class="comment"># 创建组合分析记录器</span></span><br><span class="line">        par.generate()  <span class="comment"># 生成组合分析结果</span></span><br></pre></td></tr></table></figure>
+<h3><span id="myconfigpy"> </span></h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 导入qlib数据处理相关组件</span></span><br><span class="line"><span class="keyword">from</span> qlib.data.dataset.handler <span class="keyword">import</span> DataHandlerLP  <span class="comment"># 数据处理基类</span></span><br><span class="line"><span class="keyword">from</span> qlib.data.dataset.loader <span class="keyword">import</span> QlibDataLoader  <span class="comment"># 数据加载器基类</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> qlib.data.dataset.processor <span class="keyword">import</span> Processor  <span class="comment"># 数据处理器基类</span></span><br><span class="line"><span class="keyword">from</span> qlib.utils <span class="keyword">import</span> get_callable_kwargs  <span class="comment"># 工具函数：获取可调用对象的参数</span></span><br><span class="line"><span class="keyword">from</span> qlib.data.dataset <span class="keyword">import</span> processor <span class="keyword">as</span> processor_module  <span class="comment"># 数据处理器模块</span></span><br><span class="line"><span class="keyword">from</span> inspect <span class="keyword">import</span> getfullargspec  <span class="comment"># 用于获取函数参数信息</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 基准指数配置</span></span><br><span class="line">CSI300_BENCH = <span class="string">&quot;SH000300&quot;</span>  <span class="comment"># 沪深300指数代码</span></span><br><span class="line">CSI5_MARKET = <span class="string">&quot;all&quot;</span>        <span class="comment"># 市场范围（全部股票）</span></span><br><span class="line">DATASET_A4_CLASS = <span class="string">&quot;A4&quot;</span>    <span class="comment"># 数据集类名称</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 默认的学习阶段数据处理器配置</span></span><br><span class="line">_DEFAULT_LEARN_PROCESSORS = [</span><br><span class="line">    &#123;<span class="string">&quot;class&quot;</span>: <span class="string">&quot;DropnaLabel&quot;</span>&#125;,  <span class="comment"># 移除标签为空的数据</span></span><br><span class="line">    &#123;<span class="string">&quot;class&quot;</span>: <span class="string">&quot;CSZScoreNorm&quot;</span>, <span class="string">&quot;kwargs&quot;</span>: &#123;<span class="string">&quot;fields_group&quot;</span>: <span class="string">&quot;label&quot;</span>&#125;&#125;,  <span class="comment"># 对标签进行Z-Score标准化</span></span><br><span class="line">    &#123;<span class="string">&quot;class&quot;</span>: <span class="string">&quot;Fillna&quot;</span>&#125;,  <span class="comment"># 填充缺失值</span></span><br><span class="line">]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">check_transform_proc</span>(<span class="params">proc_l, fit_start_time, fit_end_time</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    检查并处理数据处理器配置，为需要的处理器添加拟合时间范围</span></span><br><span class="line"><span class="string">    </span></span><br><span class="line"><span class="string">    参数:</span></span><br><span class="line"><span class="string">        proc_l: 处理器配置列表</span></span><br><span class="line"><span class="string">        fit_start_time: 拟合开始时间</span></span><br><span class="line"><span class="string">        fit_end_time: 拟合结束时间</span></span><br><span class="line"><span class="string">    </span></span><br><span class="line"><span class="string">    返回:</span></span><br><span class="line"><span class="string">        处理后的处理器配置列表</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    new_l = []</span><br><span class="line">    <span class="keyword">for</span> p <span class="keyword">in</span> proc_l:</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> <span class="built_in">isinstance</span>(p, Processor):</span><br><span class="line">            <span class="comment"># 获取处理器类和参数</span></span><br><span class="line">            klass, pkwargs = get_callable_kwargs(p, processor_module)</span><br><span class="line">            <span class="comment"># 获取类的参数列表</span></span><br><span class="line">            args = getfullargspec(klass).args</span><br><span class="line">            <span class="comment"># 如果处理器需要拟合时间范围参数，则添加</span></span><br><span class="line">            <span class="keyword">if</span> <span class="string">&quot;fit_start_time&quot;</span> <span class="keyword">in</span> args <span class="keyword">and</span> <span class="string">&quot;fit_end_time&quot;</span> <span class="keyword">in</span> args:</span><br><span class="line">                <span class="comment"># 确保拟合时间范围已设置</span></span><br><span class="line">                <span class="keyword">assert</span> (</span><br><span class="line">                    fit_start_time <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span> <span class="keyword">and</span> fit_end_time <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span></span><br><span class="line">                ), <span class="string">&quot;Make sure `fit_start_time` and `fit_end_time` are not None.&quot;</span></span><br><span class="line">                pkwargs.update(</span><br><span class="line">                    &#123;</span><br><span class="line">                        <span class="string">&quot;fit_start_time&quot;</span>: fit_start_time,</span><br><span class="line">                        <span class="string">&quot;fit_end_time&quot;</span>: fit_end_time,</span><br><span class="line">                    &#125;</span><br><span class="line">                )</span><br><span class="line">            <span class="comment"># 构建处理器配置</span></span><br><span class="line">            proc_config = &#123;<span class="string">&quot;class&quot;</span>: klass.__name__, <span class="string">&quot;kwargs&quot;</span>: pkwargs&#125;</span><br><span class="line">            <span class="comment"># 如果原始配置包含模块路径，则保留</span></span><br><span class="line">            <span class="keyword">if</span> <span class="built_in">isinstance</span>(p, <span class="built_in">dict</span>) <span class="keyword">and</span> <span class="string">&quot;module_path&quot;</span> <span class="keyword">in</span> p:</span><br><span class="line">                proc_config[<span class="string">&quot;module_path&quot;</span>] = p[<span class="string">&quot;module_path&quot;</span>]</span><br><span class="line">            new_l.append(proc_config)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            new_l.append(p)</span><br><span class="line">    <span class="keyword">return</span> new_l</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">A4DL</span>(<span class="title class_ inherited__">QlibDataLoader</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    自定义数据加载器：用于获取指定因子（MACD、成交量、价格波动范围、3日均值）</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, config=<span class="literal">None</span>, **kwargs</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;初始化数据加载器&quot;&quot;&quot;</span></span><br><span class="line">        _config = &#123;</span><br><span class="line">            <span class="string">&quot;feature&quot;</span>: self.get_feature_config(),  <span class="comment"># 设置特征配置</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> config <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">            _config.update(config)</span><br><span class="line">        <span class="built_in">super</span>().__init__(config=_config,** kwargs)</span><br><span class="line"></span><br><span class="line"><span class="meta">    @staticmethod</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">get_feature_config</span>(<span class="params">config=&#123;&#125;</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        创建指定的因子配置：MACD、成交量、价格波动范围、3日均值</span></span><br><span class="line"><span class="string">        </span></span><br><span class="line"><span class="string">        参数:</span></span><br><span class="line"><span class="string">            config: 额外配置（预留）</span></span><br><span class="line"><span class="string">        </span></span><br><span class="line"><span class="string">        返回:</span></span><br><span class="line"><span class="string">            特征表达式和名称的元组</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="comment"># 1. 定义MACD因子</span></span><br><span class="line">        <span class="comment"># MACD计算公式：(EMA(12)-EMA(26))/收盘价 - EMA((EMA(12)-EMA(26))/收盘价, 9)/收盘价</span></span><br><span class="line">        macd_exp = <span class="string">&#x27;(EMA($close, 12) - EMA($close, 26))/$close - EMA((EMA($close, 12) - EMA($close, 26))/$close, 9)/$close&#x27;</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 2. 定义其他特征</span></span><br><span class="line">        volume = <span class="string">&#x27;$volume&#x27;</span>  <span class="comment"># 成交量</span></span><br><span class="line">        price_range = <span class="string">&#x27;$high-$low&#x27;</span>  <span class="comment"># 最高价-最低价（价格波动范围）</span></span><br><span class="line">        ma3 = <span class="string">&#x27;Mean($close, 3)&#x27;</span>  <span class="comment"># 3日收盘价均值</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 组合特征字段和名称</span></span><br><span class="line">        fields = [macd_exp, volume, price_range, ma3]</span><br><span class="line">        names = [<span class="string">&#x27;MACD&#x27;</span>, <span class="string">&#x27;VOLUME&#x27;</span>, <span class="string">&#x27;RANGE&#x27;</span>, <span class="string">&#x27;MA3&#x27;</span>]</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> fields, names</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">A4</span>(<span class="title class_ inherited__">DataHandlerLP</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    自定义数据处理器类，继承自DataHandlerLP</span></span><br><span class="line"><span class="string">    用于处理数据加载、特征工程和标签生成</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params"></span></span><br><span class="line"><span class="params">        self,</span></span><br><span class="line"><span class="params">        instruments=<span class="string">&quot;all&quot;</span>,          <span class="comment"># 股票池</span></span></span><br><span class="line"><span class="params">        start_time=<span class="literal">None</span>,            <span class="comment"># 数据开始时间</span></span></span><br><span class="line"><span class="params">        end_time=<span class="literal">None</span>,              <span class="comment"># 数据结束时间</span></span></span><br><span class="line"><span class="params">        freq=<span class="string">&quot;day&quot;</span>,                 <span class="comment"># 数据频率（按天）</span></span></span><br><span class="line"><span class="params">        infer_processors=[],        <span class="comment"># 推理阶段数据处理器</span></span></span><br><span class="line"><span class="params">        learn_processors=_DEFAULT_LEARN_PROCESSORS,  <span class="comment"># 学习阶段数据处理器</span></span></span><br><span class="line"><span class="params">        fit_start_time=<span class="literal">None</span>,        <span class="comment"># 处理器拟合开始时间</span></span></span><br><span class="line"><span class="params">        fit_end_time=<span class="literal">None</span>,          <span class="comment"># 处理器拟合结束时间</span></span></span><br><span class="line"><span class="params">        process_type=DataHandlerLP.PTYPE_A,  <span class="comment"># 处理类型</span></span></span><br><span class="line"><span class="params">        filter_pipe=<span class="literal">None</span>,           <span class="comment"># 过滤管道</span></span></span><br><span class="line"><span class="params">        inst_processors=<span class="literal">None</span>,       <span class="comment"># 股票处理器</span></span></span><br><span class="line"><span class="params">        **kwargs,</span></span><br><span class="line"><span class="params">    </span>):</span><br><span class="line">        <span class="comment"># 检查并处理数据处理器配置</span></span><br><span class="line">        infer_processors = check_transform_proc(infer_processors, fit_start_time, fit_end_time)</span><br><span class="line">        learn_processors = check_transform_proc(learn_processors, fit_start_time, fit_end_time)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 数据加载器配置</span></span><br><span class="line">        data_loader = &#123;</span><br><span class="line">            <span class="string">&quot;class&quot;</span>: <span class="string">&quot;QlibDataLoader&quot;</span>,</span><br><span class="line">            <span class="string">&quot;kwargs&quot;</span>: &#123;</span><br><span class="line">                <span class="string">&quot;config&quot;</span>: &#123;</span><br><span class="line">                    <span class="string">&quot;feature&quot;</span>: self.get_feature_config(),  <span class="comment"># 特征配置</span></span><br><span class="line">                    <span class="string">&quot;label&quot;</span>: kwargs.pop(<span class="string">&quot;label&quot;</span>, self.get_label_config()),  <span class="comment"># 标签配置（默认使用内置标签）</span></span><br><span class="line">                &#125;,</span><br><span class="line">                <span class="string">&quot;filter_pipe&quot;</span>: filter_pipe,       <span class="comment"># 过滤管道</span></span><br><span class="line">                <span class="string">&quot;freq&quot;</span>: freq,                     <span class="comment"># 数据频率</span></span><br><span class="line">                <span class="string">&quot;inst_processors&quot;</span>: inst_processors,  <span class="comment"># 股票处理器</span></span><br><span class="line">            &#125;,</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment"># 调用父类构造函数初始化</span></span><br><span class="line">        <span class="built_in">super</span>().__init__(</span><br><span class="line">            instruments=instruments,</span><br><span class="line">            start_time=start_time,</span><br><span class="line">            end_time=end_time,</span><br><span class="line">            data_loader=data_loader,</span><br><span class="line">            infer_processors=infer_processors,</span><br><span class="line">            learn_processors=learn_processors,</span><br><span class="line">            process_type=process_type,** kwargs,</span><br><span class="line">        )</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">get_feature_config</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;获取特征配置（复用A4DL的数据加载器）&quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">return</span> A4DL.get_feature_config()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">get_label_config</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        获取标签配置</span></span><br><span class="line"><span class="string">        这里定义的标签是：下一期的收盘价（用于预测）</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">return</span> [<span class="string">&quot;Ref($close, -1)&quot;</span>], [<span class="string">&quot;LABEL0&quot;</span>]  <span class="comment"># 表达式和标签名称</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">get_data_handler_config</span>(<span class="params"></span></span><br><span class="line"><span class="params">    start_time=<span class="string">&quot;2019-11-28&quot;</span>,      <span class="comment"># 数据开始时间</span></span></span><br><span class="line"><span class="params">    end_time=<span class="string">&quot;2020-09-23&quot;</span>,        <span class="comment"># 数据结束时间</span></span></span><br><span class="line"><span class="params">    fit_start_time=<span class="string">&quot;&lt;dataset.kwargs.segments.train.0&gt;&quot;</span>,  <span class="comment"># 拟合开始时间（引用训练集开始时间）</span></span></span><br><span class="line"><span class="params">    fit_end_time=<span class="string">&quot;&lt;dataset.kwargs.segments.train.1&gt;&quot;</span>,    <span class="comment"># 拟合结束时间（引用训练集结束时间）</span></span></span><br><span class="line"><span class="params">    instruments=CSI5_MARKET,      <span class="comment"># 股票池</span></span></span><br><span class="line"><span class="params"></span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    获取数据处理器配置</span></span><br><span class="line"><span class="string">    </span></span><br><span class="line"><span class="string">    返回:</span></span><br><span class="line"><span class="string">        数据处理器配置字典</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">        <span class="string">&quot;start_time&quot;</span>: start_time,</span><br><span class="line">        <span class="string">&quot;end_time&quot;</span>: end_time,</span><br><span class="line">        <span class="string">&quot;fit_start_time&quot;</span>: fit_start_time,</span><br><span class="line">        <span class="string">&quot;fit_end_time&quot;</span>: fit_end_time,</span><br><span class="line">        <span class="string">&quot;instruments&quot;</span>: instruments,</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">get_dataset_config</span>(<span class="params"></span></span><br><span class="line"><span class="params">    dataset_class=DATASET_A4_CLASS,  <span class="comment"># 数据集类名称</span></span></span><br><span class="line"><span class="params">    train=(<span class="params"><span class="string">&quot;2019-11-28&quot;</span>, <span class="string">&quot;2020-07-23&quot;</span></span>),  <span class="comment"># 训练集时间范围</span></span></span><br><span class="line"><span class="params">    valid=(<span class="params"><span class="string">&quot;2020-07-24&quot;</span>, <span class="string">&quot;2020-08-23&quot;</span></span>),  <span class="comment"># 验证集时间范围</span></span></span><br><span class="line"><span class="params">    test=(<span class="params"><span class="string">&quot;2020-08-24&quot;</span>, <span class="string">&quot;2020-09-23&quot;</span></span>),   <span class="comment"># 测试集时间范围</span></span></span><br><span class="line"><span class="params">    handler_kwargs=&#123;<span class="string">&quot;instruments&quot;</span>: CSI5_MARKET&#125;,  <span class="comment"># 数据处理器参数</span></span></span><br><span class="line"><span class="params"></span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    获取数据集配置</span></span><br><span class="line"><span class="string">    </span></span><br><span class="line"><span class="string">    返回:</span></span><br><span class="line"><span class="string">        数据集配置字典</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">        <span class="string">&quot;class&quot;</span>: <span class="string">&quot;DatasetH&quot;</span>,  <span class="comment"># qlib自带的DatasetH类（用于包装数据处理器）</span></span><br><span class="line">        <span class="string">&quot;module_path&quot;</span>: <span class="string">&quot;qlib.data.dataset&quot;</span>,  <span class="comment"># DatasetH所在模块</span></span><br><span class="line">        <span class="string">&quot;kwargs&quot;</span>: &#123;</span><br><span class="line">            <span class="string">&quot;handler&quot;</span>: &#123;  <span class="comment"># 数据处理器配置</span></span><br><span class="line">                <span class="string">&quot;class&quot;</span>: dataset_class,        <span class="comment"># 自定义数据处理器类名</span></span><br><span class="line">                <span class="string">&quot;module_path&quot;</span>: <span class="string">&quot;mycode.myconfig&quot;</span>,  <span class="comment"># 自定义数据处理器所在模块</span></span><br><span class="line">                <span class="string">&quot;kwargs&quot;</span>: get_data_handler_config(**handler_kwargs),  <span class="comment"># 数据处理器参数</span></span><br><span class="line">            &#125;,</span><br><span class="line">            <span class="string">&quot;segments&quot;</span>: &#123;  <span class="comment"># 数据集分割（训练/验证/测试）</span></span><br><span class="line">                <span class="string">&quot;train&quot;</span>: train,</span><br><span class="line">                <span class="string">&quot;valid&quot;</span>: valid,</span><br><span class="line">                <span class="string">&quot;test&quot;</span>: test,</span><br><span class="line">            &#125;,</span><br><span class="line">        &#125;,</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># GBDT模型配置（使用LightGBM）</span></span><br><span class="line">GBDT_MODEL = &#123;</span><br><span class="line">    <span class="string">&quot;class&quot;</span>: <span class="string">&quot;LGBModel&quot;</span>,  <span class="comment"># qlib中的LGBModel类</span></span><br><span class="line">    <span class="string">&quot;module_path&quot;</span>: <span class="string">&quot;qlib.contrib.model.gbdt&quot;</span>,  <span class="comment"># LGBModel所在模块</span></span><br><span class="line">    <span class="string">&quot;kwargs&quot;</span>: &#123;</span><br><span class="line">        <span class="string">&quot;loss&quot;</span>: <span class="string">&quot;mse&quot;</span>,               <span class="comment"># 损失函数（均方误差）</span></span><br><span class="line">        <span class="string">&quot;colsample_bytree&quot;</span>: <span class="number">0.8879</span>,  <span class="comment"># 特征采样比例</span></span><br><span class="line">        <span class="string">&quot;learning_rate&quot;</span>: <span class="number">0.0421</span>,     <span class="comment"># 学习率</span></span><br><span class="line">        <span class="string">&quot;subsample&quot;</span>: <span class="number">0.8789</span>,         <span class="comment"># 样本采样比例</span></span><br><span class="line">        <span class="string">&quot;lambda_l1&quot;</span>: <span class="number">205.6999</span>,       <span class="comment"># L1正则化系数</span></span><br><span class="line">        <span class="string">&quot;lambda_l2&quot;</span>: <span class="number">580.9768</span>,       <span class="comment"># L2正则化系数</span></span><br><span class="line">        <span class="string">&quot;max_depth&quot;</span>: <span class="number">8</span>,              <span class="comment"># 树的最大深度</span></span><br><span class="line">        <span class="string">&quot;num_leaves&quot;</span>: <span class="number">210</span>,           <span class="comment"># 叶子节点数量</span></span><br><span class="line">        <span class="string">&quot;num_threads&quot;</span>: <span class="number">20</span>,           <span class="comment"># 线程数量</span></span><br><span class="line">    &#125;,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">get_gbdt_task</span>(<span class="params">dataset_kwargs=&#123;&#125;, handler_kwargs=&#123;<span class="string">&quot;instruments&quot;</span>: CSI5_MARKET&#125;</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    获取GBDT任务配置（模型+数据集）</span></span><br><span class="line"><span class="string">    </span></span><br><span class="line"><span class="string">    参数:</span></span><br><span class="line"><span class="string">        dataset_kwargs: 数据集额外参数</span></span><br><span class="line"><span class="string">        handler_kwargs: 数据处理器额外参数</span></span><br><span class="line"><span class="string">    </span></span><br><span class="line"><span class="string">    返回:</span></span><br><span class="line"><span class="string">        任务配置字典</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">        <span class="string">&quot;model&quot;</span>: GBDT_MODEL,  <span class="comment"># 模型配置</span></span><br><span class="line">        <span class="string">&quot;dataset&quot;</span>: get_dataset_config(** dataset_kwargs, handler_kwargs=handler_kwargs),  <span class="comment"># 数据集配置</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 最终的CSI5 GBDT任务配置</span></span><br><span class="line">CSI5_GBDT_TASK = get_gbdt_task(handler_kwargs=&#123;<span class="string">&quot;instruments&quot;</span>: CSI5_MARKET&#125;)</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <div class="article-footer">
+      <!-- <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="http://example.com/2025/08/29/coding_Quant_Qlib_start/" title="Coding-量化交易-qlib workflow" target="_blank" rel="external">http://example.com/2025/08/29/coding_Quant_Qlib_start/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote> -->
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/chandlerye" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/favicon.ico" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/chandlerye" target="_blank"><span class="text-dark">Chandler</span><small class="ml-1x">一头牛马</small></a></h3>
+        <div>江上两条红船，寒风斜雨摇摆</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    
+    <li class="next">
+      <a href="/2025/04/28/env_config/" title="环境配置"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  
+  <div class="bar-right">
+    
+  </div>
+  </div>
+</nav>
+  
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/chandlerye" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+
+
+
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/js/plugin.min.js"></script>
+
+
+<script src="/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+
+
+
+
+   
+
+
+
+
+   
+
+
+
+
+
+
+</body>
+</html>
