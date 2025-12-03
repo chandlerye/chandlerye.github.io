@@ -26,7 +26,7 @@
 <meta property="og:description" content="上传Github POWERSHELL(管理员) 创建软连接 代理服务器设置 Ubuntu anaconda环境变量设置 Ubuntu cuda环境变量设置 换conda清华源 换pip清华源 Ubuntu22.04 开启3389端口远程连接 vscode python调试功能的launch.json配置设置 vscode python调试功能的settings.json配置设置 linux配">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-04-28T03:05:09.549Z">
-<meta property="article:modified_time" content="2025-12-03T06:24:11.280Z">
+<meta property="article:modified_time" content="2025-12-03T06:33:40.644Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="编程基础知识">
 <meta name="twitter:card" content="summary">
@@ -263,23 +263,31 @@
 <!-- tocstop -->
 <h3><span id="上传github"> 上传Github</span></h3>
 <blockquote>
-<p>初始化Git<br>
-git init<br>
-添加文件<br>
-git add .<br>
-提交<br>
-git commit -m “Initial commit: code”<br>
-添加远程仓库（替换为您的仓库地址）</p>
+<p>初始化Git</p>
 </blockquote>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote add origin https://github.com/您的用户名/仓库名.git</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git init</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>添加文件</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git add .</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>提交</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git commit -m &quot;Initial commit: code&quot;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>添加远程仓库（替换为您的仓库地址）</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git remote add origin https://github.com/您的用户名/仓库名.git</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<blockquote>
 <p>例如</p>
+</blockquote>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote add origin https://github.com/chandlerye/仓库名.git</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>推送代码</p>
 </blockquote>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git branch -M main</span><br><span class="line">git push -u origin main</span><br></pre></td></tr></table></figure>
 <h3><span id="powershell管理员-创建软连接"> POWERSHELL(管理员) 创建软连接</span></h3>
-<p>New-Item -ItemType SymbolicLink -Path “C:\Users\Administrator\Documents\LocalWork\code” -Target “C:\Program Files (x86)\code”</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">New-Item -ItemType SymbolicLink -Path </span><br><span class="line">&quot;C:\Users\Administrator\Documents\LocalWork\code&quot; -Target &quot;C:\Program Files (x86)\code&quot;</span><br></pre></td></tr></table></figure>
 <h3><span id="代理服务器设置"> 代理服务器设置</span></h3>
 <blockquote>
 <p>windows</p>
